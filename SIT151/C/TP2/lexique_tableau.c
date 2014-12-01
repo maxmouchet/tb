@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
+// Functions are documented in headers
 #include "words.h"
 #include "lexique_tableau.h"
 

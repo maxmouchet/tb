@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
+// Functions are documented in headers
 #include "words.h"
 #include "lexique_liste.h"
 
@@ -77,6 +78,9 @@ int main(int argc, char *argv[]) {
     printf("Failed to open %s\n", argv[1]);
     return 1;
   }
-  
-  printDictionary(buildDictionary(textFile));
+
+  Dictionary dictionary;
+
+  dictionary = buildDictionary(textFile);
+  printDictionary(dictionary);
 }
