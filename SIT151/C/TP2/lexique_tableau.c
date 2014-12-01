@@ -7,6 +7,8 @@
 #include "words.h"
 #include "lexique_tableau.h"
 
+#define DICTIONARY_SIZE 16384
+
 int findWord(Dictionary dictionary, int length, char *word) {
   for (int i = 0; i < length; i++) {
     if (strcmp(dictionary[i].word, word) == 0) {
@@ -73,9 +75,9 @@ int main(int argc, char *argv[]) {
     return 1;
   }
   
-  Dictionary dictionary = calloc(1000, sizeof(Information));
+  Dictionary dictionary = calloc(DICTIONARY_SIZE, sizeof(Information));
   int length = 0;
 
   length = buildDictionary(dictionary, length, textFile);
-  printDictionary(dictionary, 1000);
+  printDictionary(dictionary, DICTIONARY_SIZE);
 }
