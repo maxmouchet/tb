@@ -35,5 +35,26 @@ fic9.txt | 239289 | 2.20                | 456.94               | 10.76          
 **lexique_tableau**  
 ![lexique_tableau heap allocations](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/heap_lexique_tableau.png)
 
-**lexique_liste**
+Les mallocs de 16B sont dues à la copie du mot dans la structure quand il n'est pas déjà présent dans le tableau. Cf. `lexique_tableau.c`:  
+
+```c
+  if ((index = findWord(dictionary, length, word)) == -1) {
+    Information information;
+
+    information.word = strcpy(malloc(sizeof(word)), word);
+    ...
+```
+
+**lexique_liste**  
 ![lexique_tableau heap allocations](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/heap_lexique_liste2.png)
+
+Les mallocs de 32B supplémentaires sont dues à l'allocation de la structure information quand le mot n'est pas déjà présent dans la liste. Cf. `lexique_liste.c`:  
+
+```c
+Dictionary updateDictionary(Dictionary dictionary, char *word) {
+  Information *information = findWord(dictionary,  word);
+
+  if (information == NULL) {
+    information = malloc(sizeof(Information));
+    ...
+```
