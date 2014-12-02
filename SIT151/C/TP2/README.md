@@ -11,6 +11,8 @@ Script usage: `Usage: ./benchmark.sh ALGORITHM FILES...`
 Configuration: `MBA 2013, Core i5@1.3GHz, 8GB DDR3, SSD`  
 Memory usage (total heap allocations) measured with Intruments on OSX.  
 
+##### Données brutes
+
 File     | Words  | lexique_tableau (s) | lexique_tableau (KB) | lexique_liste (s) | lexique_liste (KB)
 ---------|--------|---------------------|----------------------|-------------------|-------------------
 fic0.txt | 69     | 0.00                | 262.72               | 0.00              | 8.19
@@ -24,7 +26,11 @@ fic7.txt | 51333  | 0.24                | 334.17               | 0.71           
 fic8.txt | 124062 | 0.87                | 396.62               | 3.31              | 409.58
 fic9.txt | 239289 | 2.20                | 456.94               | 10.76             | 590.70
 
-##### Comparaisons allocations sur fic9.txt
+##### Tendances
+![running time](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_running_time1.png)
+![memory usage](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_memory1.png)
+
+##### Allocations sur fic9.txt
 
 **lexique_tableau**  
 ![lexique_tableau heap allocations](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/heap_lexique_tableau.png)
