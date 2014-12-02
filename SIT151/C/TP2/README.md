@@ -11,7 +11,7 @@ Script usage: `Usage: ./benchmark.sh ALGORITHM FILES...`
 Configuration: `MBA 2013, Core i5@1.3GHz, 8GB DDR3, SSD`  
 Memory usage (total heap allocations) measured with Intruments on OSX.  
 
-##### Données brutes
+##### Mesures
 
 File     | Words  | lexique_tableau (s) | lexique_tableau (KB) | lexique_liste (s) | lexique_liste (KB)
 ---------|--------|---------------------|----------------------|-------------------|-------------------
