@@ -1,0 +1,357 @@
+Karl Marx
+Capital Volume One
+
+Part I
+Commodities and Money
+
+SECTION 1
+
+THE TWO FACTORS OF A COMMODITY:
+USE-VALUE AND VALUE
+(THE SUBSTANCE OF VALUE AND THE MAGNITUDE OF VALUE)
+
+
+
+The wealth of those societies in which the capitalist mode of production
+prevails, presents itself as "an immense accumulation of commodities," [1]
+its unit being a single commodity. Our investigation must therefore begin
+with the analysis of a commodity.
+
+A commodity is, in the first place, an object outside us, a thing that by
+its properties satisfies human wants of some sort or another. The nature of
+such wants, whether, for instance, they spring from the stomach or from
+fancy, makes no difference. [2] Neither are we here concerned to know how
+the object satisfies these wants, whether directly as means of subsistence,
+or indirectly as means of production.
+
+Every useful thing, as iron, paper, &c., may be looked at from the two
+points of view of quality and quantity. It is an assemblage of many
+properties, and may therefore be of use in various ways. To discover the
+various uses of things is the work of history. [3] So also is the
+establishment of socially-recognized standards of measure for the
+quantities of these useful objects. The diversity of these measures has its
+origin partly in the diverse nature of the objects to be measured, partly
+in convention.
+
+The utility of a thing makes it a use-value. [4] But this utility is not a
+thing of air. Being limited by the physical properties of the commodity, it
+has no existence apart from that commodity. A commodity, such as iron,
+corn, or a diamond, is therefore, so far as it is a material thing, a
+use-value, something useful. This property of a commodity is independent of
+the amount of labour required to appropriate its useful qualities. When
+treating of use-value, we always assume to be dealing with definite
+quantities, such as dozens of watches, yards of linen, or tons of iron. The
+use-values of commodities furnish the material for a special study, that of
+the commercial knowledge of commodities. [5] Use-values become a reality
+only by use or consumption: they also constitute the substance of all
+wealth, whatever may be the social form of that wealth. In the form of
+society we are about to consider, they are, in addition, the material
+depositories of exchange-value.
+
+Exchange-value, at first sight, presents itself as a quantitative relation,
+as the proportion in which values in use of one sort are exchanged for
+those of another sort, [6] a relation constantly changing with time and
+place. Hence exchange-value appears to be something accidental and purely
+relative, and consequently an intrinsic value, i.e., an exchange-value that
+is inseparably connected with, inherent in commodities, seems a
+contradiction in terms. [7] Let us consider the matter a little more
+closely.
+
+A given commodity, e.g., a quarter of wheat is exchanged for x blacking, y
+silk, or z gold, &c. — in short, for other commodities in the most
+different proportions. Instead of one exchange-value, the wheat has,
+therefore, a great many. But since x blacking, y silk, or z gold &c., each
+represents the exchange-value of one quarter of wheat, x blacking, y silk,
+z gold, &c., must, as exchange-values, be replaceable by each other, or
+equal to each other. Therefore, first: the valid exchange-values of a given
+commodity express something equal; secondly, exchange-value, generally, is
+only the mode of expression, the phenomenal form, of something contained in
+it, yet distinguishable from it.
+
+Let us take two commodities, e.g., corn and iron. The proportions in which
+they are exchangeable, whatever those proportions may be, can always be
+represented by an equation in which a given quantity of corn is equated to
+some quantity of iron: e.g., 1 quarter corn = x cwt. iron. What does this
+equation tell us? It tells us that in two different things — in 1 quarter
+of corn and x cwt. of iron, there exists in equal quantities something
+common to both. The two things must therefore be equal to a third, which in
+itself is neither the one nor the other. Each of them, so far as it is
+exchange-value, must therefore be reducible to this third.
+
+A simple geometrical illustration will make this clear. In order to
+calculate and compare the areas of rectilinear figures, we decompose them
+into triangles. But the area of the triangle itself is expressed by
+something totally different from its visible figure, namely, by half the
+product of the base multiplied by the altitude. In the same way the
+exchange-values of commodities must be capable of being expressed in terms
+of something common to them all, of which thing they represent a greater or
+less quantity.
+
+This common "something" cannot be either a geometrical, a chemical, or any
+other natural property of commodities. Such properties claim our attention
+only in so far as they affect the utility of those commodities, make them
+use-values. But the exchange of commodities is evidently an act
+characterised by a total abstraction from use-value. Then one use-value is
+just as good as another, provided only it be present in sufficient
+quantity. Or, as old Barbon says, "one sort of wares are as good as
+another, if the values be equal. There is no difference or distinction in
+things of equal value.... An hundred pounds' worth of lead or iron, is of
+as great value as one hundred pounds' worth of silver or gold." [8] As
+use-values, commodities are, above all, of different qualities, but as
+exchange-values they are merely different quantities, and consequently do
+not contain an atom of use-value.
+
+If then we leave out of consideration the use-value of commodities, they
+have only one common property left, that of being products of labour. But
+even the product of labour itself has undergone a change in our hands. If
+we make abstraction from its use-value, we make abstraction at the same
+time from the material elements and shapes that make the product a
+use-value; we see in it no longer a table, a house, yarn, or any other
+useful thing. Its existence as a material thing is put out of sight.
+Neither can it any longer be regarded as the product of the labour of the
+joiner, the mason, the spinner, or of any other definite kind of productive
+labour. Along with the useful qualities of the products themselves, we put
+out of sight both the useful character of the various kinds of labour
+embodied in them, and the concrete forms of that labour; there is nothing
+left but what is common to them all; all are reduced to one and the same
+sort of labour, human labour in the abstract.
+
+Let us now consider the residue of each of these products; it consists of
+the same unsubstantial reality in each, a mere congelation of homogeneous
+human labour, of labour-power expended without regard to the mode of its
+expenditure. All that these things now tell us is, that human labour-power
+has been expended in their production, that human labour is embodied in
+them. When looked at as crystals of this social substance, common to them
+all, they are — Values.
+
+We have seen that when commodities are exchanged, their exchange-value
+manifests itself as something totally independent of their use-value. But
+if we abstract from their use-value, there remains their Value as defined
+above. Therefore, the common substance that manifests itself in the
+exchange-value of commodities, whenever they are exchanged, is their value.
+The progress of our investigation will show that exchange-value is the only
+form in which the value of commodities can manifest itself or be expressed.
+For the present, however, we have to consider the nature of value
+independently of this, its form.
+
+A use-value, or useful article, therefore, has value only because human
+labour in the abstract has been embodied or materialised in it. How, then,
+is the magnitude of this value to be measured? Plainly, by the quantity of
+the value-creating substance, the labour, contained in the article. The
+quantity of labour, however, is measured by its duration, and labour-time
+in its turn finds its standard in weeks, days, and hours.
+
+Some people might think that if the value of a commodity is determined by
+the quantity of labour spent on it, the more idle and unskilful the
+labourer, the more valuable would his commodity be, because more time would
+be required in its production. The labour, however, that forms the
+substance of value, is homogeneous human labour, expenditure of one uniform
+labour-power. The total labour-power of society, which is embodied in the
+sum total of the values of all commodities produced by that society, counts
+here as one homogeneous mass of human labour-power, composed though it be
+of innumerable individual units. Each of these units is the same as any
+other, so far as it has the character of the average labour-power of
+society, and takes effect as such; that is, so far as it requires for
+producing a commodity, no more time than is needed on an average, no more
+than is socially necessary. The labour-time socially necessary is that
+required to produce an article under the normal conditions of production,
+and with the average degree of skill and intensity prevalent at the time.
+The introduction of power-looms into England probably reduced by one-half
+the labour required to weave a given quantity of yarn into cloth. The
+hand-loom weavers, as a matter of fact, continued to require the same time
+as before; but for all that, the product of one hour of their labour
+represented after the change only half an hour's social labour, and
+consequently fell to one-half its former value.
+
+We see then that that which determines the magnitude of the value of any
+article is the amount of labour socially necessary, or the labour-time
+socially necessary for its production. [9] Each individual commodity, in
+this connexion, is to be considered as an average sample of its class. [10]
+Commodities, therefore, in which equal quantities of labour are embodied,
+or which can be produced in the same time, have the same value. The value
+of one commodity is to the value of any other, as the labour-time necessary
+for the production of the one is to that necessary for the production of
+the other. "As values, all commodities are only definite masses of
+congealed labour-time." [11]
+
+The value of a commodity would therefore remain constant, if the
+labour-time required for its production also remained constant. But the
+latter changes with every variation in the productiveness of labour. This
+productiveness is determined by various circumstances, amongst others, by
+the average amount of skill of the workmen, the state of science, and the
+degree of its practical application, the social organisation of production,
+the extent and capabilities of the means of production, and by physical
+conditions. For example, the same amount of labour in favourable seasons is
+embodied in 8 bushels of corn, and in unfavourable, only in four. The same
+labour extracts from rich mines more metal than from poor mines. Diamonds
+are of very rare occurrence on the earth's surface, and hence their
+discovery costs, on an average, a great deal of labour-time. Consequently
+much labour is represented in a small compass. Jacob doubts whether gold
+has ever been paid for at its full value. This applies still more to
+diamonds. According to Eschwege, the total produce of the Brazilian diamond
+mines for the eighty years, ending in 1823, had not realised the price of
+one and-a-half years' average produce of the sugar and coffee plantations
+of the same country, although the diamonds cost much more labour, and
+therefore represented more value. With richer mines, the same quantity of
+labour would embody itself in more diamonds, and their value would fall. If
+we could succeed at a small expenditure of labour, in converting carbon
+into diamonds, their value might fall below that of bricks. In general, the
+greater the productiveness of labour, the less is the labour-time required
+for the production of an article, the less is the amount of labour
+crystallised in that article, and the less is its value; and vice versâ,
+the less the productiveness of labour, the greater is the labour-time
+required for the production of an article, and the greater is its value.
+The value of a commodity, therefore, varies directly as the quantity, and
+inversely as the productiveness, of the labour incorporated in it.
+
+A thing can be a use-value, without having value. This is the case whenever
+its utility to man is not due to labour. Such are air, virgin soil, natural
+meadows, &c. A thing can be useful, and the product of human labour,
+without being a commodity. Whoever directly satisfies his wants with the
+produce of his own labour, creates, indeed, use-values, but not
+commodities. In order to produce the latter, he must not only produce
+use-values, but use-values for others, social use-values. (And not only for
+others, without more. The mediaeval peasant produced quit-rent-corn for his
+feudal lord and tithe-corn for his parson. But neither the quit-rent-corn
+nor the tithe-corn became commodities by reason of the fact that they had
+been produced for others. To become a commodity a product must be
+transferred to another, whom it will serve as a use-value, by means of an
+exchange.) [12] Lastly nothing can have value, without being an object of
+utility. If the thing is useless, so is the labour contained in it; the
+labour does not count as labour, and therefore creates no value.
+
+
+
+SECTION 2
+
+THE TWO-FOLD CHARACTER OF
+THE LABOUR EMBODIED IN COMMODITIES
+
+
+At first sight a commodity presented itself to us as a complex of two
+things-use-value and exchange-value. Later on, we saw also that labour,
+too, possesses the same two-fold nature; for, so far as it finds expression
+in value, it does not possess the same characteristics that belong to it as
+a creator of use-values. I was the first to point out and to examine
+critically this two-fold nature of the labour contained in commodities. As
+this point is the pivot on which a clear comprehension of Political Economy
+turns, we must go more into detail.
+
+Let us take two commodities such as a coat and 10 yards of linen, and let
+the former be double the value of the latter, so that, if 10 yards of linen
+= W, the coat = 2W.
+
+The coat is a use-value that satisfies a particular want. Its existence is
+the result of a special sort of productive activity, the nature of which is
+determined by its aim, mode of operation, subject, means, and result. The
+labour, whose utility is thus represented by the value in use of its
+product, or which manifests itself by making its product a use-value, we
+call useful labour In this connexion we consider only its useful effect.
+
+As the coat and the linen are two qualitatively different use-values, so
+also are the two forms of labour that produce them, tailoring and weaving.
+Were these two objects not qualitatively different, not produced
+respectively by labour of different quality, they could not stand to each
+other in the relation of commodities. Coats are not exchanged for coats,
+one use-value is not exchanged for another of the same kind.
+
+To all the different varieties of values in use there correspond as many
+different kinds of useful labour, classified according to the order, genus,
+species, and variety to which they belong in the social division of labour.
+This division of labour is a necessary condition for the production of
+commodities, but it does not follow, conversely, that the production of
+commodities is a necessary condition for the division of labour. In the
+primitive Indian community there is social division of labour, without
+production of commodities. Or, to take an example nearer home, in every
+factory the labour is divided according to a system, but this division is
+not brought about by the operatives mutually exchanging their individual
+products. Only such products can become commodities with regard to each
+other, as result from different kinds of labour, each kind being carried on
+independently and for the account of private individuals.
+
+To resume, then: In the use-value of each commodity there is contained
+useful labour, i.e., productive activity of a definite kind and exercised
+with a definite aim. Use-values cannot confront each other as commodities,
+unless the useful labour embodied in them is qualitatively different in
+each of them. In a community, the produce of which in general takes the
+form of commodities, i.e., in a community of commodity producers, this
+qualitative difference between the useful forms of labour that are carried
+on independently of individual producers, each on their own account,
+develops into a complex system, a social division of labour.
+
+Anyhow, whether the coat be worn by the tailor or by his customer, in
+either case it operates as a use-value. Nor is the relation between the
+coat and the labour that produced it altered by the circumstance that
+tailoring may have become a special trade, an independent branch of the
+social division of labour. Wherever the want of clothing forced them to it,
+the human race made clothes for thousands of years, without a single man
+becoming a tailor. But coats and linen, like every other element of
+material wealth that is not the spontaneous produce of Nature, must
+invariably owe their existence to a special productive activity, exercised
+with a definite aim, an activity that appropriates particular nature-given
+materials to particular human wants. So far therefore as labour is a
+creator of use-value, is useful labour, it is a necessary condition,
+independent of all forms of society, for the existence of the human race;
+it is an eternal nature-imposed necessity, without which there can be no
+material exchanges between man and Nature, and therefore no life.
+
+The use-values, coat, linen, &c., i.e., the bodies of commodities, are
+combinations of two elements — matter and labour. If we take away the
+useful labour expended upon them, a material substratum is always left,
+which is furnished by Nature without the help of man. The latter can work
+only as Nature does, that is by changing the form of matter. [13] Nay more,
+in this work of changing the form he is constantly helped by natural
+forces. We see, then, that labour is not the only source of material
+wealth, of use-values produced by labour. As William Petty puts it, labour
+is its father and the earth its mother.
+
+Let us now pass from the commodity considered as a use-value to the value
+of commodities.
+
+By our assumption, the coat is worth twice as much as the linen. But this
+is a mere quantitative difference, which for the present does not concern
+us. We bear in mind, however, that if the value of the coat is double that
+of 10 yds. of linen, 20 yds. of linen must have the same value as one coat.
+So far as they are values, the coat and the linen are things of a like
+substance, objective expressions of essentially identical labour. But
+tailoring and weaving are, qualitatively, different kinds of labour. There
+are, however, states of society in which one and the same man does
+tailoring and weaving alternately, in which case these two forms of labour
+are mere modifications of the labour of the same individual, and no special
+and fixed functions of different persons, just as the coat which our tailor
+makes one day, and the trousers which he makes another day, imply only a
+variation in the labour of one and the same individual. Moreover, we see at
+a glance that, in our capitalist society, a given portion of human labour
+is, in accordance with the varying demand, at one time supplied in the form
+of tailoring, at another in the form of weaving. This change may possibly
+not take place without friction, but take place it must.
+
+Productive activity, if we leave out of sight its special form, viz., the
+useful character of the labour, is nothing but the expenditure of human
+labour-power. Tailoring and weaving, though qualitatively different
+productive activities, are each a productive expenditure of human brains,
+nerves, and muscles, and in this sense are human labour. They are but two
+different modes of expending human labour-power. Of course, this
+labour-power, which remains the same under all its modifications, must have
+attained a certain pitch of development before it can be expended in a
+multiplicity of modes. But the value of a commodity represents human labour
+in the abstract, the expenditure of human labour in general. And just as in
+society, a general or a banker plays a great part, but mere man, on the
+other hand, a very shabby part, [14] so here with mere human labour. It is
+the expenditure of simple labour-power, i.e., of the labour-power which, on
+an average, apart from any special development, exists in the organism of
+every ordinary individual. Simple average labour, it is true, varies in
+character in different countries and at different times, but in a
+particular society it is given. Skilled labour counts only as simple labour
+intensified, or rather, as multiplied simple labour, a given quantity of
+skilled being considered equal to a greater quantity of simple labour.
+Experience shows that this reduction is constantly being made. A commodity
+may be the product of the most skilled labour, but its value, by equating
+it to the product of simple unskilled labour, represents a definite
+quantity of the latter labour alone. [15] The different proportions in
+which different sorts of labour are reduced to unskilled labour as their
+standard. are established by a social process that goes on behind the backs
+of the producers, and, consequently, appear to be fixed by custom. For
+simplicity's sake we shall henceforth account every kind of labour to be
+unskilled, simple labour; by this we do no more than save ourselves the
+trouble of making the reduction.

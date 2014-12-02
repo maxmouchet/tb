@@ -1,0 +1,142 @@
+Karl Marx
+Capital Volume One
+
+Part I
+Commodities and Money
+
+SECTION 1
+
+THE TWO FACTORS OF A COMMODITY:
+USE-VALUE AND VALUE
+(THE SUBSTANCE OF VALUE AND THE MAGNITUDE OF VALUE)
+
+
+
+The wealth of those societies in which the capitalist mode of production
+prevails, presents itself as "an immense accumulation of commodities," [1]
+its unit being a single commodity. Our investigation must therefore begin
+with the analysis of a commodity.
+
+A commodity is, in the first place, an object outside us, a thing that by
+its properties satisfies human wants of some sort or another. The nature of
+such wants, whether, for instance, they spring from the stomach or from
+fancy, makes no difference. [2] Neither are we here concerned to know how
+the object satisfies these wants, whether directly as means of subsistence,
+or indirectly as means of production.
+
+Every useful thing, as iron, paper, &c., may be looked at from the two
+points of view of quality and quantity. It is an assemblage of many
+properties, and may therefore be of use in various ways. To discover the
+various uses of things is the work of history. [3] So also is the
+establishment of socially-recognized standards of measure for the
+quantities of these useful objects. The diversity of these measures has its
+origin partly in the diverse nature of the objects to be measured, partly
+in convention.
+
+The utility of a thing makes it a use-value. [4] But this utility is not a
+thing of air. Being limited by the physical properties of the commodity, it
+has no existence apart from that commodity. A commodity, such as iron,
+corn, or a diamond, is therefore, so far as it is a material thing, a
+use-value, something useful. This property of a commodity is independent of
+the amount of labour required to appropriate its useful qualities. When
+treating of use-value, we always assume to be dealing with definite
+quantities, such as dozens of watches, yards of linen, or tons of iron. The
+use-values of commodities furnish the material for a special study, that of
+the commercial knowledge of commodities. [5] Use-values become a reality
+only by use or consumption: they also constitute the substance of all
+wealth, whatever may be the social form of that wealth. In the form of
+society we are about to consider, they are, in addition, the material
+depositories of exchange-value.
+
+Exchange-value, at first sight, presents itself as a quantitative relation,
+as the proportion in which values in use of one sort are exchanged for
+those of another sort, [6] a relation constantly changing with time and
+place. Hence exchange-value appears to be something accidental and purely
+relative, and consequently an intrinsic value, i.e., an exchange-value that
+is inseparably connected with, inherent in commodities, seems a
+contradiction in terms. [7] Let us consider the matter a little more
+closely.
+
+A given commodity, e.g., a quarter of wheat is exchanged for x blacking, y
+silk, or z gold, &c. — in short, for other commodities in the most
+different proportions. Instead of one exchange-value, the wheat has,
+therefore, a great many. But since x blacking, y silk, or z gold &c., each
+represents the exchange-value of one quarter of wheat, x blacking, y silk,
+z gold, &c., must, as exchange-values, be replaceable by each other, or
+equal to each other. Therefore, first: the valid exchange-values of a given
+commodity express something equal; secondly, exchange-value, generally, is
+only the mode of expression, the phenomenal form, of something contained in
+it, yet distinguishable from it.
+
+Let us take two commodities, e.g., corn and iron. The proportions in which
+they are exchangeable, whatever those proportions may be, can always be
+represented by an equation in which a given quantity of corn is equated to
+some quantity of iron: e.g., 1 quarter corn = x cwt. iron. What does this
+equation tell us? It tells us that in two different things — in 1 quarter
+of corn and x cwt. of iron, there exists in equal quantities something
+common to both. The two things must therefore be equal to a third, which in
+itself is neither the one nor the other. Each of them, so far as it is
+exchange-value, must therefore be reducible to this third.
+
+A simple geometrical illustration will make this clear. In order to
+calculate and compare the areas of rectilinear figures, we decompose them
+into triangles. But the area of the triangle itself is expressed by
+something totally different from its visible figure, namely, by half the
+product of the base multiplied by the altitude. In the same way the
+exchange-values of commodities must be capable of being expressed in terms
+of something common to them all, of which thing they represent a greater or
+less quantity.
+
+This common "something" cannot be either a geometrical, a chemical, or any
+other natural property of commodities. Such properties claim our attention
+only in so far as they affect the utility of those commodities, make them
+use-values. But the exchange of commodities is evidently an act
+characterised by a total abstraction from use-value. Then one use-value is
+just as good as another, provided only it be present in sufficient
+quantity. Or, as old Barbon says, "one sort of wares are as good as
+another, if the values be equal. There is no difference or distinction in
+things of equal value.... An hundred pounds' worth of lead or iron, is of
+as great value as one hundred pounds' worth of silver or gold." [8] As
+use-values, commodities are, above all, of different qualities, but as
+exchange-values they are merely different quantities, and consequently do
+not contain an atom of use-value.
+
+If then we leave out of consideration the use-value of commodities, they
+have only one common property left, that of being products of labour. But
+even the product of labour itself has undergone a change in our hands. If
+we make abstraction from its use-value, we make abstraction at the same
+time from the material elements and shapes that make the product a
+use-value; we see in it no longer a table, a house, yarn, or any other
+useful thing. Its existence as a material thing is put out of sight.
+Neither can it any longer be regarded as the product of the labour of the
+joiner, the mason, the spinner, or of any other definite kind of productive
+labour. Along with the useful qualities of the products themselves, we put
+out of sight both the useful character of the various kinds of labour
+embodied in them, and the concrete forms of that labour; there is nothing
+left but what is common to them all; all are reduced to one and the same
+sort of labour, human labour in the abstract.
+
+Let us now consider the residue of each of these products; it consists of
+the same unsubstantial reality in each, a mere congelation of homogeneous
+human labour, of labour-power expended without regard to the mode of its
+expenditure. All that these things now tell us is, that human labour-power
+has been expended in their production, that human labour is embodied in
+them. When looked at as crystals of this social substance, common to them
+all, they are — Values.
+
+We have seen that when commodities are exchanged, their exchange-value
+manifests itself as something totally independent of their use-value. But
+if we abstract from their use-value, there remains their Value as defined
+above. Therefore, the common substance that manifests itself in the
+exchange-value of commodities, whenever they are exchanged, is their value.
+The progress of our investigation will show that exchange-value is the only
+form in which the value of commodities can manifest itself or be expressed.
+For the present, however, we have to consider the nature of value
+independently of this, its form.
+
+A use-value, or useful article, therefore, has value only because human
+labour in the abstract has been embodied or materialised in it. How, then,
+is the magnitude of this value to be measured? Plainly, by the quantity of
+the value-creating substance, the labour, contained in the article. The
+quantity of labour, however, is measured by its duration, and labour-time
+in its turn finds its standard in weeks, days, and hours.
