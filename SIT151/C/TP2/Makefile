@@ -12,7 +12,7 @@ lexique_tableau.o: lexique_tableau.c
 lexique_liste: words.o lexique_liste.o
 	$(CC) -o lexique_liste words.o lexique_liste.o
 
-lexique_list.o: lexique_liste.c
+lexique_liste.o: lexique_liste.c
 	$(CC) -o lexique_liste.o -c lexique_liste.c $(CFLAGS)
 
 words.o: words.c
