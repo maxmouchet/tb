@@ -4,6 +4,7 @@ TIME=/usr/bin/time
 FLAGS=-f%U
 
 # Use gnu-time on OSX
+# brew install gnu-time
 if [[ $OSTYPE == darwin* ]]; then
     TIME=/usr/local/bin/gtime
 fi
