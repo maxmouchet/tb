@@ -5,8 +5,6 @@
 
 ### Comparaison algorithmes
 
-#### Résultats théoriques
-
 #### Résultats pratiques
 
 Script usage: `Usage: ./benchmark.sh ALGORITHM FILES...`  
