@@ -1,0 +1,8 @@
+# Ignore materials provided by teacher
+# Source: http://formations.telecom-bretagne.eu/fad/course/view.php?id=23311
+Makefile
+data.*
+utilisation.*
+fic1*
+*.o
+*.exe
