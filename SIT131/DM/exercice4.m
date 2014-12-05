@@ -5,8 +5,8 @@ A = [ 2 2 1; 5 5 5; 0 0 1 ]
 dim = length(A)
 
 % Question 3
-% On calcule le polyn?me caract?ristique
-% det(A - ?Id)
+% On calcule le polynome caracteristique
+% det(A - LambdaId)
 polynome = det(A - sym('lambda')*eye(dim))
 
 % On calcule les valeurs propres
