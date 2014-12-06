@@ -23,6 +23,7 @@ Information * findWord(Dictionary dictionary, char *word) {
 Dictionary prependInformation(Dictionary dictionary, Information *information) {
   information->next = dictionary->next;
   dictionary->next = information;
+  // TODO: Improve
   return dictionary;
 }
 
@@ -32,7 +33,7 @@ Dictionary updateDictionary(Dictionary dictionary, char *word) {
   if (information == NULL) {
     information = malloc(sizeof(Information));
 
-    information->word = strcpy(malloc(sizeof(word)), word);
+    information->word = strcpy(malloc(sizeof(*word)), word);
     information->occurences = 1;
     information->next = NULL;
     
@@ -79,8 +80,8 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  Dictionary dictionary;
-
-  dictionary = buildDictionary(textFile);
+  Dictionary dictionary = buildDictionary(textFile);
   printDictionary(dictionary);
+
+  free(dictionary);
 }

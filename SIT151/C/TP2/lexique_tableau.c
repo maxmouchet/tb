@@ -25,7 +25,7 @@ int updateDictionary(Dictionary dictionary, int length, char *word) {
   if ((index = findWord(dictionary, length, word)) == -1) {
     Information information;
 
-    information.word = strcpy(malloc(sizeof(word)), word);
+    information.word = strcpy(malloc(sizeof(*word)), word);
     information.occurences = 1;
     
     dictionary[length] = information;
@@ -76,8 +76,9 @@ int main(int argc, char *argv[]) {
   }
   
   Dictionary dictionary = calloc(DICTIONARY_SIZE, sizeof(Information));
-  int length = 0;
-
-  length = buildDictionary(dictionary, length, textFile);
+  
+  buildDictionary(dictionary, 0, textFile);
   printDictionary(dictionary, DICTIONARY_SIZE);
+
+  free(dictionary);
 }
