@@ -33,7 +33,7 @@ Dictionary updateDictionary(Dictionary dictionary, char *word) {
   if (information == NULL) {
     information = malloc(sizeof(Information));
 
-    information->word = strcpy(malloc(sizeof(*word)), word);
+    information->word = strdup(word);
     information->occurences = 1;
     information->next = NULL;
     

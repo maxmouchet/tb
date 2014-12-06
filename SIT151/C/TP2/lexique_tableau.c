@@ -25,7 +25,7 @@ int updateDictionary(Dictionary dictionary, int length, char *word) {
   if ((index = findWord(dictionary, length, word)) == -1) {
     Information information;
 
-    information.word = strcpy(malloc(sizeof(*word)), word);
+    information.word = strdup(word);
     information.occurences = 1;
     
     dictionary[length] = information;
