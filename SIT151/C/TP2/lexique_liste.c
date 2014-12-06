@@ -20,14 +20,12 @@ Information * findWord(Dictionary dictionary, char *word) {
   return NULL;
 }
 
-Dictionary prependInformation(Dictionary dictionary, Information *information) {
+void prependInformation(Dictionary dictionary, Information *information) {
   information->next = dictionary->next;
   dictionary->next = information;
-  // TODO: Improve
-  return dictionary;
 }
 
-Dictionary updateDictionary(Dictionary dictionary, char *word) {
+void updateDictionary(Dictionary dictionary, char *word) {
   Information *information = findWord(dictionary,  word);
 
   if (information == NULL) {
@@ -37,12 +35,10 @@ Dictionary updateDictionary(Dictionary dictionary, char *word) {
     information->occurences = 1;
     information->next = NULL;
     
-    dictionary = prependInformation(dictionary, information);
+    prependInformation(dictionary, information);
   } else {
     information->occurences++;
   }
-
-  return dictionary;
 }
 
 Dictionary buildDictionary(FILE *file) {
@@ -52,7 +48,7 @@ Dictionary buildDictionary(FILE *file) {
   dictionary->next = NULL;
 
   while (nextWord(file, word) != 0) {
-    dictionary = updateDictionary(dictionary,  word);
+    updateDictionary(dictionary,  word);
   }
 
   return dictionary;
