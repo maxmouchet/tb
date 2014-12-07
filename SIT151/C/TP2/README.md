@@ -3,6 +3,9 @@
 **Objectif:** réaliser un lexique contenant le nombre d'occurences de chaque mot à partir d'un fichier.  
 **Implémentations:** tableau, liste chaînée, hashtable, b-tree  
 
+[Comparaison algorithmes](#comparaison-algorithmes)  
+[Comparaison des fonctions de hachage](#comparaison-des-fonctions-de-hachage)
+
 ### Comparaison algorithmes
 
 #### Résultats pratiques
