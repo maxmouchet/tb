@@ -22,7 +22,7 @@ lexique_hash.o: lexique_hash.c
 	$(CC) -o lexique_hash.o -c lexique_hash.c $(CFLAGS)
 
 lexique_btree: words.o lexique_btree.o
-	$(CC) -o lexique_liste words.o lexique_liste.o
+	$(CC) -o lexique_btree words.o lexique_btree.o
 
 lexique_btree.o: lexique_btree.c
 	$(CC) -o lexique_btree.o -c lexique_btree.c $(CFLAGS)
