@@ -20,13 +20,13 @@ shift
 OUTPUT_FILE=$ALGORITHM".txt"
 echo '' > $OUTPUT_FILE
 
-printf "%-15s%-10s%s\n" File Words Seconds
+printf "%-16s%-10s%s\n" File Words Seconds
 
 for file in $@; do
     word_count=`wc -w $file | grep -Eo '\d+\s'`
     running_time=$( { $TIME $FLAGS $ALGORITHM $file >/dev/null; } 2>&1 )
     
-    printf "%-15s" $file
+    printf "%-16s" $file
     printf "%-10s" $word_count
     printf "%s\n" $running_time
 
