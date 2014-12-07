@@ -9,7 +9,7 @@
 
 Script usage: `Usage: ./benchmark.sh ALGORITHM FILES...`  
 Configuration: `MBA 2013, Core i5@1.3GHz, 8GB DDR3, SSD`  
-Compilation: `clang -O3`
+Compilation: `clang -O3`  
 Memory usage (total heap allocations) measured with Intruments on OSX.  
 
 ##### Mesures
@@ -31,3 +31,18 @@ pg135.txt | 568531 | 5.83                | 6.07                 | 0.40          
 ##### Tendances
 ![running time](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_running_time2.png)
 ![memory usage](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_memory1.png)
+
+
+### Comparaison des fonctions de hachage
+![running time](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_murmur_vs_ascii1.png)
+
+```c
+int hashFunction(char *word) {
+  #if USE_MURMUR3 == 1
+    return murmur3(word, strlen(word)) % BUCKETS_N;
+  #else
+    // Really really basic hashing function
+    return (int) word[0] % BUCKETS_N;
+  #endif
+}
+```
