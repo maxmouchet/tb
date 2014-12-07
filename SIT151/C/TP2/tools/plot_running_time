@@ -2,7 +2,7 @@
 #
 # Creates a version of a plot, which looks nice for inclusion on web pages
 #
-# AUTHOR: Hagen Wierstorf
+# Original Author: Hagen Wierstorf
 
 reset
 
@@ -19,15 +19,17 @@ set style line 12 lc rgb '#808080' lt 0 lw 1
 set grid back ls 12
 
 # color definitions
-set style line 1 lc rgb '#3B8686' pt 1 ps 1 lt 1 lw 2
-set style line 2 lc rgb '#D95B43' pt 6 ps 1 lt 1 lw 2
-set style line 3 lc rgb '#8FBE00' pt 2 ps 1 lt 1 lw 2
+set style line 1 lc rgb '#3F3F3F' pt 1 ps 1 lt 1 lw 2
+set style line 2 lc rgb '#00A3EE' pt 1 ps 1 lt 1 lw 2
+set style line 3 lc rgb '#F5D908' pt 1 ps 1 lt 1 lw 2
+set style line 4 lc rgb '#D80351' pt 1 ps 1 lt 1 lw 2
 
-set key bottom right
+set key top left
 
 set xlabel 'Word count'
 set ylabel 'Running time (s)'
 
-plot '../lexique_tableau.txt' u 1:2 t 'Array' w lp ls 1, \
+plot '../lexique_tableau.txt' u 1:2 t 'Array'       w lp ls 1, \
      '../lexique_liste.txt'   u 1:2 t 'Linked list' w lp ls 2, \
-     '../lexique_hash.txt'    u 1:2 t 'Hash table' w lp ls 3
+     '../lexique_hash.txt'    u 1:2 t 'Hash table'  w lp ls 3, \
+     '../lexique_btree.txt'   u 1:2 t 'Binary tree' w lp ls 4
