@@ -7,7 +7,7 @@
 #include "words.h"
 #include "lexique_tableau.h"
 
-#define DICTIONARY_SIZE 16384
+#define DICTIONARY_SIZE 262144
 
 int findWord(Dictionary dictionary, int length, char *word) {
   for (int i = 0; i < length; i++) {
