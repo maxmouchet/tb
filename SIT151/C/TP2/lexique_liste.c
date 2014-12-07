@@ -7,6 +7,8 @@
 #include "words.h"
 #include "lexique_liste.h"
 
+#define USE_PREPEND 0
+
 Information * findWord(Dictionary dictionary, char *word) {
   Information *nextInformation = dictionary->next;
 
@@ -18,6 +20,19 @@ Information * findWord(Dictionary dictionary, char *word) {
   }
 
   return NULL;
+}
+
+void appendInformation(Dictionary dictionary, Information *information) {
+  Information *nextInformation = dictionary->next;
+
+  if (nextInformation == NULL) {
+    dictionary->next = information;
+  } else {
+    while (nextInformation->next != NULL) {
+      nextInformation = nextInformation->next;
+    }
+    nextInformation->next = information;
+  }
 }
 
 void prependInformation(Dictionary dictionary, Information *information) {
@@ -34,8 +49,12 @@ void updateDictionary(Dictionary dictionary, char *word) {
     information->word = strdup(word);
     information->occurences = 1;
     information->next = NULL;
-    
+   
+    #if USE_PREPEND
     prependInformation(dictionary, information);
+    #else
+    appendInformation(dictionary, information);
+    #endif
   } else {
     information->occurences++;
   }

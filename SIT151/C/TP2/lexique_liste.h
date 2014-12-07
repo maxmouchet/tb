@@ -15,6 +15,12 @@ typedef Information *Dictionary;
 // Returns a pointer to the information
 Information * findWord(Dictionary dictionary, char *word);
 
+// Append an information to a dictionary
+// This is much faster than prepending because the probability of
+// finding a duplicate word is decreasing when moving towards the
+// end of the text
+void appendInformation(Dictionary dictionary, Information *information);
+
 // Prepend an information to a dictionary
 void prependInformation(Dictionary dictionary, Information *information);
 
