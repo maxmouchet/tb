@@ -9,6 +9,8 @@
 
 #define USE_PREPEND 0
 
+static Information *lastElement = NULL;
+
 Information * findWord(Dictionary dictionary, char *word) {
   Information *nextInformation = dictionary->next;
 
@@ -22,17 +24,9 @@ Information * findWord(Dictionary dictionary, char *word) {
   return NULL;
 }
 
-void appendInformation(Dictionary dictionary, Information *information) {
-  Information *nextInformation = dictionary->next;
-
-  if (nextInformation == NULL) {
-    dictionary->next = information;
-  } else {
-    while (nextInformation->next != NULL) {
-      nextInformation = nextInformation->next;
-    }
-    nextInformation->next = information;
-  }
+void appendInformation(Information *information) {
+  lastElement->next = information;
+  lastElement = information;
 }
 
 void prependInformation(Dictionary dictionary, Information *information) {
@@ -53,7 +47,7 @@ void updateDictionary(Dictionary dictionary, char *word) {
     #if USE_PREPEND
     prependInformation(dictionary, information);
     #else
-    appendInformation(dictionary, information);
+    appendInformation(information);
     #endif
   } else {
     information->occurences++;
@@ -65,6 +59,8 @@ Dictionary buildDictionary(FILE *file) {
   
   Dictionary dictionary = malloc(sizeof(Information));
   dictionary->next = NULL;
+
+  lastElement = dictionary;
 
   while (nextWord(file, word) != 0) {
     updateDictionary(dictionary,  word);
