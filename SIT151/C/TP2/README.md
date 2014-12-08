@@ -8,7 +8,7 @@
 
 [Comparaison des algorithmes](#comparaison-des-algorithmes)  
 [Comparaison des fonctions de hachage](#comparaison-des-fonctions-de-hachage)  
-[Analyse du lexique par liste chaînée](#analyse-du-lexique-par-liste-chaînée)
+[Analyse du lexique par liste chaînée](#analyse-du-lexique-par-liste-chaînée)  
 [Références](#références)
 
 ### Comparaison des algorithmes
