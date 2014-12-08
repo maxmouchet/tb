@@ -50,6 +50,7 @@ pg135.txt | 568531 | 5.83                | 6.07                          | 0.40 
 **TODO:** Memory usage
 
 #### Interprétation
+Les lexiques par table de hachage et arbre binaire sont considerablement plus rapide que ceux par tableau et liste chainee car ils permettent de limiter l'espace de recherche. En effet l'operation la plus couteuse est la recherche d'un mot dans la memoire, ici avec la fonction `strcmp`.
 
 ### Comparaison des fonctions de hachage
 On montre ici l'impact de la fonction de hachage sur la performance du programme. La première fonction proposée (ASCII code first char) présente une mauvaise distribution des valeurs, qui impacte directement le temps de recherche. En effet elle renvoie le code ASCII du premier caractère du mot mais ceux-ci ne sont pas distribués de manière égale dans la langue francaise [[1](1)].  
