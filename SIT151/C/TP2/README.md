@@ -12,6 +12,15 @@
 
 ### Comparaison des algorithmes
 
+#### Résultats théoriques
+
+Structure de données | Recherche                          |
+---------------------|------------------------------------|
+Tableau              |Θ(n)                                |
+Liste chaînée        |Θ(n)                                |
+Hashtable            |dépendant de la fonction de hashage |
+Arbre binaire        |Θ(log(n))                           |
+
 #### Résultats pratiques
 
 Script usage: `Usage: ./benchmark.sh ALGORITHM FILES...`  
