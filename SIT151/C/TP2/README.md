@@ -1,9 +1,10 @@
 ## SIT 151 / C / TP2
 
-[*Yann Feunteun*](https://github.com/yafeunteun), [*Maxime Mouchet*](https://github.com/maxmouchet)
+[*Maxime Mouchet*](https://github.com/maxmouchet), [*Yann Feunteun*](https://github.com/yafeunteun)  
+& *Julian Guttierez* (Ex. 6)
 
-**Objectif:** réaliser un lexique contenant le nombre d'occurences de chaque mot à partir d'un fichier.  
-**Implémentations:** tableau, liste chaînée, hashtable, b-tree  
+**Objectif:** réaliser un lexique contenant le nombre d'occurrences de chaque mot à partir d'un fichier.  
+**Implémentations:** tableau, liste chaînée, hashtable, binary tree  
 
 [Comparaison des algorithmes](#comparaison-des-algorithmes)  
 [Comparaison des fonctions de hachage](#comparaison-des-fonctions-de-hachage)  
@@ -38,6 +39,9 @@ pg135.txt | 568531 | 5.83                | 6.07                 | 0.40          
 **TODO:** Memory usage
 
 ### Comparaison des fonctions de hachage
+On montre ici l'impact de la fonction de hachage sur la performance du programme. La première fonction proposée (ASCII code first char) présente une mauvaise distribution des valeurs, qui impacte directement le temps de recherche. En effet elle renvoie le code ASCII du premier caractère du mot mais ceux-ci ne sont pas distribués de manière égale dans la langue francaise [[1](1)].  
+Au contraire de la fonction MurmurHash3 [[2](2)] qui distribue mieux les valeurs au-travers de calculs bit à bit plus complexes.
+
 ![MurmurHash3 vs ASCII](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_murmur_vs_ascii1.png)
 
 ```c
@@ -54,3 +58,7 @@ int hashFunction(char *word) {
 ### Analyse du lexique par liste chaînée
 ![append vs prepend](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/append_vs_prepend.png)
 ![words distribution](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/words_distribution_append.png)
+
+### Références
+<a name="1"></a> [1] http://en.wikipedia.org/wiki/MurmurHash  
+<a name="2"></a> [2] http://fr.wikipedia.org/wiki/Fréquence_d'apparition_des_lettres_en_français
