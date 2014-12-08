@@ -18,7 +18,7 @@ Structure de données | Recherche                          |
 ---------------------|------------------------------------|
 Tableau              |Θ(n)                                |
 Liste chaînée        |Θ(n)                                |
-Hashtable            |dépendant de la fonction de hashage |
+Hashtable            |dépendant de la fonction de hachage |
 Arbre binaire        |Θ(log(n))                           |
 
 #### Résultats pratiques
@@ -45,19 +45,19 @@ pg135.txt | 568531 | 5.83                | 6.07                          | 0.40 
 
 ##### Tendances
 ![running time](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_running_time2.png)  
-**Temps d'éxecution en fonction du nombre de mots.**  
+**Temps d'exécution en fonction du nombre de mots.**  
 
 **TODO:** Memory usage
 
 #### Interprétation
-Les lexiques par table de hachage et arbre binaire sont considerablement plus rapide que ceux par tableau et liste chainee car ils permettent de limiter l'espace de recherche. En effet l'operation la plus couteuse est la recherche d'un mot dans la memoire, ici avec la fonction `strcmp`.
+Les lexiques par table de hachage et arbre binaire sont considérablement plus rapides que ceux par tableau et liste chainée, car ils permettent de limiter l'espace de recherche. En effet l'opération la plus couteuse est la recherche d'un mot dans la mémoire, ici avec la fonction `strcmp`.
 
 ### Comparaison des fonctions de hachage
-On montre ici l'impact de la fonction de hachage sur la performance du programme. La première fonction proposée (ASCII code first char) présente une mauvaise distribution des valeurs, qui impacte directement le temps de recherche. En effet elle renvoie le code ASCII du premier caractère du mot mais ceux-ci ne sont pas distribués de manière égale dans la langue francaise [[1](1)].  
-Au contraire de la fonction MurmurHash3 [[2](2)] qui distribue mieux les valeurs au-travers de calculs bit à bit plus complexes.
+On montre ici l'impact de la fonction de hachage sur la performance du programme. La première fonction proposée (ASCII code first char) présente une mauvaise distribution des valeurs, qui impacte directement le temps de recherche. En effet elle renvoie le code ASCII du premier caractère du mot, mais ceux-ci ne sont pas distribués de manière égale dans la langue française [[1](1)].  
+Au contraire de la fonction MurmurHash3 [[2](2)] qui distribue mieux les valeurs au travers de calculs bit à bit plus complexes.
 
 ![MurmurHash3 vs ASCII](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_murmur_vs_ascii1.png)  
-**Temps d'éxecution en fonction du nombre de mots et de la fonction de hachage.**  
+**Temps d'exécution en fonction du nombre de mots et de la fonction de hachage.**  
 
 Il est possible de choisir la fonction de hachage à utiliser avec la constante `USE_MURMUR3`:
 
@@ -77,13 +77,13 @@ Il est possible d'implémenter le lexique par liste chaînée de deux manières:
 - En ajoutant les nouvelles informations à la fin de la liste.
 - En insérant les nouvelles informations au début de la liste.
 
-Intuitivement l'insertion au début peut paraitre plus efficace car il n'est pas nécessaire de rechercher la fin de la liste, cependant ce n'est pas adapté à la création d'un lexique. En effet la probabilité de rencontrer de nouveaux mots en double diminue avec la progression dans le texte. Or si l'on insère les nouveaux mots au début, les mots rencontrés au début du texte vont se retrouver à la fin de la liste et l'espace de recherche va augmenter significativement.
+Intuitivement l'insertion au début peut paraitre plus efficace, car il n'est pas nécessaire de rechercher la fin de la liste, cependant ce n'est pas adapté à la création d'un lexique. En effet la probabilité de rencontrer de nouveaux mots en double diminue avec la progression dans le texte. Or si l'on insère les nouveaux mots au début, les mots rencontrés au début du texte vont se retrouver à la fin de la liste et l'espace de recherche va augmenter significativement.
 
 ![words distribution](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/words_distribution_append.png)  
 **Distribution des mots en double par rapport à leur position lors de la première rencontre.**
 
 ![append vs prepend](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/append_vs_prepend.png)  
-**Temps d'éxecution en fonction du nombre de mots et du type de liste chaînée.**
+**Temps d'exécution en fonction du nombre de mots et du type de liste chaînée.**
 
 ### Références
 <a name="1"></a> [1] http://en.wikipedia.org/wiki/MurmurHash  
