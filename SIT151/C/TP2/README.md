@@ -40,11 +40,13 @@ pg135.txt | 568531 | 5.83                | 6.07                          | 0.40 
 
 **TODO:** Memory usage
 
+#### Interprétation
+
 ### Comparaison des fonctions de hachage
 On montre ici l'impact de la fonction de hachage sur la performance du programme. La première fonction proposée (ASCII code first char) présente une mauvaise distribution des valeurs, qui impacte directement le temps de recherche. En effet elle renvoie le code ASCII du premier caractère du mot mais ceux-ci ne sont pas distribués de manière égale dans la langue francaise [[1](1)].  
 Au contraire de la fonction MurmurHash3 [[2](2)] qui distribue mieux les valeurs au-travers de calculs bit à bit plus complexes.
 
-![MurmurHash3 vs ASCII](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_murmur_vs_ascii1.png)
+![MurmurHash3 vs ASCII](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_murmur_vs_ascii1.png)  
 **Temps d'éxecution en fonction du nombre de mots et de la fonction de hachage.**  
 
 Il est possible de choisir la fonction de hachage à utiliser avec la constante `USE_MURMUR3`:
@@ -70,7 +72,7 @@ Intuitivement l'insertion au début peut paraitre plus efficace car il n'est pas
 ![words distribution](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/words_distribution_append.png)  
 **Distribution des mots en double par rapport à leur position lors de la première rencontre.**
 
-![append vs prepend](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/append_vs_prepend.png)
+![append vs prepend](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/append_vs_prepend.png)  
 **Temps d'éxecution en fonction du nombre de mots et du type de liste chaînée.**
 
 ### Références
