@@ -1,19 +1,21 @@
 ## SIT 151 / C / TP2
 
+[*Yann Feunteun*](https://github.com/yafeunteun), [*Maxime Mouchet*](https://github.com/maxmouchet)
+
 **Objectif:** réaliser un lexique contenant le nombre d'occurences de chaque mot à partir d'un fichier.  
 **Implémentations:** tableau, liste chaînée, hashtable, b-tree  
 
-[Comparaison algorithmes](#comparaison-algorithmes)  
-[Comparaison des fonctions de hachage](#comparaison-des-fonctions-de-hachage)
+[Comparaison des algorithmes](#comparaison-des-algorithmes)  
+[Comparaison des fonctions de hachage](#comparaison-des-fonctions-de-hachage)  
+[Analyse du lexique par liste chaînée](#analyse-du-lexique-par-liste-chaînée)
 
-### Comparaison algorithmes
+### Comparaison des algorithmes
 
 #### Résultats pratiques
 
 Script usage: `Usage: ./benchmark.sh ALGORITHM FILES...`  
 Configuration: `MBA 2013, Core i5@1.3GHz, 8GB DDR3, SSD`  
-Compilation: `clang -O3`  
-Memory usage (total heap allocations) measured with Intruments on OSX.  
+Compilation: `clang -O3`   
 
 ##### Mesures
 
@@ -32,12 +34,11 @@ fic9.txt  | 239289 | 1.54                | 1.58                 | 0.14          
 pg135.txt | 568531 | 5.83                | 6.07                 | 0.40              | 0.34
 
 ##### Tendances
-![running time](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_running_time2.png)
-![memory usage](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_memory1.png)
-
+![running time](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_running_time2.png)  
+**TODO:** Memory usage
 
 ### Comparaison des fonctions de hachage
-![running time](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_murmur_vs_ascii1.png)
+![MurmurHash3 vs ASCII](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_murmur_vs_ascii1.png)
 
 ```c
 int hashFunction(char *word) {
@@ -49,3 +50,7 @@ int hashFunction(char *word) {
   #endif
 }
 ```
+
+### Analyse du lexique par liste chaînée
+![append vs prepend](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/append_vs_prepend.png)
+![words distribution](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/words_distribution_append.png)
