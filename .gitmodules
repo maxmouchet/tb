@@ -1,0 +1,3 @@
+[submodule "SIT152/sorting-algorithms-analysis"]
+	path = SIT152/sorting-algorithms-analysis
+	url = git@github.com:yafeunteun/sorting-algorithms-analysis.git
