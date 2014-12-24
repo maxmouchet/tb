@@ -1,3 +1,6 @@
 [submodule "SIT152/sorting-algorithms-analysis"]
 	path = SIT152/sorting-algorithms-analysis
 	url = git@github.com:yafeunteun/sorting-algorithms-analysis.git
+[submodule "INF111/tb-inf111"]
+	path = INF111/tb-inf111
+	url = git@github.com:yafeunteun/tb-inf111.git
