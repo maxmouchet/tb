@@ -5,7 +5,21 @@ import exception.*;
 
 public class TestsReviewItemBook {
     public static int reviewItemBookOKTest (SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest) {
-        // Mettre le rating pris en parametre, pour etre coherent avec les autres tests.
+        try {
+            float newRating = sn.reviewItemBook(pseudo, pwd, book, rating, "Amazing !");
+
+            if (newRating != rating ) {
+                System.out.println("Test " + idTest + " : la note du livre n'a pas été correctement incrémenté");
+                return 1;
+            } else {
+                return 0;
+            }
+
+        } catch (Exception e) {
+            System.out.println ("Test " + idTest + " : exception non prévue. " + e);
+            e.printStackTrace();
+            return 1;
+        }
     }
 
     public static int reviewItemBookNegativeRatingTest (SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest, String messErreur) throws NotMember, BadEntry, NotItem {
