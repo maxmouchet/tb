@@ -274,8 +274,6 @@ public class TestsAddItemBook {
 	}
 	
 	public static void main(String[] args) throws BadEntry, MemberAlreadyExists {
-		int nbFilms = 0;
-
 		int nbTests = 0;
 		int nbErreurs = 0;
 		
@@ -291,7 +289,7 @@ public class TestsAddItemBook {
 		sn.addMember(pseudo, pwd, profil);
 		
 		// tests de add
-		nbFilms = sn.nbFilms();
+		int nbFilms = sn.nbFilms();
 
 		// <=> fiche numéro 3
 		// tentative d'ajout de livres avec entrées "correctes"
@@ -335,7 +333,7 @@ public class TestsAddItemBook {
 		System.out.println(sn);
 
 		// bilan du test de addMember
-		System.out.println("TestsAddMember :   " + nbErreurs + " erreur(s) / " +  nbTests + " tests effectués");
+		System.out.println("TestsAddItemBook :   " + nbErreurs + " erreur(s) / " +  nbTests + " tests effectués");
 
 	}
 }
