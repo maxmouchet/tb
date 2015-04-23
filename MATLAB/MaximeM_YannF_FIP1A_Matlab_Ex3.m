@@ -1,9 +1,10 @@
-% FIP 1A - Matlab - Ex 2
+% FIP 1A - Matlab - Ex 3
 % Yann Feunteun, Maxime Mouchet
 close all
 clear
 clc
 
+% Figure 1
 figure
 
 % Sinewave signal
@@ -44,11 +45,11 @@ ylabel('Magnitude (v)');
 % White noise signal
 subplot(2,2,3);
 
-t = 0:0.01:6;
-yr = -0.1 + (0.2).*rand(length(t),1);
+t = 0:0.0000001:0.0006;
+yr = -0.1 + (0.2).*randn(length(t),1);
 
 plot(t, yr);
-ylim([-0.2 0.2]);
+ylim([-1 1]);
 title('White noise signal');
 xlabel('Time (s)');
 ylabel('Magnitude (v)');
@@ -62,8 +63,29 @@ A = 1;
 fc = 100*10^3;
 w = 2*pi*fc;
 
-y = A*sin(w*t+yr);
+y = A*sin(w*t+yr');
 plot(t, y);
 title('Phase modulated signal');
 xlabel('Time (s)');
 ylabel('Magnitude (v)');
+
+% Figure 2
+figure
+
+% Random signal
+subplot(2,1,1)
+
+plot(t, yr);
+ylim([-1 1]);
+title('White noise signal');
+xlabel('Time (s)');
+ylabel('Magnitude (v)');
+
+% Random distribution
+subplot(2,1,2)
+
+hist(yr);
+
+title('Histogram');
+xlabel('Amplituede (V)');
+ylabel('Occurences');
