@@ -4,11 +4,12 @@ import avis.SocialNetwork;
 import exception.*;
 
 public class TestsReviewItemBook {
-    public static int reviewItemBookOKTest (SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest) {
+
+    public static int reviewItemBookOKTest(SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest) {
         try {
             float newRating = sn.reviewItemBook(pseudo, pwd, book, rating, "Amazing !");
 
-            if (newRating != rating ) {
+            if (newRating != rating) {
                 System.out.println("Test " + idTest + " : la note du livre n'a pas été correctement incrémenté");
                 return 1;
             } else {
@@ -16,13 +17,13 @@ public class TestsReviewItemBook {
             }
 
         } catch (Exception e) {
-            System.out.println ("Test " + idTest + " : exception non prévue. " + e);
+            System.out.println("Test " + idTest + " : exception non prévue. " + e);
             e.printStackTrace();
             return 1;
         }
     }
 
-    public static int reviewItemBookNegativeRatingTest (SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest, String messErreur) throws NotMember, BadEntry, NotItem {
+    public static int reviewItemBookNegativeRatingTest(SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest, String messErreur) throws NotMember, BadEntry, NotItem {
         try {
             sn.reviewItemBook(pseudo, pwd, book, -1.0f, "Amazing !");
             System.out.println("Test " + idTest + " : " + messErreur);
@@ -37,13 +38,13 @@ public class TestsReviewItemBook {
                 return 0;
             }
         } catch (Exception e) {
-            System.out.println ("Test " + idTest + " : exception non prévue. " + e);
+            System.out.println("Test " + idTest + " : exception non prévue. " + e);
             e.printStackTrace();
             return 1;
         }
     }
 
-    public static int reviewItemBookInvalidRatingTest (SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest, String messErreur) throws NotMember, BadEntry, NotItem {
+    public static int reviewItemBookInvalidRatingTest(SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest, String messErreur) throws NotMember, BadEntry, NotItem {
         try {
             sn.reviewItemBook(pseudo, pwd, book, 6.0f, "Amazing !");
 
@@ -59,13 +60,13 @@ public class TestsReviewItemBook {
                 return 0;
             }
         } catch (Exception e) {
-            System.out.println ("Test " + idTest + " : exception non prévue. " + e);
+            System.out.println("Test " + idTest + " : exception non prévue. " + e);
             e.printStackTrace();
             return 1;
         }
     }
 
-    public static int reviewItemBookNullCommentTest (SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest, String messErreur) throws NotMember, BadEntry, NotItem {
+    public static int reviewItemBookNullCommentTest(SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest, String messErreur) throws NotMember, BadEntry, NotItem {
         try {
             sn.reviewItemBook(pseudo, pwd, book, 1.0f, null);
 
@@ -81,7 +82,7 @@ public class TestsReviewItemBook {
                 return 0;
             }
         } catch (Exception e) {
-            System.out.println ("Test " + idTest + " : exception non prévue. " + e);
+            System.out.println("Test " + idTest + " : exception non prévue. " + e);
             e.printStackTrace();
             return 1;
         }
@@ -96,13 +97,13 @@ public class TestsReviewItemBook {
         } catch (BadEntry badEntry) {
             return 0;
         } catch (Exception e) {
-            System.out.println ("Test " + idTest + " : exception non prévue. " + e);
+            System.out.println("Test " + idTest + " : exception non prévue. " + e);
             e.printStackTrace();
             return 1;
         }
     }
 
-    public static int reviewItemBookNotMemberTest (SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest, String messErreur) throws NotMember, BadEntry, NotItem {
+    public static int reviewItemBookNotMemberTest(SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest, String messErreur) throws NotMember, BadEntry, NotItem {
         try {
             sn.reviewItemBook("BillGate$$38", "Micro$$oft", book, 1.0f, null);
 
@@ -118,13 +119,13 @@ public class TestsReviewItemBook {
                 return 0;
             }
         } catch (Exception e) {
-            System.out.println ("Test " + idTest + " : exception non prévue. " + e);
+            System.out.println("Test " + idTest + " : exception non prévue. " + e);
             e.printStackTrace();
             return 1;
         }
     }
 
-    public static int reviewItemBookWrongPasswordTest (SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest, String messErreur) throws NotMember, BadEntry, NotItem {
+    public static int reviewItemBookWrongPasswordTest(SocialNetwork sn, String pseudo, String pwd, String profil, String book, Float rating, String idTest, String messErreur) throws NotMember, BadEntry, NotItem {
         try {
             sn.reviewItemBook(pseudo, "Ju5nPa5lo2015", book, 1.0f, null);
 
@@ -140,7 +141,7 @@ public class TestsReviewItemBook {
                 return 0;
             }
         } catch (Exception e) {
-            System.out.println ("Test " + idTest + " : exception non prévue. " + e);
+            System.out.println("Test " + idTest + " : exception non prévue. " + e);
             e.printStackTrace();
             return 1;
         }
@@ -174,7 +175,7 @@ public class TestsReviewItemBook {
         // tentative d'ajout de reviews avec entrées "correctes"
 
         nbTests++;
-        nbErreurs += reviewItemBookOKTest(sn, pseudo, pwd, profil, titre, rating,  "1.1");
+        nbErreurs += reviewItemBookOKTest(sn, pseudo, pwd, profil, titre, rating, "1.1");
 
         // <=> fiche numéro 6
         // tentative d'ajout de reviews avec entrées "incorrectes"
@@ -207,8 +208,7 @@ public class TestsReviewItemBook {
         // ce n'est pas du test, mais cela peut "rassurer"...
         System.out.println(sn);
 
-        // bilan du test de addMember
-        System.out.println("TestsReviewItemBook :   " + nbErreurs + " erreur(s) / " +  nbTests + " tests effectués");
-
+        // bilan du test de reviewItemBook
+        System.out.println("TestsReviewItemBook :   " + nbErreurs + " erreur(s) / " + nbTests + " tests effectués");
     }
 }
