@@ -10,6 +10,7 @@ import exception.ItemBookAlreadyExists;
 import exception.MemberAlreadyExists;
 import exception.NotItem;
 import exception.NotMember;
+import java.util.Collection;
 
 /** 
  * @author A. Beugnard, 
@@ -244,6 +245,58 @@ public class SocialNetwork {
 	 */
 	public String toString() {
 		return "";
+	}
+
+
+	/**
+	 * @uml.property  name="items"
+	 * @uml.associationEnd  multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.Item"
+	 */
+	private Collection items;
+
+
+	/**
+	 * Getter of the property <tt>items</tt>
+	 * @return  Returns the items.
+	 * @uml.property  name="items"
+	 */
+	public Collection getItems() {
+		return items;
+	}
+
+	/**
+	 * Setter of the property <tt>items</tt>
+	 * @param items  The items to set.
+	 * @uml.property  name="items"
+	 */
+	public void setItems(Collection items) {
+		this.items = items;
+	}
+
+
+	/**
+	 * @uml.property  name="members"
+	 * @uml.associationEnd  multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.Member"
+	 */
+	private Collection members;
+
+
+	/**
+	 * Getter of the property <tt>members</tt>
+	 * @return  Returns the members.
+	 * @uml.property  name="members"
+	 */
+	public Collection getMembers() {
+		return members;
+	}
+
+	/**
+	 * Setter of the property <tt>members</tt>
+	 * @param members  The members to set.
+	 * @uml.property  name="members"
+	 */
+	public void setMembers(Collection members) {
+		this.members = members;
 	}
 
 
