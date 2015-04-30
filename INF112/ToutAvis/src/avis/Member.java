@@ -19,22 +19,5 @@ public class Member {
 	 */
 	private Collection reviews;
 
-	/**
-	 * Getter of the property <tt>reviews</tt>
-	 * @return  Returns the reviews.
-	 * @uml.property  name="reviews"
-	 */
-	public Collection getReviews() {
-		return reviews;
-	}
-
-	/**
-	 * Setter of the property <tt>reviews</tt>
-	 * @param reviews  The reviews to set.
-	 * @uml.property  name="reviews"
-	 */
-	public void setReviews(Collection reviews) {
-		this.reviews = reviews;
-	}
 
 }
