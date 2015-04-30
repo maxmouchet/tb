@@ -36,7 +36,7 @@ public class Review {
 		boolean isValid = ratingIsValid(rating) && commentIsValid(comment);
 		
 		if (!isValid) {
-			throw new BadEntry("blablabla");
+			throw new BadEntry("Comment and/or rating does not meet the requirements.");
 		}
 		
 		this.comment = comment;

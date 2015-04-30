@@ -1,7 +1,8 @@
 package avis.models;
 
-import java.util.LinkedList;
 import exception.BadEntry;
+
+import java.util.LinkedList;
 
 
 public class Member {
@@ -41,9 +42,10 @@ public class Member {
 	}
 	
 	public Review findReview(String title) {
+		// TODO
 		return null;
 	}
-	
+
 	public static boolean pseudoIsValid(String pseudo) {
 		return (pseudo != null) && (pseudo.trim().length() > 1);
 	}
@@ -52,7 +54,7 @@ public class Member {
 		return (password != null) && (password.trim().length() >= 4);
 	}
 	
-	public static boolean profileIsValid(String profile) {
+	private static boolean profileIsValid(String profile) {
 		return profile != null;
 	}
 	

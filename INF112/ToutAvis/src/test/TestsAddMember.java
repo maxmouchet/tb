@@ -1,15 +1,8 @@
 package test;
 
-import java.util.LinkedList;
-
 import avis.SocialNetwork;
-
 import exception.BadEntry;
-import exception.ItemFilmAlreadyExists;
-import exception.ItemBookAlreadyExists;
 import exception.MemberAlreadyExists;
-import exception.NotItem;
-import exception.NotMember;
 
 /** 
  * @author B. Prou, E. Cousin
@@ -19,9 +12,7 @@ import exception.NotMember;
 
 public class TestsAddMember {
 
-
-
-	public static int addMemberBadEntryTest (SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur){
+	private static int addMemberBadEntryTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur){
 		// vérifie que l'ajout d'un membre (pseudo, pwd, profil) est refusée (levée de l'exception BadEntry et  pas de modification du sn)
 		// si c'est bien le cas, ne fait rien
 		// sinon, affiche le message d'erreur passé en paramètre
@@ -46,7 +37,7 @@ public class TestsAddMember {
 		}
 	}
 
-	public static int addMemberOKTest (SocialNetwork sn, String pseudo, String pwd, String profil, String idTest){
+	private static int addMemberOKTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest){
 		int nbMembres = sn.nbMembers();
 		try{
 			sn.addMember (pseudo, pwd, profil);
@@ -64,7 +55,7 @@ public class TestsAddMember {
 		}
 	}
 
-	public static int addMemberAlreadyExistsTest (SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur){
+	private static int addMemberAlreadyExistsTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur){
 		int nbMembres = sn.nbMembers();
 		try {
 			sn.addMember (pseudo, pwd, profil);
@@ -86,25 +77,17 @@ public class TestsAddMember {
 		}
 	}
 
-
-
-
 	public static void main(String[] args) {
-
-		int nbLivres = 0;
-		int nbFilms = 0;
+		System.out.println("\n# Tests d'ajout de membres");
 
 		int nbTests = 0;
 		int nbErreurs = 0;
-		
-		System.out.println("Tests  ajouter des membres au réseau social  ");
-
 
 		SocialNetwork sn = new SocialNetwork();
 
 		// tests de addMember
-		nbFilms = sn.nbFilms();
-		nbLivres = sn.nbBooks();
+		int nbFilms = sn.nbFilms();
+		int nbLivres = sn.nbBooks();
 
 		// <=> fiche numéro 1
 
@@ -148,20 +131,16 @@ public class TestsAddMember {
 
 		nbTests++;
 		if (nbFilms != sn.nbFilms()) {
-			System.out.println("Erreur  :  le nombre de films après utilisation de addMember a été modifié");
+			System.out.println("Erreur: le nombre de films après utilisation de addMember a été modifié");
 			nbErreurs++;
 		}
 		nbTests++;
 		if (nbLivres != sn.nbBooks()) {
-			System.out.println("Erreur  :  le nombre de livres après utilisation de addMember a été modifié");	
+			System.out.println("Erreur: le nombre de livres après utilisation de addMember a été modifié");
 			nbErreurs++;
 		}
 
-		// ce n'est pas du test, mais cela peut "rassurer"...
-		System.out.println(sn);
-
 		// bilan du test de addMember
-		System.out.println("TestsAddMember :   " + nbErreurs + " erreur(s) / " +  nbTests + " tests effectués");
-
+		System.out.println("->TestsAddMember: " + nbErreurs + " erreur(s) / " +  nbTests + " tests effectués");
 	}
 }

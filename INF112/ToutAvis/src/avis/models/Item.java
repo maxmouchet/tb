@@ -1,7 +1,8 @@
 package avis.models;
 
-import java.util.LinkedList;
 import exception.BadEntry;
+
+import java.util.LinkedList;
 
 public abstract class Item {
 
@@ -21,7 +22,7 @@ public abstract class Item {
 	 */
 	private LinkedList<Review> reviews;
 	
-	public Item(String title, String genre) throws BadEntry {
+	Item(String title, String genre) throws BadEntry {
 		boolean isValid = titleIsValid(title) && genreIsValid(genre);
 
 		if (!isValid) {
@@ -56,7 +57,7 @@ public abstract class Item {
 		return (title != null) && (title.trim().length() > 1);
 	}
 
-	public static boolean genreIsValid(String genre) {
+	private static boolean genreIsValid(String genre) {
 		return genre != null;
 	}
 

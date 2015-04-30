@@ -6,13 +6,15 @@ import exception.ItemBookAlreadyExists;
 import exception.MemberAlreadyExists;
 import exception.NotMember;
 
+import java.util.HashMap;
+
 public class TestsAddItemBook {
 
-    public static int addItemBookOKTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest) {
+    private static int addItemBookOKTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, String genre, String author, int pageCount) {
         int nbLivres = sn.nbBooks();
 
         try {
-            sn.addItemBook(pseudo, pwd, "Hackers & Painters", "Essais", "Paul Graham", 200);
+            sn.addItemBook(pseudo, password, title, genre, author, pageCount);
 
             if (sn.nbBooks() != nbLivres + 1) {
                 System.out.println("Test " + idTest + " : le nombre de livres n'a pas été correctement incrémenté");
@@ -27,18 +29,16 @@ public class TestsAddItemBook {
             return 1;
         }
     }
-
-    public static int addItemBookAlreadyExistTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
-        int nbLivres = sn.nbBooks();
+    
+    private static int addItemBookAlreadyExistsTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, String genre, String author, int pageCount, String messErreur) {
+    	int nbLivres = sn.nbBooks();
 
         try {
-            sn.addItemBook(pseudo, pwd, "From Zero To One", "Essais", "Peter Thiel", 200);
-            sn.addItemBook(pseudo, pwd, "From Zero To One", "Essais", "Peter Thiel", 200);
-
+            sn.addItemBook(pseudo, password, title, genre, author, pageCount);
             System.out.println("Test " + idTest + " : " + messErreur);
             return 1;
         } catch (ItemBookAlreadyExists e) {
-            if (sn.nbBooks() != nbLivres + 1) {
+            if (sn.nbBooks() != nbLivres) {
                 System.out.println("Test " + idTest + " : l'exception ItemBookAlreadyExists a bien été levé, mais le nombre de livres a été incrémenté");
                 return 1;
             } else {
@@ -50,84 +50,16 @@ public class TestsAddItemBook {
             return 1;
         }
     }
-
-    public static int addItemBookAlreadyExistDifferentCaseTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
-        int nbLivres = sn.nbBooks();
-
-        try {
-            sn.addItemBook(pseudo, pwd, "The Singularity is Near", "Essais", "Raymond Kurzweil", 600);
-            sn.addItemBook(pseudo, pwd, "tHE Singularity is Near", "Essais", "rAYMOND Kurzweil", 600);
-
-            System.out.println("Test " + idTest + " : " + messErreur);
-            return 1;
-        } catch (ItemBookAlreadyExists e) {
-            if (sn.nbBooks() != nbLivres + 1) {
-                System.out.println("Test " + idTest + " : l'exception ItemBookAlreadyExists a bien été levé, mais le nombre de livres a été incrémenté");
-                return 1;
-            } else {
-                return 0;
-            }
-        } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
-        }
-    }
-
-    public static int addItemBookAlreadyExistWithWhitespacesTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
-        int nbLivres = sn.nbBooks();
+    
+    private static int addItemBookBadEntryTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, String genre, String author, int pageCount, String messErreur) {
+    	int nbLivres = sn.nbBooks();
 
         try {
-            sn.addItemBook(pseudo, pwd, "The Art of War", "Essais", "Sun Tzu", 100);
-            sn.addItemBook(pseudo, pwd, "  The Art of War  ", "Essais", "  Sun T", 100);
-
-            System.out.println("Test " + idTest + " : " + messErreur);
-            return 1;
-        } catch (ItemBookAlreadyExists e) {
-            if (sn.nbBooks() != nbLivres + 1) {
-                System.out.println("Test " + idTest + " : l'exception ItemBookAlreadyExists a bien été levé, mais le nombre de livres a été incrémenté");
-                return 1;
-            } else {
-                return 0;
-            }
-        } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
-        }
-    }
-
-    public static int addItemBookSameAuthorDifferentTitleTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest) {
-        int nbLivres = sn.nbBooks();
-
-        try {
-            sn.addItemBook(pseudo, pwd, "1Q84", "Roman", "Haruki Murakami", 1000);
-            sn.addItemBook(pseudo, pwd, "Kafka on the shore", "Roman", "Haruki Murakami", 500);
-
-            if (sn.nbBooks() != nbLivres + 2) {
-                System.out.println("Test " + idTest + " : le nombre de livres n'a pas été correctement incrémenté");
-                return 1;
-            } else {
-                return 0;
-            }
-
-        } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
-        }
-    }
-
-    public static int addItemBookNullTitleTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
-        int nbLivres = sn.nbBooks();
-
-        try {
-            sn.addItemBook(pseudo, pwd, null, "Roman", "Haruki Murakami", 1000);
-
+            sn.addItemBook(pseudo, password, title, genre, author, pageCount);
             System.out.println("Test " + idTest + " : " + messErreur);
             return 1;
         } catch (BadEntry e) {
-            if (sn.nbBooks() != nbLivres + 1) {
+            if (sn.nbBooks() != nbLivres) {
                 System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais le nombre de livres a été incrémenté");
                 return 1;
             } else {
@@ -140,104 +72,15 @@ public class TestsAddItemBook {
         }
     }
 
-    public static int addItemBookEmptyTitleTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
+    private static int addItemBookNotMemberTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, String genre, String author, int pageCount, String messErreur) {
         int nbLivres = sn.nbBooks();
 
         try {
-            sn.addItemBook(pseudo, pwd, "    ", "Roman", "Haruki Murakami", 1000);
-
-            System.out.println("Test " + idTest + " : " + messErreur);
-            return 1;
-        } catch (BadEntry e) {
-            if (sn.nbBooks() != nbLivres + 1) {
-                System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais le nombre de livres a été incrémenté");
-                return 1;
-            } else {
-                return 0;
-            }
-        } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
-        }
-    }
-
-    public static int addItemBookNullGenderTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
-        int nbLivres = sn.nbBooks();
-
-        try {
-            sn.addItemBook(pseudo, pwd, "Underground", null, "Haruki Murakami", 1000);
-
-            System.out.println("Test " + idTest + " : " + messErreur);
-            return 1;
-        } catch (BadEntry e) {
-            if (sn.nbBooks() != nbLivres + 1) {
-                System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais le nombre de livres a été incrémenté");
-                return 1;
-            } else {
-                return 0;
-            }
-        } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
-        }
-    }
-
-    public static int addItemBookNullAuthorTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
-        int nbLivres = sn.nbBooks();
-
-        try {
-            sn.addItemBook(pseudo, pwd, "La Fin des temps", "Roman", null, 1000);
-
-            System.out.println("Test " + idTest + " : " + messErreur);
-            return 1;
-        } catch (BadEntry e) {
-            if (sn.nbBooks() != nbLivres + 1) {
-                System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais le nombre de livres a été incrémenté");
-                return 1;
-            } else {
-                return 0;
-            }
-        } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
-        }
-    }
-
-    public static int addItemBookNegativePageNumberTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
-        int nbLivres = sn.nbBooks();
-
-        try {
-            sn.addItemBook(pseudo, pwd, "Une brève histoire du temps", "Science", "Stephen Hawking", -10);
-
-            System.out.println("Test " + idTest + " : " + messErreur);
-            return 1;
-        } catch (BadEntry e) {
-            if (sn.nbBooks() != nbLivres + 1) {
-                System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais le nombre de livres a été incrémenté");
-                return 1;
-            } else {
-                return 0;
-            }
-        } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
-        }
-    }
-
-    public static int addItemBookNotMemberTest(SocialNetwork sn, String profil, String idTest, String messErreur) {
-        int nbLivres = sn.nbBooks();
-
-        try {
-            sn.addItemBook("BillGate$$38", "Micro$$oft", "The Intelligent Investor", "Business", "Benjamin Graham", 640);
-
+        	sn.addItemBook(pseudo, password, title, genre, author, pageCount);
             System.out.println("Test " + idTest + " : " + messErreur);
             return 1;
         } catch (NotMember e) {
-            if (sn.nbBooks() != nbLivres + 1) {
+            if (sn.nbBooks() != nbLivres) {
                 System.out.println("Test " + idTest + " : l'exception NotMember a bien été levé, mais le nombre de livres a été incrémenté");
                 return 1;
             } else {
@@ -250,87 +93,80 @@ public class TestsAddItemBook {
         }
     }
 
-    public static int addItemBookWrongPasswordTest(SocialNetwork sn, String pseudo, String profil, String idTest, String messErreur) {
-        int nbLivres = sn.nbBooks();
+    private static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo, String password) throws MemberAlreadyExists, BadEntry, ItemBookAlreadyExists, NotMember {
+         System.out.println("\n# Tests d'ajout de livres");
 
-        try {
-            sn.addItemBook(pseudo, "Ju5nPa5lo2015", "Hamlet", "Theatre", "William Shakespeare", 100);
+         int nbTests = 0;
+         int nbErreurs = 0;
 
-            System.out.println("Test " + idTest + " : " + messErreur);
-            return 1;
-        } catch (NotMember e) {
-            if (sn.nbBooks() != nbLivres + 1) {
-                System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais le nombre de livres a été incrémenté");
-                return 1;
-            } else {
-                return 0;
-            }
-        } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
-        }
+         int nbFilms = sn.nbFilms();
+
+         // Ajout d'un livre pour les tests
+         String title = "From Zero To One";
+         String genre = "Essay";
+         String author = "Peter Thiel";
+         int pageCount = 200;
+         
+         System.out.println("* Ajout d'un livre pour les tests: " + title);
+         sn.addItemBook(pseudo, password, title, genre, author, pageCount);
+
+         // Fiche 3
+         // Tentatives d'ajout de livres avec des entrées correctes
+
+         nbTests++;
+         nbErreurs += addItemBookOKTest("1.1", sn, pseudo, password, "1Q84", "Roman", "Haruki Murakami", 1000);
+         nbTests++;
+         nbErreurs += addItemBookOKTest("1.2", sn, pseudo, password, "Kafka on the shore", "Roman", "Haruki Murakami", 1000);
+         
+         nbTests++;
+         nbErreurs += addItemBookAlreadyExistsTest("1.3", sn, pseudo, password, title, genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà est autorisé.");
+         nbTests++;
+         nbErreurs += addItemBookAlreadyExistsTest("1.4", sn, pseudo, password, title.toUpperCase(), genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà (casse différente) est autorisé.");
+         nbTests++;
+         nbErreurs += addItemBookAlreadyExistsTest("1.5", sn, pseudo, password, "  " + title + "   ", genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà (avec des espaces en début et fin) est autorisé.");
+         
+         // Fiche 4
+         // Tentatives d'ajout de livres avec des entrées incorrectes
+         
+         nbTests++;
+         nbErreurs += addItemBookBadEntryTest("2.1", sn, pseudo, password, null, genre, author, pageCount, "L'ajout d'un livre avec un titre null est autorisé.");
+         nbTests++;
+         nbErreurs += addItemBookBadEntryTest("2.2", sn, pseudo, password, "  ", genre, author, pageCount, "L'ajout d'un livre avec un titre composé uniquement d'espaces est autorisé.");
+         nbTests++;
+         nbErreurs += addItemBookBadEntryTest("2.3", sn, pseudo, password, title, null, author, pageCount, "L'ajout d'un livre avec un genre null est autorisé.");
+         nbTests++;
+         nbErreurs += addItemBookBadEntryTest("2.4", sn, pseudo, password, title, genre, null, pageCount, "L'ajout d'un livre avec un auteur null est autorisé.");
+         nbTests++;
+         nbErreurs += addItemBookBadEntryTest("2.5", sn, pseudo, password, title, genre, author, -100, "L'ajout d'un livre avec un nombre de pages negatif est autorisé.");
+         
+         nbTests++;
+         nbErreurs += addItemBookNotMemberTest("2.6", sn, "BillGate$$38", "Micro$$oft", title, genre, author, pageCount, "L'ajout d'un livre pour un membre inexistant est autorisé.");
+         nbTests++;
+         nbErreurs += addItemBookNotMemberTest("2.7", sn, pseudo, "Ju5nPa5lo2015", title, genre, author, pageCount, "L'ajout d'un livre avec un mauvais mot de passe est autorisé.");
+         
+         nbTests++;
+         if (nbFilms != sn.nbFilms()) {
+             System.out.println("Erreur: le nombre de films après utilisation de addItemBook a été modifié.");
+             nbErreurs++;
+         }
+         
+         HashMap<String, Integer> testsResults = new HashMap<String, Integer>();
+         testsResults.put("errors", nbErreurs);
+         testsResults.put("total", nbTests);
+         return testsResults;
     }
 
-    public static void main(String[] args) throws BadEntry, MemberAlreadyExists {
-        int nbTests = 0;
-        int nbErreurs = 0;
-
-        System.out.println("# Ajout de livres au réseau social");
+    public static void main(String[] args) throws BadEntry, MemberAlreadyExists, NotMember, ItemBookAlreadyExists {
         SocialNetwork sn = new SocialNetwork();
 
+        // Ajout d'un membre pour les tests
         String pseudo = "ToTo";
-        String pwd = "Pa$$w0rd";
+        String password = "Pa$$w0rd";
         String profil = "tAtA";
 
-        System.out.println("Ajout d'un membre pour le test: " + pseudo);
-        sn.addMember(pseudo, pwd, profil);
+        sn.addMember(pseudo, password, profil);
 
-        // tests de add
-        int nbFilms = sn.nbFilms();
-
-        // <=> fiche numéro 3
-        // tentative d'ajout de livres avec entrées "correctes"
-
-        nbTests++;
-        nbErreurs += addItemBookOKTest(sn, pseudo, pwd, profil, "1.1");
-        nbTests++;
-        nbErreurs += addItemBookAlreadyExistTest(sn, pseudo, pwd, profil, "1.2", "L'ajout d'un livre dont le titre existe déjà est autorisé");
-        nbTests++;
-        nbErreurs += addItemBookAlreadyExistDifferentCaseTest(sn, pseudo, pwd, profil, "1.3", "L'ajout d'un livre dont le titre existe déjà (casse différente) est autorisé");
-        nbTests++;
-        nbErreurs += addItemBookAlreadyExistWithWhitespacesTest(sn, pseudo, pwd, profil, "1.4", "L'ajout d'un livre dont le titre existe déjà (avec des espaces en début et fin) est autorisé");
-        nbTests++;
-        nbErreurs += addItemBookSameAuthorDifferentTitleTest(sn, pseudo, pwd, profil, "1.5");
-
-        // <=> fiche numéro 4
-        // tentative d'ajout de livres avec entrées "incorrectes"
-
-        nbTests++;
-        nbErreurs += addItemBookNullTitleTest(sn, pseudo, pwd, profil, "2.1", "L'ajout d'un livre avec un titre null est autorisé");
-        nbTests++;
-        nbErreurs += addItemBookEmptyTitleTest(sn, pseudo, pwd, profil, "2.2", "L'ajout d'un livre avec un titre composé uniquement d'espaces est autorisé");
-        nbTests++;
-        nbErreurs += addItemBookNullGenderTest(sn, pseudo, pwd, profil, "2.3", "L'ajout d'un livre avec un genre null est autorisé");
-        nbTests++;
-        nbErreurs += addItemBookNullAuthorTest(sn, pseudo, pwd, profil, "2.4", "L'ajout d'un livre avec un auteur null est autorisé");
-        nbTests++;
-        nbErreurs += addItemBookNegativePageNumberTest(sn, pseudo, pwd, profil, "2.5", "L'ajout d'un livre avec un nombre de pages negatif est autorisé");
-        nbTests++;
-        nbErreurs += addItemBookNotMemberTest(sn, profil, "2.6", "L'ajout d'un livre pour un membre inexistant est autorisé");
-        nbTests++;
-        nbErreurs += addItemBookWrongPasswordTest(sn, pseudo, profil, "2.7", "L'ajout d'un livre avec un mauvais mot de passe est autorisé");
-
-        nbTests++;
-        if (nbFilms != sn.nbFilms()) {
-            System.out.println("Erreur  :  le nombre de films après utilisation de addItemBook a été modifié");
-            nbErreurs++;
-        }
-
-        // ce n'est pas du test, mais cela peut "rassurer"...
-        System.out.println(sn);
-
-        // bilan du test de addItemBook
-        System.out.println("TestsAddItemBook :   " + nbErreurs + " erreur(s) / " + nbTests + " tests effectués");
+    	HashMap<String, Integer> testsResults = runTests(sn, pseudo, password);
+        System.out.println("-> TestsAddItemBook: " + testsResults.get("errors") + " erreur(s) / " + testsResults.get("total") + " tests effectués");
     }
 }

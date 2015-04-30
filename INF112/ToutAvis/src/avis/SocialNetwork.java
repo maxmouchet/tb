@@ -1,18 +1,9 @@
 package avis;
 
-import java.util.LinkedList;
+import avis.models.*;
+import exception.*;
 
-import avis.models.Book;
-import avis.models.Film;
-import avis.models.Item;
-import avis.models.Member;
-import avis.models.Review;
-import exception.BadEntry;
-import exception.ItemBookAlreadyExists;
-import exception.ItemFilmAlreadyExists;
-import exception.MemberAlreadyExists;
-import exception.NotItem;
-import exception.NotMember;
+import java.util.LinkedList;
 
 /** 
  * @author A. Beugnard, 
@@ -321,7 +312,7 @@ public class SocialNetwork {
 		Item item = null;
 		
 		for (Item it : items) {
-			if ((it.getTitle() == title) && (klass.isInstance(it))) {
+			if ((it.getTitle().equals(title)) && (klass.isInstance(it))) {
 				item = it;
 				break;
 			}

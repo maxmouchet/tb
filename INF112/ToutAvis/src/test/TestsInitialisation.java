@@ -1,15 +1,6 @@
 package test;
 
-import java.util.LinkedList;
-
 import avis.SocialNetwork;
-
-import exception.BadEntry;
-import exception.ItemFilmAlreadyExists;
-import exception.ItemBookAlreadyExists;
-import exception.MemberAlreadyExists;
-import exception.NotItem;
-import exception.NotMember;
 
 /** 
  * @author B. Prou
@@ -21,15 +12,8 @@ public class TestsInitialisation {
 
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		int nbMembres = 0;
-		int nbLivres = 0;
-		int nbFilms = 0;
-		
-		System.out.println("Tests  initialisation  réseau social  ");
+		System.out.println("\n# Tests d'initialisation du réseau social");
 	
-		
 		try {
 
 			// un réseau social créé ne doit avoir ni membres ni items
@@ -46,11 +30,6 @@ public class TestsInitialisation {
 				System.out.println("Erreur 0.3 : le nombre de films après création du réseau est non nul");
 				System.exit(1);
 			}
-
-			
-			// ce n'est pas du test, mais cela peut "rassurer"...
-			System.out.println(sn);
-			
 		}
 		catch (Exception e) {
 			System.out.println("Exception non prévue : " + e);
