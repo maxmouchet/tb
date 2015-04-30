@@ -234,6 +234,16 @@ public class SocialNetwork {
 	 * @return la note moyenne des notes sur ce livre
 	 */
 	public float reviewItemBook(String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
+		if (!(Member.pseudoIsValid(pseudo) && Member.passwordIsValid(password))) {
+			throw new BadEntry("Blablabla");
+		}
+		
+		if (!Item.titleIsValid(titre)) {
+			throw new BadEntry("Blablabla");
+		}
+		
+		
+		
 		return 0.0f;
 	}
 
@@ -252,55 +262,54 @@ public class SocialNetwork {
 	 * @uml.property  name="items"
 	 * @uml.associationEnd  multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.Item"
 	 */
-	private Collection items;
+	private LinkedList<Item> items;
 
-
-	/**
-	 * Getter of the property <tt>items</tt>
-	 * @return  Returns the items.
-	 * @uml.property  name="items"
-	 */
-	public Collection getItems() {
-		return items;
-	}
-
-	/**
-	 * Setter of the property <tt>items</tt>
-	 * @param items  The items to set.
-	 * @uml.property  name="items"
-	 */
-	public void setItems(Collection items) {
-		this.items = items;
-	}
 
 
 	/**
 	 * @uml.property  name="members"
 	 * @uml.associationEnd  multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.Member"
 	 */
-	private Collection members;
+	private LinkedList<Member>  members;
 
-
-	/**
-	 * Getter of the property <tt>members</tt>
-	 * @return  Returns the members.
-	 * @uml.property  name="members"
-	 */
-	public Collection getMembers() {
-		return members;
+		
+	// TODO : meme chose qu'avec member creer une instance pour faire la verif du null / length
+	private boolean checkTitle(Class klass, String title) {
+		for(Item item : items) {
+			if (item.getTitle() == title && klass.isInstance(item)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
-
-	/**
-	 * Setter of the property <tt>members</tt>
-	 * @param members  The members to set.
-	 * @uml.property  name="members"
-	 */
-	public void setMembers(Collection members) {
-		this.members = members;
+	
+	private boolean checkRating(float rating) {
+		return (rating >= 0.0) && (rating <= 5.0);
 	}
-
-
-
-
-
+	
+	private boolean checkComment(String comment) {
+		return comment != null;
+	}
+	
+	private boolean checkUser(String pseudo, String password) throws BadEntry {
+		Member member = new Mem
+		
+		return false;
+	}
+	
+	private Review reviewExists() {
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		SocialNetwork sn = new SocialNetwork();
+		
+		String[] pseudos = { null, "  a   ", "  max   " };
+		
+		for (String pseudo : pseudos) {
+			System.out.println("Pseudo=" + pseudo + ":" + sn.checkString(pseudo));
+		}
+		
+	}
 }

@@ -6,11 +6,17 @@ import java.util.Collection;
 public abstract class Item {
 
 	/**
-	 * @uml.property  name="titre"
+	 * @uml.property  name="title"
 	 */
-	private String titre;
+	private String title;
 
+	public String getTitle() {
+		return this.title;
+	}
 	
+	public static boolean titleIsValid(String title) {
+		return (title != null) && (title.trim().length() > 1);
+	}
 
 	/**
 	 * @uml.property  name="genre"
