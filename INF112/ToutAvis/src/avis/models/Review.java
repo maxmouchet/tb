@@ -1,7 +1,6 @@
-package avis;
+package avis.models;
 
 import exception.BadEntry;
-
 
 public class Review {
 
@@ -10,31 +9,27 @@ public class Review {
 	 */
 	private float rating;
 
-
-
 	/**
 	 * @uml.property  name="comment"
 	 */
 	private String comment;
 
-
 	/**
-	 * @uml.property  name="member"
-	 * @uml.associationEnd  multiplicity="(1 1)" inverse="reviews:avis.Member"
+	 * @uml.property   name="member"
+	 * @uml.associationEnd   multiplicity="(1 1)" inverse="reviews:avis.models.Member"
 	 */
 	private Member member = null;
 
-	
-
-	/** 
-	 * @uml.property name="item"
-	 * @uml.associationEnd multiplicity="(1 1)" inverse="reviews:avis.Item"
+	/**
+	 * @uml.property   name="item"
+	 * @uml.associationEnd   multiplicity="(1 1)" inverse="reviews:avis.models.Item"
 	 */
 	private Item item = null;
 	
-	public Review(Item item, Member member) throws BadEntry {		
+	public Review(Item item, Member member, String comment, float rating) throws BadEntry {		
 		this.item = item;
 		this.member = member;
+		update(comment, rating);
 	}
 	
 	public void update(String comment, float rating) throws BadEntry {
@@ -58,5 +53,16 @@ public class Review {
 
 	public float getRating() {
 		return rating;
+	}
+	
+	@Override
+	public String toString() {
+		String output = "";
+		
+		output += "Review from " + member.getPseudo() + " on " + item.getTitle() + "\n";
+		output += "Rating: " + rating + "\n";
+		output += "Comment: " + comment + "\n";
+		
+		return output;
 	}
 }

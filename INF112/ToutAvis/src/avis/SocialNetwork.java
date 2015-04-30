@@ -1,16 +1,18 @@
 package avis;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
-
+import avis.models.Book;
+import avis.models.Film;
+import avis.models.Item;
+import avis.models.Member;
+import avis.models.Review;
 import exception.BadEntry;
-import exception.ItemFilmAlreadyExists;
 import exception.ItemBookAlreadyExists;
+import exception.ItemFilmAlreadyExists;
 import exception.MemberAlreadyExists;
 import exception.NotItem;
 import exception.NotMember;
-import java.util.Collection;
 
 /** 
  * @author A. Beugnard, 
@@ -19,7 +21,6 @@ import java.util.Collection;
  * @date février - mars 2011
  * @version V0.6
  */
-
 
 /** 
  * <p>
@@ -45,7 +46,18 @@ import java.util.Collection;
  */
 
 public class SocialNetwork {
+	
+	/**
+	 * @uml.property   name="items"
+	 * @uml.associationEnd   multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.models.Item"
+	 */
+	private LinkedList<Item> items;
 
+	/**
+	 * @uml.property   name="members"
+	 * @uml.associationEnd   multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.models.Member"
+	 */
+	private LinkedList<Member>  members;
 
 	/**
 	 * constructeur de <i>SocialNetwok</i> 
@@ -62,7 +74,7 @@ public class SocialNetwork {
 	 * @return le nombre de membres
 	 */
 	public int nbMembers() {
-		return 0;
+		return members.size();
 	}
 
 	/**
@@ -71,7 +83,7 @@ public class SocialNetwork {
 	 * @return le nombre de films
 	 */
 	public int nbFilms() {
-		return 0;
+		return countItems(Film.class);
 	}
 
 	/**
@@ -80,9 +92,18 @@ public class SocialNetwork {
 	 * @return le nombre de livres
 	 */
 	public int nbBooks() {
-		return 0;
+		return countItems(Book.class);
 	}
-
+	
+	private int countItems(Class<?> klass) {
+		int count = 0;
+		
+		for (Item item : items) {
+			if (klass.isInstance(item)) { count++; }
+		}
+		
+		return count;
+	}
 
 	/**
 	 * Ajouter un nouveau membre au <i>SocialNetwork</i>
@@ -103,9 +124,15 @@ public class SocialNetwork {
 	 */
 	public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists  {
 		Member m = new Member(pseudo, password, profil);
+		
+		for (Member member : members) {
+			if (member.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
+				throw new MemberAlreadyExists();
+			}
+		}
+		
 		this.members.add(m);
 	}
-
 
 	/**
 	 * Ajouter un nouvel item de film au <i>SocialNetwork</i> 
@@ -133,7 +160,17 @@ public class SocialNetwork {
 	 * 
 	 */
 	public void addItemFilm(String pseudo, String password, String titre, String genre, String realisateur, String scenariste, int duree) throws BadEntry, NotMember, ItemFilmAlreadyExists {
-
+		findMatchingMember(pseudo, password);
+		
+		Film film = new Film(titre, genre, realisateur, scenariste, duree);
+		
+		for (Item item : items) {
+			if (item.getTitle().trim().toLowerCase().equals(titre.trim().toLowerCase()) && item instanceof Book) {
+				throw new ItemFilmAlreadyExists();
+			}
+		}
+		
+		this.items.add(film);
 	}
 
 	/**
@@ -161,16 +198,19 @@ public class SocialNetwork {
 	 * 
 	 */
 	public void addItemBook(String pseudo, String password, String titre, String genre, String auteur, int nbPages) throws  BadEntry, NotMember, ItemBookAlreadyExists{
-	
-		// TODO : manage exceptions i.e. check params
+		findMatchingMember(pseudo, password);
 		
-		// TODO : check credentials here 
-	
-		Book b = new Book(titre, genre, auteur, nbPages);
+		Book book = new Book(titre, genre, auteur, nbPages);
 		
-		this.items.add(b); // TODO : the credentials must be valid 
+		for (Item item : items) {
+			if (item.getTitle().trim().toLowerCase().equals(titre.trim().toLowerCase()) && item instanceof Book) {
+				throw new ItemBookAlreadyExists();
+			}
+		}
+		
+		this.items.add(book);
 	}
-
+	
 	/**
 	 * Consulter les items du <i>SocialNetwork</i> par nom
 	 * 
@@ -183,10 +223,19 @@ public class SocialNetwork {
 	 * (une liste vide si aucun item ne correspond) 
 	 */
 	public LinkedList <String> consultItems(String nom) throws BadEntry {
-		return new LinkedList <String> ();
+		// TODO: Check that it shows note.
+		if (!Item.titleIsValid(nom)) {
+			throw new BadEntry("Title does not meet the requirements.");
+		}
+		
+		LinkedList<String> itemsStrings = new LinkedList<String>();
+		
+		for (Item item : items) {
+			itemsStrings.add(item.toString());
+		}
+		
+		return itemsStrings;
 	}
-
-
 
 	/**
 	 * Donner son opinion sur un item film.
@@ -244,49 +293,62 @@ public class SocialNetwork {
 		return reviewItem(Book.class, pseudo, password, titre, note, commentaire);
 	}
 
-	public float reviewItem(Class klass, String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
+	private float reviewItem(Class<?> klass, String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
 		if (!(Member.pseudoIsValid(pseudo) && Member.passwordIsValid(password))) {
-			throw new BadEntry("Blablabla");
+			throw new BadEntry("Pseudo and/or password does not meet the requirements.");
 		}
-		
+
 		if (!Item.titleIsValid(titre)) {
-			throw new BadEntry("Blablabla");
+			throw new BadEntry("Item title does not meet the requirements.");
 		}
 		
+		Item item = findMatchingItem(klass, titre);
+		Member member = findMatchingMember(pseudo, password);
+
+		Review review = member.findReview(titre);
+		if (review == null) {
+			review = new Review(item, member, commentaire, note);
+			member.addReview(review);
+			item.addReview(review);
+		} else {
+			review.update(commentaire, note);
+		}
+
+		return item.getRating();
+	}
+	
+	private Item findMatchingItem(Class<?> klass, String title) throws NotItem {
+		Item item = null;
+		
+		for (Item it : items) {
+			if ((it.getTitle() == title) && (klass.isInstance(it))) {
+				item = it;
+				break;
+			}
+		}
+
+		if (item == null) {
+			throw new NotItem("Item not found.");
+		}
+		
+		return item;
+	}
+	
+	private Member findMatchingMember(String pseudo, String password) throws NotMember {
 		Member member = null;
+		
 		for (Member m : members){
 			if(m.checkCredentials(pseudo, password)){
 				member = m;
 				break;
 			}
 		}
-		
-		if(member == null) { // mismatch pseudo/password
-			throw new NotMember("mismatch pseudo/password");
+
+		if(member == null) {
+			throw new NotMember("Invalid credentials.");
 		}
 		
-		Item item = null;
-		for (Item it : items) {
-			if ((it.getTitle() == titre) && (klass.isInstance(it))) {
-				item = it;
-				break;
-			}
-		}
-		
-		if (item == null) {
-			throw new NotItem("blabla");
-		}
-		
-		
-		Review review = member.findReview(titre);
-		if (review == null) {
-			review = new Review(item, member);
-			member.addReview(review);
-			item.addReview(review);
-		}
-		review.update(commentaire, note);
-		
-		return item.getRating();
+		return member;
 	}
 
 	/**
@@ -295,41 +357,13 @@ public class SocialNetwork {
 	 * @return la chaîne de caractères représentation textuelle du <i>SocialNetwork</i> 
 	 */
 	public String toString() {
-		return "";
-	}
-
-
-	/**
-	 * @uml.property  name="items"
-	 * @uml.associationEnd  multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.Item"
-	 */
-	private LinkedList<Item> items;
-
-
-
-	/**
-	 * @uml.property  name="members"
-	 * @uml.associationEnd  multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.Member"
-	 */
-	private LinkedList<Member>  members;
-
+		String output = "";
 		
-	// TODO : meme chose qu'avec member creer une instance pour faire la verif du null / length
-	private boolean checkTitle(Class klass, String title) {
-		for(Item item : items) {
-			if (item.getTitle() == title && klass.isInstance(item)) {
-				return true;
-			}
-		}
+		output += "SocialNetwork" + "\n";
+		output += nbMembers() + " members" + "\n";
+		output += nbBooks() + " books" + "\n";
+		output += nbFilms() + " films" + "\n";
 		
-		return false;
-	}
-	
-	
-	
-
-	
-	public static void main(String[] args) {
-		// TODO
+		return output;
 	}
 }

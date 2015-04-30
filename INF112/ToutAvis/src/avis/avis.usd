@@ -22,7 +22,7 @@
     <children xsi:type="editmodel:ActivationEditModel" targetConnections="//@children.0/@children.0/@sourceConnections.0" location="95,114" size="16,63" sequenceItemContainer="//@children.1" recursiveChildren="//@children.1/@children.1" length="63"/>
     <children xsi:type="editmodel:RecursiveActivationEditModel" location="103,137" size="16,40" sequenceItemContainer="//@children.1" associatedActivation="//@children.1/@children.0" relativeLocation="8,23"/>
   </children>
-  <children xsi:type="editmodel:InstanceEditModel" name="Review" location="755,20" size="206,324" id="avis/Review" itemName="review"/>
+  <children xsi:type="editmodel:InstanceEditModel" name="Review" location="755,20" size="206,324" id="avis.models/Review" itemName="review"/>
   <diagramOptions xsi:type="options:SequenceDiagramOptions" level="0" autoName="false"/>
   <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
     <leftRuler/>
