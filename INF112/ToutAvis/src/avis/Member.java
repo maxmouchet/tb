@@ -15,15 +15,18 @@ public class Member {
 
 	}
 
-	public Member(String pseudo, String password) throws BadEntry {
+	private String profile;
+
+	public Member(String pseudo, String password, String profile) throws BadEntry {
 		boolean isValid = pseudoIsValid(pseudo) && passwordIsValid(password);
 
-		if (isValid) {
-			this.pseudo = pseudo;
-			this.password = password;
-		} else {
+		if (!isValid) {
 			throw new BadEntry("Pseudo and/or Password does not meet the requirements.");
 		}
+		
+		this.pseudo = pseudo;
+		this.password = password;
+		this.profile = profile;
 	}
 	
 	public static boolean pseudoIsValid(String pseudo) {
@@ -32,6 +35,18 @@ public class Member {
 	
 	public static boolean passwordIsValid(String password) {
 		return (password != null) && (password.trim().length() >= 4);
+	}
+	
+	public boolean checkCredentials(String pseudo, String password) {
+		return (this.pseudo.equals(pseudo) && this.password.equals(password));
+	}
+	
+	public Review findReview(String title) {
+		return null;
+	}
+	
+	public void addReview(Review review) {
+		this.reviews.add(review);
 	}
 
 	/**

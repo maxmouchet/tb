@@ -3,6 +3,12 @@ package avis;
 
 public class Film extends Item {
 	
+	public Film(String title, String genre) {
+		super(title, genre);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/**
 	 * @param args
 	 */

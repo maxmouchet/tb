@@ -10,6 +10,12 @@ public class Book extends Item {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public Book(String titre, String genre, String auteur, int nbPages){
+		super(titre, genre);
+		this.auteur = auteur;
+		this.nbPages = nbPages;
+	}
 
 	/**
 	 * @uml.property  name="auteur"
@@ -22,5 +28,4 @@ public class Book extends Item {
 	 */
 	private int nbPages;
 
-	
 }

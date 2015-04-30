@@ -51,8 +51,9 @@ public class SocialNetwork {
 	 * constructeur de <i>SocialNetwok</i> 
 	 * 
 	 */
-
 	public SocialNetwork() {
+		this.items = new LinkedList<Item>();
+		this.members = new LinkedList<Member>();
 	}
 
 	/**
@@ -101,7 +102,8 @@ public class SocialNetwork {
 	 * 
 	 */
 	public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists  {
-
+		Member m = new Member(pseudo, password, profil);
+		this.members.add(m);
 	}
 
 
@@ -159,7 +161,14 @@ public class SocialNetwork {
 	 * 
 	 */
 	public void addItemBook(String pseudo, String password, String titre, String genre, String auteur, int nbPages) throws  BadEntry, NotMember, ItemBookAlreadyExists{
-
+	
+		// TODO : manage exceptions i.e. check params
+		
+		// TODO : check credentials here 
+	
+		Book b = new Book(titre, genre, auteur, nbPages);
+		
+		this.items.add(b); // TODO : the credentials must be valid 
 	}
 
 	/**
@@ -204,10 +213,8 @@ public class SocialNetwork {
 	 * @return la note moyenne des notes sur ce film  
 	 */
 	public float reviewItemFilm(String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
-		return 0.0f;
+		return reviewItem(Film.class, pseudo, password, titre, note, commentaire);
 	}
-
-
 
 	/**
 	 * Donner son opinion sur un item livre.
@@ -234,6 +241,10 @@ public class SocialNetwork {
 	 * @return la note moyenne des notes sur ce livre
 	 */
 	public float reviewItemBook(String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
+		return reviewItem(Book.class, pseudo, password, titre, note, commentaire);
+	}
+
+	public float reviewItem(Class klass, String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
 		if (!(Member.pseudoIsValid(pseudo) && Member.passwordIsValid(password))) {
 			throw new BadEntry("Blablabla");
 		}
@@ -242,11 +253,41 @@ public class SocialNetwork {
 			throw new BadEntry("Blablabla");
 		}
 		
+		Member member = null;
+		for (Member m : members){
+			if(m.checkCredentials(pseudo, password)){
+				member = m;
+				break;
+			}
+		}
+		
+		if(member == null) { // mismatch pseudo/password
+			throw new NotMember("mismatch pseudo/password");
+		}
+		
+		Item item = null;
+		for (Item it : items) {
+			if ((it.getTitle() == titre) && (klass.isInstance(it))) {
+				item = it;
+				break;
+			}
+		}
+		
+		if (item == null) {
+			throw new NotItem("blabla");
+		}
 		
 		
-		return 0.0f;
+		Review review = member.findReview(titre);
+		if (review == null) {
+			review = new Review(item, member);
+			member.addReview(review);
+			item.addReview(review);
+		}
+		review.update(commentaire, note);
+		
+		return item.getRating();
 	}
-
 
 	/**
 	 * Obtenir une représentation textuelle du <i>SocialNetwork</i>.
@@ -284,32 +325,11 @@ public class SocialNetwork {
 		return false;
 	}
 	
-	private boolean checkRating(float rating) {
-		return (rating >= 0.0) && (rating <= 5.0);
-	}
 	
-	private boolean checkComment(String comment) {
-		return comment != null;
-	}
 	
-	private boolean checkUser(String pseudo, String password) throws BadEntry {
-		Member member = new Mem
-		
-		return false;
-	}
-	
-	private Review reviewExists() {
-		return null;
-	}
+
 	
 	public static void main(String[] args) {
-		SocialNetwork sn = new SocialNetwork();
-		
-		String[] pseudos = { null, "  a   ", "  max   " };
-		
-		for (String pseudo : pseudos) {
-			System.out.println("Pseudo=" + pseudo + ":" + sn.checkString(pseudo));
-		}
-		
+		// TODO
 	}
 }
