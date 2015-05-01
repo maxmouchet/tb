@@ -52,7 +52,7 @@ public class TestsReviewItemBook {
             System.out.println("Test " + idTest + " : " + messErreur);
             return 1;
         } catch (NotItem notItem) {
-                return 0;
+            return 0;
         } catch (Exception e) {
             System.out.println("Test " + idTest + " : exception non prévue. " + e);
             e.printStackTrace();
