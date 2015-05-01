@@ -116,14 +116,14 @@ public class TestsAddItemBook {
         nbTests++;
         nbErreurs += addItemBookOKTest("3.1", sn, pseudo, password, "1Q84", "Roman", "Haruki Murakami", 1000);
         nbTests++;
-        nbErreurs += addItemBookOKTest("3.5", sn, pseudo, password, "Kafka on the shore", "Roman", "Haruki Murakami", 1000);
+        nbErreurs += addItemBookOKTest("3.2", sn, pseudo, password, "Kafka on the shore", "Roman", "Haruki Murakami", 1000);
 
         nbTests++;
-        nbErreurs += addItemBookAlreadyExistsTest("3.2", sn, pseudo, password, title, genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà est autorisé.");
+        nbErreurs += addItemBookAlreadyExistsTest("3.3", sn, pseudo, password, title, genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookAlreadyExistsTest("3.3", sn, pseudo, password, title.toUpperCase(), genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà (casse différente) est autorisé.");
+        nbErreurs += addItemBookAlreadyExistsTest("3.4", sn, pseudo, password, title.toUpperCase(), genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà (casse différente) est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookAlreadyExistsTest("3.4", sn, pseudo, password, "  " + title + "   ", genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà (avec des espaces en début et fin) est autorisé.");
+        nbErreurs += addItemBookAlreadyExistsTest("3.5", sn, pseudo, password, "  " + title + "   ", genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà (avec des espaces en début et fin) est autorisé.");
 
         // Fiche 4
         // Tentatives d'ajout de livres avec des entrées incorrectes
@@ -138,13 +138,13 @@ public class TestsAddItemBook {
         nbErreurs += addItemBookBadEntryTest("4.4", sn, pseudo, password, title, genre, null, pageCount, "L'ajout d'un livre avec un auteur null est autorisé.");
         nbTests++;
         nbErreurs += addItemBookBadEntryTest("4.5", sn, pseudo, password, title, genre, author, -100, "L'ajout d'un livre avec un nombre de pages négatif est autorisé.");
+        nbTests++;
+        nbErreurs += addItemBookBadEntryTest("4.6", sn, null, password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo non instancié est autorisé.");
+        nbTests++;
+        nbErreurs += addItemBookBadEntryTest("4.7", sn, pseudo, null, title, genre, author, pageCount, "L'ajout d'un livre avec un password non instancié est autorisé.");
+        nbTests++;
+        nbErreurs += addItemBookBadEntryTest("4.8", sn, "   ", password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo composé uniquement d'espaces est autorisé.");
 
-        nbTests++;
-        nbErreurs += addItemBookNotMemberTest("4.6", sn, null, password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo non instancié est autorisé.");
-        nbTests++;
-        nbErreurs += addItemBookNotMemberTest("4.7", sn, pseudo, null, title, genre, author, pageCount, "L'ajout d'un livre avec un password non instancié est autorisé.");
-        nbTests++;
-        nbErreurs += addItemBookNotMemberTest("4.8", sn, "   ", password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo composé uniquement d'espaces est autorisé.");
         nbTests++;
         nbErreurs += addItemBookNotMemberTest("4.9", sn, "BillGate$$38", "Micro$$oft", title, genre, author, pageCount, "L'ajout d'un livre pour un membre inexistant est autorisé.");
         nbTests++;
