@@ -34,6 +34,14 @@ public abstract class Item {
         this.reviews = new LinkedList<Review>();
     }
 
+    public static boolean titleIsValid(String title) {
+        return (title != null) && (title.trim().length() > 1);
+    }
+
+    private static boolean genreIsValid(String genre) {
+        return genre != null;
+    }
+
     public void addReview(Review review) {
         this.reviews.add(review);
     }
@@ -51,14 +59,6 @@ public abstract class Item {
         }
 
         return sum / nbRating;
-    }
-
-    public static boolean titleIsValid(String title) {
-        return (title != null) && (title.trim().length() > 1);
-    }
-
-    private static boolean genreIsValid(String genre) {
-        return genre != null;
     }
 
     @Override

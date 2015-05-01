@@ -33,6 +33,18 @@ public class Member {
         this.reviews = new LinkedList<Review>();
     }
 
+    public static boolean pseudoIsValid(String pseudo) {
+        return (pseudo != null) && (pseudo.trim().length() > 1);
+    }
+
+    public static boolean passwordIsValid(String password) {
+        return (password != null) && (password.trim().length() >= 4);
+    }
+
+    private static boolean profileIsValid(String profile) {
+        return profile != null;
+    }
+
     public String getPseudo() {
         return this.pseudo;
     }
@@ -44,18 +56,6 @@ public class Member {
     public Review findReview(String title) {
         // TODO
         return null;
-    }
-
-    public static boolean pseudoIsValid(String pseudo) {
-        return (pseudo != null) && (pseudo.trim().length() > 1);
-    }
-
-    public static boolean passwordIsValid(String password) {
-        return (password != null) && (password.trim().length() >= 4);
-    }
-
-    private static boolean profileIsValid(String profile) {
-        return profile != null;
     }
 
     public boolean checkCredentials(String pseudo, String password) {
