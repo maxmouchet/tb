@@ -275,14 +275,6 @@ public class SocialNetwork {
     }
 
     private float reviewItem(Class<?> klass, String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
-        if (!(Member.pseudoIsValid(pseudo) && Member.passwordIsValid(password))) {
-            throw new BadEntry("Pseudo and/or password does not meet the requirements.");
-        }
-
-        if (!Item.titleIsValid(titre)) {
-            throw new BadEntry("Item title does not meet the requirements.");
-        }
-
         Item item = findMatchingItem(klass, titre);
         Member member = findMatchingMember(pseudo, password);
 
@@ -298,8 +290,12 @@ public class SocialNetwork {
         return item.getRating();
     }
 
-    private Item findMatchingItem(Class<?> klass, String title) throws NotItem {
+    private Item findMatchingItem(Class<?> klass, String title) throws NotItem, BadEntry {
         Item item = null;
+
+        if (!Item.titleIsValid(title)) {
+            throw new BadEntry("Item title does not meet the requirements.");
+        }
 
         for (Item it : items) {
             if ((it.getTitle().equals(title)) && (klass.isInstance(it))) {
@@ -315,8 +311,12 @@ public class SocialNetwork {
         return item;
     }
 
-    private Member findMatchingMember(String pseudo, String password) throws NotMember {
+    private Member findMatchingMember(String pseudo, String password) throws NotMember, BadEntry {
         Member member = null;
+
+        if (!(Member.pseudoIsValid(pseudo) && Member.passwordIsValid(password))) {
+            throw new BadEntry("Pseudo and/or password does not meet the requirements.");
+        }
 
         for (Member m : members) {
             if (m.checkCredentials(pseudo, password)) {
