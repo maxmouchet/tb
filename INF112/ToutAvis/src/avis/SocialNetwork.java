@@ -20,11 +20,11 @@ import java.util.LinkedList;
  * </p>
  * <p>
  * L'accès aux items et aux opinions qui leurs sont associées
- * est public. La création d'item et le dépôt d'opinion nécessite en revanche 
+ * est public. La création d'item et le dépôt d'opinion nécessite en revanche
  * que l'utilisateur crée son profil au préalable.
  * </p>
  * <p>
- * Lorsqu'une méthode peut lever deux types d'exception, et que les conditions sont réunies 
+ * Lorsqu'une méthode peut lever deux types d'exception, et que les conditions sont réunies
  * pour lever l'une et l'autre, rien ne permet de dire laquelle des deux sera effectivement levée.
  * </p>
  * <p>
@@ -39,20 +39,23 @@ import java.util.LinkedList;
 public class SocialNetwork {
 
     /**
+     * La liste des items associés au SocialNetwork.
+     *
      * @uml.property name="items"
      * @uml.associationEnd multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.models.Item"
      */
     private LinkedList<Item> items;
 
     /**
+     * La liste des membres associés au SocialNetwork.
+     *
      * @uml.property name="members"
      * @uml.associationEnd multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.models.Member"
      */
     private LinkedList<Member> members;
 
     /**
-     * constructeur de <i>SocialNetwok</i>
-     *
+     * Initialise un <i>SocialNetwok</i>.
      */
     public SocialNetwork() {
         this.items = new LinkedList<Item>();
@@ -60,48 +63,44 @@ public class SocialNetwork {
     }
 
     /**
-     * Obtenir le nombre de membres du <i>SocialNetwork</i>
+     * Obtenir le nombre de membres du <i>SocialNetwork</i>.
      *
-     * @return le nombre de membres
+     * @return le nombre de membres.
      */
     public int nbMembers() {
         return members.size();
     }
 
     /**
-     * Obtenir le nombre de films du <i>SocialNetwork</i>
+     * Obtenir le nombre de films du <i>SocialNetwork</i>.
      *
-     * @return le nombre de films
+     * @return le nombre de films.
      */
     public int nbFilms() {
         return countItems(Film.class);
     }
 
     /**
-     * Obtenir le nombre de livres du <i>SocialNetwork</i>
+     * Obtenir le nombre de livres du <i>SocialNetwork</i>.
      *
-     * @return le nombre de livres
+     * @return le nombre de livres.
      */
     public int nbBooks() {
         return countItems(Book.class);
     }
 
     /**
-     * Ajouter un nouveau membre au <i>SocialNetwork</i>
+     * Ajouter un nouveau membre au <i>SocialNetwork</i>.
      *
-     * @param pseudo son pseudo
-     * @param password son mot de passe
-     * @param profil un slogan choisi par le membre pour se définir
-     *
-     * @throws BadEntry :
-     * <ul>
-     *  <li>  si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces .  </li>
-     *  <li>  si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks. </li>
-     *  <li>  si le profil n'est pas instancié.  </li>
-     * </ul><br>
-     *
-     * @throws MemberAlreadyExists membre de même pseudo déjà présent dans le <i>SocialNetwork</i> (même pseudo : indifférent à  la casse  et aux leadings et trailings blanks)
-     *
+     * @param pseudo   son pseudo.
+     * @param password son mot de passe.
+     * @param profil   un slogan choisi par le membre pour se définir.
+     * @throws BadEntry            <ul>
+     *                             <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces .</li>
+     *                             <li>si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks.</li>
+     *                             <li>si le profil n'est pas instancié.</li>
+     *                             </ul><br>
+     * @throws MemberAlreadyExists membre de même pseudo déjà présent dans le <i>SocialNetwork</i> (même pseudo : indifférent à  la casse  et aux leadings et trailings blanks).
      */
     public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists {
         Member m = new Member(pseudo, password, profil);
@@ -116,29 +115,26 @@ public class SocialNetwork {
     }
 
     /**
-     * Ajouter un nouvel item de film au <i>SocialNetwork</i>
+     * Ajouter un nouvel item de film au <i>SocialNetwork</i>.
      *
-     * @param pseudo le pseudo du membre
-     * @param password le password du membre
-     * @param titre le titre du film
-     * @param genre son genre (aventure, policier, etc.)
-     * @param realisateur le réalisateur
-     * @param scenariste le scénariste
-     * @param duree sa durée en minutes
-     *
-     * @throws BadEntry :
-     * <ul>
-     *  <li>  si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces .  </li>
-     *  <li>  si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks. </li>
-     *  <li>  si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.  </li>
-     *  <li>  si le genre n'est pas instancié. </li>
-     *  <li>  si le réalisateur n'est pas instancié. </li>
-     *  <li>  si le scénariste n'est pas instancié. </li>
-     *  <li>  si la durée n'est pas positive.  </li>
-     * </ul><br>
-     * @throws NotMember : si le pseudo n'est pas celui d'un membre ou si le pseudo et le password ne correspondent pas.
-     * @throws ItemFilmAlreadyExists : item film de même titre  déjà présent (même titre : indifférent à  la casse  et aux leadings et trailings blanks)
-     *
+     * @param pseudo      le pseudo du membre.
+     * @param password    le password du membre.
+     * @param titre       le titre du film.
+     * @param genre       son genre (aventure, policier, etc.).
+     * @param realisateur le réalisateur.
+     * @param scenariste  le scénariste.
+     * @param duree       sa durée en minutes.
+     * @throws BadEntry              <ul>
+     *                               <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                               <li>si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks.</li>
+     *                               <li>si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                               <li>si le genre n'est pas instancié.</li>
+     *                               <li>si le réalisateur n'est pas instancié.</li>
+     *                               <li>si le scénariste n'est pas instancié.</li>
+     *                               <li>si la durée n'est pas positive.</li>
+     *                               </ul><br>
+     * @throws NotMember             si le pseudo n'est pas celui d'un membre ou si le pseudo et le password ne correspondent pas.
+     * @throws ItemFilmAlreadyExists item film de même titre  déjà présent (même titre : indifférent à  la casse  et aux leadings et trailings blanks).
      */
     public void addItemFilm(String pseudo, String password, String titre, String genre, String realisateur, String scenariste, int duree) throws BadEntry, NotMember, ItemFilmAlreadyExists {
         findMatchingMember(pseudo, password);
@@ -146,7 +142,7 @@ public class SocialNetwork {
         Film film = new Film(titre, genre, realisateur, scenariste, duree);
 
         for (Item item : items) {
-            if (item.getTitle().trim().toLowerCase().equals(titre.trim().toLowerCase()) && item instanceof Book) {
+            if (item.getTitle().trim().toLowerCase().equals(titre.trim().toLowerCase()) && item instanceof Film) {
                 throw new ItemFilmAlreadyExists();
             }
         }
@@ -155,28 +151,24 @@ public class SocialNetwork {
     }
 
     /**
-     * Ajouter un nouvel item de livre au <i>SocialNetwork</i>
+     * Ajouter un nouvel item de livre au <i>SocialNetwork</i>.
      *
-     * @param pseudo le pseudo du membre
-     * @param password le password du membre
-     * @param titre le titre du livre
-     * @param genre son genre (roman, essai, etc.)
-     * @param auteur l'auteur
-     * @param nbPages le nombre de pages
-     *
-     * @throws BadEntry :
-     * <ul>
-     *  <li>  si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces .  </li>
-     *  <li>  si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks. </li>
-     *  <li>  si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.  </li>
-     *  <li>  si le genre n'est pas instancié. </li>
-     *  <li>  si l'auteur n'est pas instancié. </li>
-     *  <li>  si le nombre de pages n'est pas positif.  </li>
-     * </ul><br>
-     * @throws NotMember : si le pseudo n'est pas celui d'un membre ou si le pseudo et le password ne correspondent pas.
-     * @throws ItemBookAlreadyExists item livre de même titre  déjà présent (même titre : indifférent à la casse  et aux leadings et trailings blanks)
-     *
-     *
+     * @param pseudo   le pseudo du membre.
+     * @param password le password du membre.
+     * @param titre    le titre du livre.
+     * @param genre    son genre (roman, essai, etc.).
+     * @param auteur   l'auteur.
+     * @param nbPages  le nombre de pages.
+     * @throws BadEntry              <ul>
+     *                               <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces .</li>
+     *                               <li>si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks.</li>
+     *                               <li>si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                               <li>si le genre n'est pas instancié.</li>
+     *                               <li>si l'auteur n'est pas instancié.</li>
+     *                               <li>si le nombre de pages n'est pas positif.</li>
+     *                               </ul><br>
+     * @throws NotMember             si le pseudo n'est pas celui d'un membre ou si le pseudo et le password ne correspondent pas.
+     * @throws ItemBookAlreadyExists item livre de même titre  déjà présent (même titre : indifférent à la casse  et aux leadings et trailings blanks).
      */
     public void addItemBook(String pseudo, String password, String titre, String genre, String auteur, int nbPages) throws BadEntry, NotMember, ItemBookAlreadyExists {
         findMatchingMember(pseudo, password);
@@ -193,18 +185,15 @@ public class SocialNetwork {
     }
 
     /**
-     * Consulter les items du <i>SocialNetwork</i> par nom
+     * Consulter les items du <i>SocialNetwork</i> par nom.
      *
-     * @param nom son nom (eg. titre d'un film, d'un livre, etc.)
-     *
-     * @throws BadEntry : si le nom n'est pas instancié ou a moins de 1 caractère autre que des espaces.  </li>
-     *
-     * @return LinkedList <String> : la liste des représentations de tous les items ayant ce nom
+     * @param nom son nom (eg. titre d'un film, d'un livre, etc.).
+     * @return LinkedList<String> la liste des représentations de tous les items ayant ce nom.
      * Cette représentation contiendra la note de l'item s'il a été noté.
-     * (une liste vide si aucun item ne correspond)
+     * (une liste vide si aucun item ne correspond).
+     * @throws BadEntry : si le nom n'est pas instancié ou a moins de 1 caractère autre que des espaces.
      */
     public LinkedList<String> consultItems(String nom) throws BadEntry {
-        // TODO: Check that it shows note.
         if (!Item.titleIsValid(nom)) {
             throw new BadEntry("Title does not meet the requirements.");
         }
@@ -220,27 +209,24 @@ public class SocialNetwork {
 
     /**
      * Donner son opinion sur un item film.
-     * Ajoute l'opinion de ce membre sur ce film au <i>SocialNetwork</i>
+     * Ajoute l'opinion de ce membre sur ce film au <i>SocialNetwork</i>.
      * Si une opinion de ce membre sur ce film  préexiste, elle est mise à jour avec ces nouvelles valeurs.
      *
-     * @param pseudo pseudo du membre émettant l'opinion
-     * @param password son mot de passe
-     * @param titre titre du film  concerné
-     * @param note la note qu'il donne au film
-     * @param commentaire ses commentaires
-     *
-     * @throws BadEntry :
-     * <ul>
-     *  <li>  si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces .  </li>
-     *  <li>  si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks. </li>
-     *  <li>  si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.  </li>
-     *  <li>  si la note n'est pas comprise entre 0.0 et 5.0. </li>
-     *  <li>  si le commentaire n'est pas instancié. </li>
-     * </ul><br>
-     * @throws NotMember : si le pseudo n'est pas celui d'un membre ou si le pseudo et le password ne correspondent pas.
-     * @throws NotItem : si le titre n'est pas le titre d'un film.
-     *
-     * @return la note moyenne des notes sur ce film
+     * @param pseudo      pseudo du membre émettant l'opinion.
+     * @param password    son mot de passe.
+     * @param titre       titre du film  concerné.
+     * @param note        la note qu'il donne au film.
+     * @param commentaire ses commentaires.
+     * @return la note moyenne des notes sur ce film.
+     * @throws BadEntry  <ul>
+     *                   <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks.</li>
+     *                   <li>si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si la note n'est pas comprise entre 0.0 et 5.0.</li>
+     *                   <li>si le commentaire n'est pas instancié.</li>
+     *                   </ul><br>
+     * @throws NotMember si le pseudo n'est pas celui d'un membre ou si le pseudo et le password ne correspondent pas.
+     * @throws NotItem   si le titre n'est pas le titre d'un film.
      */
     public float reviewItemFilm(String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
         return reviewItem(Film.class, pseudo, password, titre, note, commentaire);
@@ -248,32 +234,49 @@ public class SocialNetwork {
 
     /**
      * Donner son opinion sur un item livre.
-     * Ajoute l'opinion de ce membre sur ce livre au <i>SocialNetwork</i>
+     * Ajoute l'opinion de ce membre sur ce livre au <i>SocialNetwork</i>.
      * Si une opinion de ce membre sur ce livre  préexiste, elle est mise à jour avec ces nouvelles valeurs.
      *
-     * @param pseudo pseudo du membre émettant l'opinion
-     * @param password son mot de passe
-     * @param titre titre du livre  concerné
-     * @param note la note qu'il donne au livre
-     * @param commentaire ses commentaires
-     *
-     * @throws BadEntry :
-     * <ul>
-     *  <li>  si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces .  </li>
-     *  <li>  si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks. </li>
-     *  <li>  si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.  </li>
-     *  <li>  si la note n'est pas comprise entre 0.0 et 5.0. </li>
-     *  <li>  si le commentaire n'est pas instancié. </li>
-     * </ul><br>
-     * @throws NotMember : si le pseudo n'est pas celui d'un membre ou si le pseudo et le password ne correspondent pas.
-     * @throws NotItem : si le titre n'est pas le titre d'un livre.
-     *
-     * @return la note moyenne des notes sur ce livre
+     * @param pseudo      pseudo du membre émettant l'opinion.
+     * @param password    son mot de passe.
+     * @param titre       titre du livre  concerné.
+     * @param note        la note qu'il donne au livre.
+     * @param commentaire ses commentaires.
+     * @return la note moyenne des notes sur ce livre.
+     * @throws BadEntry  <ul>
+     *                   <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks.</li>
+     *                   <li>si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si la note n'est pas comprise entre 0.0 et 5.0.</li>
+     *                   <li>si le commentaire n'est pas instancié.</li>
+     *                   </ul><br>
+     * @throws NotMember si le pseudo n'est pas celui d'un membre ou si le pseudo et le password ne correspondent pas.
+     * @throws NotItem   si le titre n'est pas le titre d'un livre.
      */
     public float reviewItemBook(String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
         return reviewItem(Book.class, pseudo, password, titre, note, commentaire);
     }
 
+    /**
+     * Ajoute une review à un item.
+     *
+     * @param klass       le type de l'item ({@code Book} ou {@code Film}).
+     * @param pseudo      le pseudo du membre émettant l'opinion.
+     * @param password    le mot de passe du membre émettant l'opinion.
+     * @param titre       le titre de l'item.
+     * @param note        la note attribué à l'item par le membre.
+     * @param commentaire le commentaire attribué à l'item par le membre.
+     * @return la nouvelle note moyenne du l'item.
+     * @throws BadEntry  <ul>
+     *                   <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks.</li>
+     *                   <li>si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si la note n'est pas comprise entre 0.0 et 5.0.</li>
+     *                   <li>si le commentaire n'est pas instancié.</li>
+     *                   </ul>
+     * @throws NotMember si le pseudo n'est pas celui d'un membre ou si le pseudo et le password ne correspondent pas.
+     * @throws NotItem   si le titre n'est pas le titre d'un item du même type.
+     */
     private float reviewItem(Class<?> klass, String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
         Item item = findMatchingItem(klass, titre);
         Member member = findMatchingMember(pseudo, password);
@@ -290,6 +293,15 @@ public class SocialNetwork {
         return item.getRating();
     }
 
+    /**
+     * Cherche un item dans le SocialNetwork.
+     *
+     * @param klass le type de l'item ({@code Book} ou {@code Film}).
+     * @param title le titre de l'item.
+     * @return l'item, si il a été trouvé.
+     * @throws NotItem  si l'item n'existe pas.
+     * @throws BadEntry si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.
+     */
     private Item findMatchingItem(Class<?> klass, String title) throws NotItem, BadEntry {
         Item item = null;
 
@@ -311,6 +323,18 @@ public class SocialNetwork {
         return item;
     }
 
+    /**
+     * Identifie un membre dans le SocialNetwork.
+     *
+     * @param pseudo   le pseudo du membre.
+     * @param password le mot de passe du membre.
+     * @return le membre, si il a été trouvé et que les identifiants sont correctes.
+     * @throws NotMember si le membre n'existe pas.
+     * @throws BadEntry  <ul>
+     *                   <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks.</li>
+     *                   </ul>
+     */
     private Member findMatchingMember(String pseudo, String password) throws NotMember, BadEntry {
         Member member = null;
 
@@ -332,6 +356,12 @@ public class SocialNetwork {
         return member;
     }
 
+    /**
+     * Compte le nombre d'item d'un type donné contenus dans le SocialNetwork.
+     *
+     * @param klass le type de l'item ({@code Book} ou {@code Film}).
+     * @return le nombre d'items du type donné contenus.
+     */
     private int countItems(Class<?> klass) {
         int count = 0;
 
@@ -347,7 +377,7 @@ public class SocialNetwork {
     /**
      * Obtenir une représentation textuelle du <i>SocialNetwork</i>.
      *
-     * @return la chaîne de caractères représentation textuelle du <i>SocialNetwork</i>
+     * @return la chaîne de caractères représentation textuelle du <i>SocialNetwork</i>.
      */
     public String toString() {
         String output = "";
