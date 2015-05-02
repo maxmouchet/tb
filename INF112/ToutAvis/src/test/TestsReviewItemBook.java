@@ -48,17 +48,26 @@ public class TestsReviewItemBook {
             return 1;
         } catch (Exception e) {
             if (expectedException.isInstance(e)) {
-                float newRating = sn.reviewItemBook(realPseudo, realPassword, title, expectedRating, "Amazing !");
+                float newRating;
 
-                // Cas erroné: exception attendue mais la note du livre a changé.
-                if (newRating != expectedRating) {
-                    System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais la note du livre a été modifié");
-                    return 1;
+                try {
+                    newRating = sn.reviewItemBook(realPseudo, realPassword, title, expectedRating, "Amazing !");
+                }
+
+                // Cas normal: exception attendue, on ne peut pas recuperer la note d'un item avec un titre invalide.
+                catch (BadEntry badEntry) {
+                    return 0;
                 }
 
                 // Cas normal: exception attendue et note du livre inchangé.
-                else {
+                if (newRating == expectedRating) {
                     return 0;
+                }
+
+                // Cas erroné: exception attendue mais la note du livre a changé.
+                else {
+                    System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais la note du livre a été modifié");
+                    return 1;
                 }
             }
 
@@ -118,19 +127,25 @@ public class TestsReviewItemBook {
         nbTests++;
         nbErreurs += reviewItemBookExceptionTest("6.3", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, title, 1.0f, expectedRating, null, "L'ajout d'une review null est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemBookExceptionTest("6.4", BadEntry.class, sn, pseudo1, password1, null, password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo null est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.4", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, null, 1.0f, expectedRating, comment, "L'ajout d'une review avec un titre null est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemBookExceptionTest("6.5", BadEntry.class, sn, pseudo1, password1, pseudo1, null, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un password null est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.5", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, "   ", 1.0f, expectedRating, comment, "L'ajout d'une review avec un titre composé uniquement d'espaces est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemBookExceptionTest("6.6", BadEntry.class, sn, pseudo1, password1, "   ", password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo composé uniquement d'espaces est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.6", BadEntry.class, sn, pseudo1, password1, null, password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo null est autorisé.");
+        nbTests++;
+        nbErreurs += reviewItemBookExceptionTest("6.7", BadEntry.class, sn, pseudo1, password1, pseudo1, null, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un password null est autorisé.");
+        nbTests++;
+        nbErreurs += reviewItemBookExceptionTest("6.8", BadEntry.class, sn, pseudo1, password1, "   ", password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo composé uniquement d'espaces est autorisé.");
+        nbTests++;
+        nbErreurs += reviewItemBookExceptionTest("6.9", BadEntry.class, sn, pseudo1, password1, pseudo1, "  123  ", title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un password composé de moins de 4 caractères est autorisé.");
 
         nbTests++;
-        nbErreurs += reviewItemBookNotItemTest("6.7", sn, pseudo1, password1, "Alice chez les Barbapapas.", 1.0f, comment, "L'ajout d'une review pour un livre inexistant est autorisé.");
+        nbErreurs += reviewItemBookNotItemTest("6.10", sn, pseudo1, password1, "Alice chez les Barbapapas.", 1.0f, comment, "L'ajout d'une review pour un livre inexistant est autorisé.");
 
         nbTests++;
-        nbErreurs += reviewItemBookExceptionTest("6.8", NotMember.class, sn, pseudo1, password1, "BillGate$$38", "Micro$$oft", title, 1.0f, expectedRating, comment, "L'ajout d'une review pour un membre inexistant est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.11", NotMember.class, sn, pseudo1, password1, "BillGate$$38", "Micro$$oft", title, 1.0f, expectedRating, comment, "L'ajout d'une review pour un membre inexistant est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemBookExceptionTest("6.9", NotMember.class, sn, pseudo1, password1, pseudo1, "Ju5nPa5lo2015", title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un mauvais mot de passe est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.12", NotMember.class, sn, pseudo1, password1, pseudo1, "Ju5nPa5lo2015", title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un mauvais mot de passe est autorisé.");
 
         nbTests++;
         if (nbFilms != sn.nbFilms()) {
