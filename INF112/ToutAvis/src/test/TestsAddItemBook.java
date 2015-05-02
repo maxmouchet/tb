@@ -30,66 +30,35 @@ public class TestsAddItemBook {
         }
     }
 
-    private static int addItemBookAlreadyExistsTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, String genre, String author, int pageCount, String messErreur) {
+    private static int addItemBookExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String pseudo, String password, String title, String genre, String author, int pageCount, String messErreur) {
         int nbLivres = sn.nbBooks();
 
         try {
             sn.addItemBook(pseudo, password, title, genre, author, pageCount);
+
+            // Cas erroné: une exception était attendue.
             System.out.println("Test " + idTest + " : " + messErreur);
             return 1;
-        } catch (ItemBookAlreadyExists e) {
-            if (sn.nbBooks() != nbLivres) {
-                System.out.println("Test " + idTest + " : l'exception ItemBookAlreadyExists a bien été levé, mais le nombre de livres a été incrémenté");
-                return 1;
-            } else {
-                return 0;
-            }
         } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
-        }
-    }
+            if (expectedException.isInstance(e)) {
 
-    private static int addItemBookBadEntryTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, String genre, String author, int pageCount, String messErreur) {
-        int nbLivres = sn.nbBooks();
+                // Cas erroné: exception attendue mais le nombre de livres a changé.
+                if (sn.nbBooks() != nbLivres) {
+                    System.out.println("Test " + idTest + " : l'exception NotMember a bien été levé, mais le nombre de livres a été incrémenté");
+                    return 1;
+                }
 
-        try {
-            sn.addItemBook(pseudo, password, title, genre, author, pageCount);
-            System.out.println("Test " + idTest + " : " + messErreur);
-            return 1;
-        } catch (BadEntry e) {
-            if (sn.nbBooks() != nbLivres) {
-                System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais le nombre de livres a été incrémenté");
-                return 1;
-            } else {
-                return 0;
+                // Cas normal: exception attendue et nombre de livres inchangé.
+                else {
+                    return 0;
+                }
             }
-        } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
-        }
-    }
-
-    private static int addItemBookNotMemberTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, String genre, String author, int pageCount, String messErreur) {
-        int nbLivres = sn.nbBooks();
-
-        try {
-            sn.addItemBook(pseudo, password, title, genre, author, pageCount);
-            System.out.println("Test " + idTest + " : " + messErreur);
-            return 1;
-        } catch (NotMember e) {
-            if (sn.nbBooks() != nbLivres) {
-                System.out.println("Test " + idTest + " : l'exception NotMember a bien été levé, mais le nombre de livres a été incrémenté");
+            // Cas erroné: l'exception n'était pas attendue.
+            else {
+                System.out.println("Test " + idTest + " : exception non prévue. " + e);
+                e.printStackTrace();
                 return 1;
-            } else {
-                return 0;
             }
-        } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
         }
     }
 
@@ -119,36 +88,36 @@ public class TestsAddItemBook {
         nbErreurs += addItemBookOKTest("3.2", sn, pseudo, password, "Kafka on the shore", "Roman", "Haruki Murakami", 1000);
 
         nbTests++;
-        nbErreurs += addItemBookAlreadyExistsTest("3.3", sn, pseudo, password, title, genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà est autorisé.");
+        nbErreurs += addItemBookExceptionTest("3.3", ItemBookAlreadyExists.class, sn, pseudo, password, title, genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookAlreadyExistsTest("3.4", sn, pseudo, password, title.toUpperCase(), genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà (casse différente) est autorisé.");
+        nbErreurs += addItemBookExceptionTest("3.4", ItemBookAlreadyExists.class, sn, pseudo, password, title.toUpperCase(), genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà (casse différente) est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookAlreadyExistsTest("3.5", sn, pseudo, password, "  " + title + "   ", genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà (avec des espaces en début et fin) est autorisé.");
+        nbErreurs += addItemBookExceptionTest("3.5", ItemBookAlreadyExists.class, sn, pseudo, password, "  " + title + "   ", genre, author, pageCount, "L'ajout d'un livre dont le titre existe déjà (avec des espaces en début et fin) est autorisé.");
 
         // Fiche 4
         // Tentatives d'ajout de livres avec des entrées incorrectes
 
         nbTests++;
-        nbErreurs += addItemBookBadEntryTest("4.1", sn, pseudo, password, null, genre, author, pageCount, "L'ajout d'un livre avec un titre null est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.1", BadEntry.class, sn, pseudo, password, null, genre, author, pageCount, "L'ajout d'un livre avec un titre null est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookBadEntryTest("4.2", sn, pseudo, password, "  ", genre, author, pageCount, "L'ajout d'un livre avec un titre composé uniquement d'espaces est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.2", BadEntry.class, sn, pseudo, password, "  ", genre, author, pageCount, "L'ajout d'un livre avec un titre composé uniquement d'espaces est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookBadEntryTest("4.3", sn, pseudo, password, title, null, author, pageCount, "L'ajout d'un livre avec un genre null est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.3", BadEntry.class, sn, pseudo, password, title, null, author, pageCount, "L'ajout d'un livre avec un genre null est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookBadEntryTest("4.4", sn, pseudo, password, title, genre, null, pageCount, "L'ajout d'un livre avec un auteur null est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.4", BadEntry.class, sn, pseudo, password, title, genre, null, pageCount, "L'ajout d'un livre avec un auteur null est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookBadEntryTest("4.5", sn, pseudo, password, title, genre, author, -100, "L'ajout d'un livre avec un nombre de pages négatif est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.5", BadEntry.class, sn, pseudo, password, title, genre, author, -100, "L'ajout d'un livre avec un nombre de pages négatif est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookBadEntryTest("4.6", sn, null, password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo non instancié est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.6", BadEntry.class, sn, null, password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo non instancié est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookBadEntryTest("4.7", sn, pseudo, null, title, genre, author, pageCount, "L'ajout d'un livre avec un password non instancié est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.7", BadEntry.class, sn, pseudo, null, title, genre, author, pageCount, "L'ajout d'un livre avec un password non instancié est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookBadEntryTest("4.8", sn, "   ", password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo composé uniquement d'espaces est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.8", BadEntry.class, sn, "   ", password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo composé uniquement d'espaces est autorisé.");
 
         nbTests++;
-        nbErreurs += addItemBookNotMemberTest("4.9", sn, "BillGate$$38", "Micro$$oft", title, genre, author, pageCount, "L'ajout d'un livre pour un membre inexistant est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.9", NotMember.class, sn, "BillGate$$38", "Micro$$oft", title, genre, author, pageCount, "L'ajout d'un livre pour un membre inexistant est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookNotMemberTest("4.10", sn, pseudo, "Ju5nPa5lo2015", title, genre, author, pageCount, "L'ajout d'un livre avec un mauvais mot de passe est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.10", NotMember.class, sn, pseudo, "Ju5nPa5lo2015", title, genre, author, pageCount, "L'ajout d'un livre avec un mauvais mot de passe est autorisé.");
 
         nbTests++;
         if (nbFilms != sn.nbFilms()) {

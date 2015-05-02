@@ -25,27 +25,6 @@ public class TestsReviewItemBook {
         }
     }
 
-    private static int reviewItemBookBadEntryTest(String idTest, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String title, Float rating, Float expectedRating, String comment, String messErreur) throws NotMember, BadEntry, NotItem {
-        try {
-            sn.reviewItemBook(pseudo, password, title, rating, comment);
-            System.out.println("Test " + idTest + " : " + messErreur);
-            return 1;
-        } catch (BadEntry badEntry) {
-            float newRating = sn.reviewItemBook(realPseudo, realPassword, title, expectedRating, "Amazing !");
-
-            if (newRating != expectedRating) {
-                System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais la note du livre a été modifié");
-                return 1;
-            } else {
-                return 0;
-            }
-        } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
-        }
-    }
-
     private static int reviewItemBookNotItemTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, Float rating, String comment, String messErreur) throws NotMember, BadEntry, NotItem {
         try {
             sn.reviewItemBook(pseudo, password, title, rating, comment);
@@ -60,24 +39,35 @@ public class TestsReviewItemBook {
         }
     }
 
-    private static int reviewItemBookNotMemberTest(String idTest, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String title, Float rating, Float expectedRating, String comment, String messErreur) throws NotMember, BadEntry, NotItem {
+    private static int reviewItemBookExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String title, Float rating, Float expectedRating, String comment, String messErreur) throws NotMember, BadEntry, NotItem {
         try {
             sn.reviewItemBook(pseudo, password, title, rating, comment);
+
+            // Cas erroné: une exception était attendue.
             System.out.println("Test " + idTest + " : " + messErreur);
             return 1;
-        } catch (NotMember notMember) {
-            float newRating = sn.reviewItemBook(realPseudo, realPassword, title, expectedRating, comment);
-
-            if (newRating != expectedRating) {
-                System.out.println("Test " + idTest + " : l'exception NotMember a bien été levé, mais la note du livre a été modifié");
-                return 1;
-            } else {
-                return 0;
-            }
         } catch (Exception e) {
-            System.out.println("Test " + idTest + " : exception non prévue. " + e);
-            e.printStackTrace();
-            return 1;
+            if (expectedException.isInstance(e)) {
+                float newRating = sn.reviewItemBook(realPseudo, realPassword, title, expectedRating, "Amazing !");
+
+                // Cas erroné: exception attendue mais la note du livre a changé.
+                if (newRating != expectedRating) {
+                    System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais la note du livre a été modifié");
+                    return 1;
+                }
+
+                // Cas normal: exception attendue et note du livre inchangé.
+                else {
+                    return 0;
+                }
+            }
+
+            // Cas erroné: l'exception n'était pas attendue.
+            else {
+                System.out.println("Test " + idTest + " : exception non prévue. " + e);
+                e.printStackTrace();
+                return 1;
+            }
         }
     }
 
@@ -122,25 +112,25 @@ public class TestsReviewItemBook {
         // Tentatives d'ajout de reviews avec des entrées incorrectes
 
         nbTests++;
-        nbErreurs += reviewItemBookBadEntryTest("6.1", sn, pseudo1, password1, pseudo1, password1, title, -1.0f, expectedRating, comment, "L'ajout d'une review avec une note negative est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.1", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, title, -1.0f, expectedRating, comment, "L'ajout d'une review avec une note negative est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemBookBadEntryTest("6.2", sn, pseudo1, password1, pseudo1, password1, title, 6.0f, expectedRating, comment, "L'ajout d'une review avec une note supérieure au maximum est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.2", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, title, 6.0f, expectedRating, comment, "L'ajout d'une review avec une note supérieure au maximum est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemBookBadEntryTest("6.3", sn, pseudo1, password1, pseudo1, password1, title, 1.0f, expectedRating, null, "L'ajout d'une review null est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.3", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, title, 1.0f, expectedRating, null, "L'ajout d'une review null est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemBookBadEntryTest("6.4", sn, pseudo1, password1, null, password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo null est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.4", BadEntry.class, sn, pseudo1, password1, null, password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo null est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemBookBadEntryTest("6.5", sn, pseudo1, password1, pseudo1, null, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un password null est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.5", BadEntry.class, sn, pseudo1, password1, pseudo1, null, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un password null est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemBookBadEntryTest("6.6", sn, pseudo1, password1, "   ", password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo composé uniquement d'espaces est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.6", BadEntry.class, sn, pseudo1, password1, "   ", password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo composé uniquement d'espaces est autorisé.");
 
         nbTests++;
         nbErreurs += reviewItemBookNotItemTest("6.7", sn, pseudo1, password1, "Alice chez les Barbapapas.", 1.0f, comment, "L'ajout d'une review pour un livre inexistant est autorisé.");
 
         nbTests++;
-        nbErreurs += reviewItemBookNotMemberTest("6.8", sn, pseudo1, password1, "BillGate$$38", "Micro$$oft", title, 1.0f, expectedRating, comment, "L'ajout d'une review pour un membre inexistant est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.8", NotMember.class, sn, pseudo1, password1, "BillGate$$38", "Micro$$oft", title, 1.0f, expectedRating, comment, "L'ajout d'une review pour un membre inexistant est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemBookNotMemberTest("6.9", sn, pseudo1, password1, pseudo1, "Ju5nPa5lo2015", title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un mauvais mot de passe est autorisé.");
+        nbErreurs += reviewItemBookExceptionTest("6.9", NotMember.class, sn, pseudo1, password1, pseudo1, "Ju5nPa5lo2015", title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un mauvais mot de passe est autorisé.");
 
         nbTests++;
         if (nbFilms != sn.nbFilms()) {

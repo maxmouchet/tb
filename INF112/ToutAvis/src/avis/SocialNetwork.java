@@ -281,6 +281,9 @@ public class SocialNetwork {
         Item item = findMatchingItem(klass, titre);
         Member member = findMatchingMember(pseudo, password);
 
+        // On recherche la précédente review du membre pour cet item.
+        // - Si elle existe on la met à jour.
+        // - Sinon on en crée une.
         Review review = member.findReview(klass, titre);
         if (review == null) {
             review = new Review(item, member, commentaire, note);
