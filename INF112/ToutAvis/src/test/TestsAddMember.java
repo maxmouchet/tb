@@ -132,6 +132,6 @@ public class TestsAddMember {
         }
 
         // bilan du test de addMember
-        System.out.println("->TestsAddMember: " + nbErreurs + " erreur(s) / " + nbTests + " tests effectués");
+        System.out.println("-> TestsAddMember: " + nbErreurs + " erreur(s) / " + nbTests + " tests effectués");
     }
 }

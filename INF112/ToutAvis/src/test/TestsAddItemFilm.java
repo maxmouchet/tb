@@ -68,7 +68,7 @@ public class TestsAddItemFilm {
         int nbTests = 0;
         int nbErreurs = 0;
 
-        int nbBooks = sn.nbBooks();
+        int nbLivres = sn.nbBooks();
 
         // Ajout d'un film pour les tests
         String title = "The Social Network";
@@ -125,7 +125,7 @@ public class TestsAddItemFilm {
         nbErreurs += addItemFilmExceptionTest("4.12", NotMember.class, sn, pseudo, "Ju5nPa5lo2015", title, genre, director, writer, length, "L'ajout d'un film avec un mauvais mot de passe est autorisé.");
 
         nbTests++;
-        if (nbBooks != sn.nbBooks()) {
+        if (nbLivres != sn.nbBooks()) {
             System.out.println("Erreur: le nombre de livres après utilisation de addItemFilm a été modifié.");
             nbErreurs++;
         }
