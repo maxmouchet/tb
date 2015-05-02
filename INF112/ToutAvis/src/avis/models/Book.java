@@ -2,6 +2,9 @@ package avis.models;
 
 import exception.BadEntry;
 
+/**
+ * Représente un item de type book dans le SocialNetwork.
+ */
 public class Book extends Item {
 
     /**
@@ -45,6 +48,7 @@ public class Book extends Item {
 
     /**
      * Vérifie que l'auteur respecte les conditions d'existence définies dans le cahier des charges.
+     *
      * @param auteur l'auteur du livre.
      * @return true si l'auteur est valide. false sinon.
      */
@@ -54,6 +58,7 @@ public class Book extends Item {
 
     /**
      * Vérifie que le nombre de pages respecte les conditions d'existence définies dans le cahier des charges.
+     *
      * @param pageCount le nombre de pages du livre.
      * @return true si le nombre de pages est valide. false sinon.
      */

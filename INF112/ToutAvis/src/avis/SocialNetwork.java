@@ -281,7 +281,7 @@ public class SocialNetwork {
         Item item = findMatchingItem(klass, titre);
         Member member = findMatchingMember(pseudo, password);
 
-        Review review = member.findReview(titre);
+        Review review = member.findReview(klass, titre);
         if (review == null) {
             review = new Review(item, member, commentaire, note);
             member.addReview(review);
@@ -328,7 +328,7 @@ public class SocialNetwork {
      *
      * @param pseudo   le pseudo du membre.
      * @param password le mot de passe du membre.
-     * @return le membre, si il a été trouvé et que les identifiants sont correctes.
+     * @return le membre, si il a été trouvé et que les identifiants sont corrects.
      * @throws NotMember si le membre n'existe pas.
      * @throws BadEntry  <ul>
      *                   <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>

@@ -2,6 +2,9 @@ package avis.models;
 
 import exception.BadEntry;
 
+/**
+ * Représente un item de type film dans le SocialNetwork.
+ */
 public class Film extends Item {
 
     /**
@@ -55,6 +58,7 @@ public class Film extends Item {
 
     /**
      * Vérifie que le réalisateur respecte les conditions d'existence définies dans le cahier des charges.
+     *
      * @param director le réalisateur du film.
      * @return true si le réalisateur est valide. false sinon.
      */
@@ -64,6 +68,7 @@ public class Film extends Item {
 
     /**
      * Vérifie que le scénariste respecte les conditions d'existence définies dans le cahier des charges.
+     *
      * @param writer le scénariste du film.
      * @return true si le scénariste est valide. false sinon.
      */
@@ -73,6 +78,7 @@ public class Film extends Item {
 
     /**
      * Vérifie que la durée respecte les conditions d'existence définies dans le cahier des charges.
+     *
      * @param length la durée du film, en minutes.
      * @return true si la durée est valide. false sinon.
      */

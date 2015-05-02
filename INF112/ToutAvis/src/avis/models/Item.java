@@ -4,6 +4,10 @@ import exception.BadEntry;
 
 import java.util.LinkedList;
 
+/**
+ * Représente un item du SocialNetwork.
+ * Un item doit être d'un type défini et peut être noté par les membres du SocialNetwork.
+ */
 public abstract class Item {
 
     /**
@@ -81,6 +85,7 @@ public abstract class Item {
 
     /**
      * Obtient le titre de l'item.
+     *
      * @return le titre de l'item.
      */
     public String getTitle() {
