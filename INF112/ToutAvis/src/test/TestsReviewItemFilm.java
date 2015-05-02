@@ -108,45 +108,45 @@ public class TestsReviewItemFilm {
 
         // Ajout d'une review avec l'utilisateur 1
         nbTests++;
-        nbErreurs += reviewItemFilmOKTest("5.1", sn, pseudo1, password1, title, 1.0f, 1.0f, comment);
+        nbErreurs += reviewItemFilmOKTest("9.1", sn, pseudo1, password1, title, 1.0f, 1.0f, comment);
 
         // Modification de la review de l'utilisateur 1
         nbTests++;
-        nbErreurs += reviewItemFilmOKTest("5.2", sn, pseudo1, password1, title, 5.0f, 5.0f, comment);
+        nbErreurs += reviewItemFilmOKTest("9.2", sn, pseudo1, password1, title, 5.0f, 5.0f, comment);
 
         // Ajout d'une review avec l'utilisateur 2
         nbTests++;
-        nbErreurs += reviewItemFilmOKTest("5.3", sn, pseudo2, password2, title, 3.0f, 4.0f, comment);
+        nbErreurs += reviewItemFilmOKTest("9.3", sn, pseudo2, password2, title, 3.0f, 4.0f, comment);
 
         // Fiche 6
         // Tentatives d'ajout de reviews avec des entrées incorrectes
 
         nbTests++;
-        nbErreurs += reviewItemFilmExceptionTest("6.1", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, title, -1.0f, expectedRating, comment, "L'ajout d'une review avec une note negative est autorisé.");
+        nbErreurs += reviewItemFilmExceptionTest("10.1", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, title, -1.0f, expectedRating, comment, "L'ajout d'une review avec une note negative est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemFilmExceptionTest("6.2", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, title, 6.0f, expectedRating, comment, "L'ajout d'une review avec une note supérieure au maximum est autorisé.");
+        nbErreurs += reviewItemFilmExceptionTest("10.2", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, title, 6.0f, expectedRating, comment, "L'ajout d'une review avec une note supérieure au maximum est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemFilmExceptionTest("6.3", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, title, 1.0f, expectedRating, null, "L'ajout d'une review null est autorisé.");
+        nbErreurs += reviewItemFilmExceptionTest("10.3", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, title, 1.0f, expectedRating, null, "L'ajout d'une review null est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemFilmExceptionTest("6.4", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, null, 1.0f, expectedRating, comment, "L'ajout d'une review avec un titre null est autorisé.");
+        nbErreurs += reviewItemFilmExceptionTest("10.4", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, null, 1.0f, expectedRating, comment, "L'ajout d'une review avec un titre null est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemFilmExceptionTest("6.5", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, "   ", 1.0f, expectedRating, comment, "L'ajout d'une review avec un titre composé uniquement d'espaces est autorisé.");
+        nbErreurs += reviewItemFilmExceptionTest("10.5", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, "   ", 1.0f, expectedRating, comment, "L'ajout d'une review avec un titre composé uniquement d'espaces est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemFilmExceptionTest("6.6", BadEntry.class, sn, pseudo1, password1, null, password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo null est autorisé.");
+        nbErreurs += reviewItemFilmExceptionTest("10.6", BadEntry.class, sn, pseudo1, password1, null, password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo null est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemFilmExceptionTest("6.7", BadEntry.class, sn, pseudo1, password1, pseudo1, null, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un password null est autorisé.");
+        nbErreurs += reviewItemFilmExceptionTest("10.7", BadEntry.class, sn, pseudo1, password1, pseudo1, null, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un password null est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemFilmExceptionTest("6.8", BadEntry.class, sn, pseudo1, password1, "   ", password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo composé uniquement d'espaces est autorisé.");
+        nbErreurs += reviewItemFilmExceptionTest("10.8", BadEntry.class, sn, pseudo1, password1, "   ", password1, title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un pseudo composé uniquement d'espaces est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemFilmExceptionTest("6.9", BadEntry.class, sn, pseudo1, password1, pseudo1, "  123  ", title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un password composé de moins de 4 caractères est autorisé.");
+        nbErreurs += reviewItemFilmExceptionTest("10.9", BadEntry.class, sn, pseudo1, password1, pseudo1, "  123  ", title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un password composé de moins de 4 caractères est autorisé.");
 
         nbTests++;
-        nbErreurs += reviewItemFilmNotItemTest("6.10", sn, pseudo1, password1, "Don Quichotte", 1.0f, comment, "L'ajout d'une review pour un film inexistant est autorisé.");
+        nbErreurs += reviewItemFilmNotItemTest("10.10", sn, pseudo1, password1, "Don Quichotte", 1.0f, comment, "L'ajout d'une review pour un film inexistant est autorisé.");
 
         nbTests++;
-        nbErreurs += reviewItemFilmExceptionTest("6.11", NotMember.class, sn, pseudo1, password1, "BillGate$$38", "Micro$$oft", title, 1.0f, expectedRating, comment, "L'ajout d'une review pour un membre inexistant est autorisé.");
+        nbErreurs += reviewItemFilmExceptionTest("10.11", NotMember.class, sn, pseudo1, password1, "BillGate$$38", "Micro$$oft", title, 1.0f, expectedRating, comment, "L'ajout d'une review pour un membre inexistant est autorisé.");
         nbTests++;
-        nbErreurs += reviewItemFilmExceptionTest("6.12", NotMember.class, sn, pseudo1, password1, pseudo1, "Ju5nPa5lo2015", title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un mauvais mot de passe est autorisé.");
+        nbErreurs += reviewItemFilmExceptionTest("10.12", NotMember.class, sn, pseudo1, password1, pseudo1, "Ju5nPa5lo2015", title, 1.0f, expectedRating, comment, "L'ajout d'une review avec un mauvais mot de passe est autorisé.");
 
         nbTests++;
         if (nbFilms != sn.nbFilms()) {
