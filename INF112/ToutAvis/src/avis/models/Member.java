@@ -54,8 +54,16 @@ public class Member {
     }
 
     public Review findReview(String title) {
-        // TODO
-        return null;
+        Review review = null;
+
+        for (Review r : reviews) {
+            if (r.getItem().getTitle().equals(title)) {
+                review = r;
+                break;
+            }
+        }
+
+        return review;
     }
 
     public boolean checkCredentials(String pseudo, String password) {

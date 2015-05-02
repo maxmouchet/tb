@@ -106,12 +106,17 @@ public class TestsReviewItemBook {
         // Fiche 5
         // Tentatives d'ajout de reviews avec des entrées correctes
 
+        // Ajout d'une review avec l'utilisateur 1
         nbTests++;
         nbErreurs += reviewItemBookOKTest("5.1", sn, pseudo1, password1, title, 1.0f, 1.0f, comment);
+
+        // Modification de la review de l'utilisateur 1
         nbTests++;
-        nbErreurs += reviewItemBookOKTest("5.2", sn, pseudo1, password1, title, 5.0f, 3.0f, comment);
+        nbErreurs += reviewItemBookOKTest("5.2", sn, pseudo1, password1, title, 5.0f, 5.0f, comment);
+
+        // Ajout d'une review avec l'utilisateur 2
         nbTests++;
-        nbErreurs += reviewItemBookOKTest("5.3", sn, pseudo2, password2, title, 3.0f, 3.0f, comment);
+        nbErreurs += reviewItemBookOKTest("5.3", sn, pseudo2, password2, title, 3.0f, 4.0f, comment);
 
         // Fiche 6
         // Tentatives d'ajout de reviews avec des entrées incorrectes

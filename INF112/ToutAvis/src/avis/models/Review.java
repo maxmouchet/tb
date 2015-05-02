@@ -51,6 +51,10 @@ public class Review {
         return comment != null;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
     public float getRating() {
         return rating;
     }
