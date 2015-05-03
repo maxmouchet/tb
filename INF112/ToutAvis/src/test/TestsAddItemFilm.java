@@ -80,7 +80,7 @@ public class TestsAddItemFilm {
         System.out.println("* Ajout d'un film pour les tests: " + title);
         sn.addItemFilm(pseudo, password, title, genre, director, writer, length);
 
-        // Fiche 3
+        // Fiche 7
         // Tentatives d'ajout de films avec des entrées correctes
 
         nbTests++;
@@ -95,7 +95,7 @@ public class TestsAddItemFilm {
         nbTests++;
         nbErreurs += addItemFilmExceptionTest("7.5", ItemFilmAlreadyExists.class, sn, pseudo, password, "  " + title + "   ", genre, director, writer, length, "L'ajout d'un film dont le titre existe déjà (avec des espaces en début et fin) est autorisé.");
 
-        // Fiche 4
+        // Fiche 8
         // Tentatives d'ajout de films avec des entrées incorrectes
 
         nbTests++;

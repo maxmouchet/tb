@@ -103,7 +103,7 @@ public class TestsReviewItemFilm {
         float expectedRating = 3.0f;
         String comment = "Amazing !";
 
-        // Fiche 5
+        // Fiche 9
         // Tentatives d'ajout de reviews avec des entrées correctes
 
         // Ajout d'une review avec l'utilisateur 1
@@ -118,7 +118,7 @@ public class TestsReviewItemFilm {
         nbTests++;
         nbErreurs += reviewItemFilmOKTest("9.3", sn, pseudo2, password2, title, 3.0f, 4.0f, comment);
 
-        // Fiche 6
+        // Fiche 10
         // Tentatives d'ajout de reviews avec des entrées incorrectes
 
         nbTests++;

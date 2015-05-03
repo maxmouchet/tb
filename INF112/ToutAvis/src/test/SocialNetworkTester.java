@@ -11,6 +11,7 @@ public class SocialNetworkTester {
         TestsReviewItemBook.main(args);
         TestsAddItemFilm.main(args);
         TestsReviewItemFilm.main(args);
+        TestsConsultItems.main(args);
     }
 
 }
