@@ -201,7 +201,9 @@ public class SocialNetwork {
         LinkedList<String> itemsStrings = new LinkedList<String>();
 
         for (Item item : items) {
-            itemsStrings.add(item.toString());
+            if (item.getTitle().equals(nom)) {
+                itemsStrings.add(item.toString());
+            }
         }
 
         return itemsStrings;
