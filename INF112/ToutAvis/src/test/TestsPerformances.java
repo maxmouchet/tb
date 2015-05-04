@@ -4,13 +4,13 @@ import avis.SocialNetwork;
 
 import java.util.HashMap;
 
-public class TestsPerformances {
+class TestsPerformances {
     public static HashMap<String, Long> testPerformances(int members, int books, int films) throws Exception {
         if (members < 1 || books < 1 || films < 1) {
             throw new Exception("At least one member and/or book and/or film is required to test performances.");
         }
 
-        HashMap<String, Long> results = new HashMap<String, Long>();
+        HashMap<String, Long> results = new HashMap<>();
         SocialNetwork sn = new SocialNetwork();
 
         long startTime;

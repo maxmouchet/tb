@@ -12,7 +12,7 @@ import java.util.HashMap;
  * @date mars 2015
  */
 
-public class TestsAddMember {
+class TestsAddMember {
 
     private static int addMemberBadEntryTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
         // vérifie que l'ajout d'un membre (pseudo, pwd, profil) est refusée (levée de l'exception BadEntry et  pas de modification du sn)
@@ -111,13 +111,13 @@ public class TestsAddMember {
         // tentative d'ajout de membre "existant"
 
         nbTests++;
-        nbErreurs += addMemberAlreadyExistsTest(sn, new String("Paul"), "abcdefghij", "", "2.2", "L'ajout d'un membre avec le pseudo du premier membre ajouté est accepté");
+        nbErreurs += addMemberAlreadyExistsTest(sn, "Paul", "abcdefghij", "", "2.2", "L'ajout d'un membre avec le pseudo du premier membre ajouté est accepté");
         nbTests++;
-        nbErreurs += addMemberAlreadyExistsTest(sn, new String("Alice"), "abcdefghij", "", "2.3", "L'ajout d'un membre avec le pseudo du dernier membre ajouté est accepté");
+        nbErreurs += addMemberAlreadyExistsTest(sn, "Alice", "abcdefghij", "", "2.3", "L'ajout d'un membre avec le pseudo du dernier membre ajouté est accepté");
         nbTests++;
-        nbErreurs += addMemberAlreadyExistsTest(sn, new String("anToine"), "abcdefghij", "", "2.4", "L'ajout d'un membre avec un pseudo existant (avec casse différente) est accepté");
+        nbErreurs += addMemberAlreadyExistsTest(sn, "anToine", "abcdefghij", "", "2.4", "L'ajout d'un membre avec un pseudo existant (avec casse différente) est accepté");
         nbTests++;
-        nbErreurs += addMemberAlreadyExistsTest(sn, new String(" Antoine "), "abcdefghij", "", "2.5", "L'ajout d'un membre avec un pseudo existant (avec leading et trailing blanks) est accepté");
+        nbErreurs += addMemberAlreadyExistsTest(sn, " Antoine ", "abcdefghij", "", "2.5", "L'ajout d'un membre avec un pseudo existant (avec leading et trailing blanks) est accepté");
 
         nbTests++;
         if (nbFilms != sn.nbFilms()) {
@@ -131,7 +131,7 @@ public class TestsAddMember {
         }
 
         // bilan du test de addMember
-        HashMap<String, Integer> testsResults = new HashMap<String, Integer>();
+        HashMap<String, Integer> testsResults = new HashMap<>();
         testsResults.put("errors", nbErreurs);
         testsResults.put("total", nbTests);
 

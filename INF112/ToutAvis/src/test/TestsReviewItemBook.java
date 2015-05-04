@@ -8,7 +8,7 @@ import exception.NotMember;
 
 import java.util.HashMap;
 
-public class TestsReviewItemBook {
+class TestsReviewItemBook {
 
     private static int reviewItemBookOKTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, Float rating, Float expectedRating, String comment) {
         try {
@@ -28,7 +28,7 @@ public class TestsReviewItemBook {
         }
     }
 
-    private static int reviewItemBookNotItemTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, Float rating, String comment, String messErreur) throws NotMember, BadEntry, NotItem {
+    private static int reviewItemBookNotItemTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, Float rating, String comment, String messErreur) {
         try {
             sn.reviewItemBook(pseudo, password, title, rating, comment);
             System.out.println("Test " + idTest + " : " + messErreur);
@@ -166,7 +166,7 @@ public class TestsReviewItemBook {
             nbErreurs++;
         }
 
-        HashMap<String, Integer> testsResults = new HashMap<String, Integer>();
+        HashMap<String, Integer> testsResults = new HashMap<>();
         testsResults.put("errors", nbErreurs);
         testsResults.put("total", nbTests);
 

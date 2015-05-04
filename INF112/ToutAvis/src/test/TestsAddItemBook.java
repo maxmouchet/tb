@@ -3,12 +3,11 @@ package test;
 import avis.SocialNetwork;
 import exception.BadEntry;
 import exception.ItemBookAlreadyExists;
-import exception.MemberAlreadyExists;
 import exception.NotMember;
 
 import java.util.HashMap;
 
-public class TestsAddItemBook {
+class TestsAddItemBook {
 
     private static int addItemBookOKTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, String genre, String author, int pageCount) {
         int nbLivres = sn.nbBooks();
@@ -62,7 +61,7 @@ public class TestsAddItemBook {
         }
     }
 
-    public static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo, String password) throws MemberAlreadyExists, BadEntry, ItemBookAlreadyExists, NotMember {
+    public static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo, String password) throws BadEntry, ItemBookAlreadyExists, NotMember {
         System.out.println("\n# Tests d'ajout de livres");
 
         int nbTests = 0;
@@ -129,7 +128,7 @@ public class TestsAddItemBook {
             nbErreurs++;
         }
 
-        HashMap<String, Integer> testsResults = new HashMap<String, Integer>();
+        HashMap<String, Integer> testsResults = new HashMap<>();
         testsResults.put("errors", nbErreurs);
         testsResults.put("total", nbTests);
 

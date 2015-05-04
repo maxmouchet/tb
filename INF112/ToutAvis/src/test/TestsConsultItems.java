@@ -6,7 +6,7 @@ import exception.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class TestsConsultItems {
+class TestsConsultItems {
 
     private static int consultItemsOKTest(String idTest, SocialNetwork sn, String title, int expectedSize) {
         try {
@@ -28,7 +28,7 @@ public class TestsConsultItems {
 
     private static int consultItemsBadEntryTest(String idTest, SocialNetwork sn, String title, String messErreur) {
         try {
-            LinkedList<String> items = sn.consultItems(title);
+            sn.consultItems(title);
 
             System.out.println("Test " + idTest + " : " + messErreur);
             return 1;
@@ -41,7 +41,7 @@ public class TestsConsultItems {
         }
     }
 
-    public static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo, String password) throws MemberAlreadyExists, BadEntry, ItemFilmAlreadyExists, NotMember, ItemBookAlreadyExists {
+    public static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo, String password) throws BadEntry, ItemFilmAlreadyExists, NotMember, ItemBookAlreadyExists {
         System.out.println("\n# Tests de consultation d'items");
 
         int nbTests = 0;
@@ -94,7 +94,7 @@ public class TestsConsultItems {
             nbErreurs++;
         }
 
-        HashMap<String, Integer> testsResults = new HashMap<String, Integer>();
+        HashMap<String, Integer> testsResults = new HashMap<>();
         testsResults.put("errors", nbErreurs);
         testsResults.put("total", nbTests);
 

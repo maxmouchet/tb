@@ -8,7 +8,7 @@ import exception.NotMember;
 
 import java.util.HashMap;
 
-public class TestsAddItemFilm {
+class TestsAddItemFilm {
 
     private static int addItemFilmOKTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, String genre, String director, String writer, int length) {
         int nbFilms = sn.nbFilms();
@@ -62,7 +62,7 @@ public class TestsAddItemFilm {
         }
     }
 
-    public static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo, String password) throws MemberAlreadyExists, BadEntry, ItemFilmAlreadyExists, NotMember {
+    public static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo, String password) throws BadEntry, ItemFilmAlreadyExists, NotMember {
         System.out.println("\n# Tests d'ajout de films");
 
         int nbTests = 0;
@@ -132,7 +132,7 @@ public class TestsAddItemFilm {
             nbErreurs++;
         }
 
-        HashMap<String, Integer> testsResults = new HashMap<String, Integer>();
+        HashMap<String, Integer> testsResults = new HashMap<>();
         testsResults.put("errors", nbErreurs);
         testsResults.put("total", nbTests);
 

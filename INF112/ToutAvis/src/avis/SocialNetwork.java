@@ -60,8 +60,8 @@ public class SocialNetwork {
      * Initialise un <i>SocialNetwok</i>.
      */
     public SocialNetwork() {
-        this.items = new HashMap<String, Item>();
-        this.members = new HashMap<String, Member>();
+        this.items = new HashMap<>();
+        this.members = new HashMap<>();
     }
 
     /**
@@ -208,7 +208,7 @@ public class SocialNetwork {
             throw new BadEntry("Title does not meet the requirements.");
         }
 
-        LinkedList<String> itemsStrings = new LinkedList<String>();
+        LinkedList<String> itemsStrings = new LinkedList<>();
 
         for (Class klass : new Class[]{Book.class, Film.class}) {
             String hashKey = getHashKeyForClass(klass, nom);

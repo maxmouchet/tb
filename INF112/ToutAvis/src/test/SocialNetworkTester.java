@@ -23,10 +23,10 @@ public class SocialNetworkTester {
         String profil2 = "lOlO";
 
         sn.addMember(pseudo1, password1, profil1);
-        sn.addMember(pseudo2, password2, profil1);
+        sn.addMember(pseudo2, password2, profil2);
 
         // Tests unitaires
-        LinkedList<HashMap<String, Integer>> testsResults = new LinkedList<HashMap<String, Integer>>();
+        LinkedList<HashMap<String, Integer>> testsResults = new LinkedList<>();
 
         TestsInitialisation.main(args);
         testsResults.add(TestsAddMember.runTests(sn));

@@ -9,6 +9,7 @@ import java.awt.*;
 /**
  * @author prou
  */
+@SuppressWarnings("ALL")
 public class JPanelPassword extends JPanel {
 
     private String password;

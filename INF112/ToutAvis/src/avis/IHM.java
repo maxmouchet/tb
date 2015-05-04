@@ -17,17 +17,17 @@ import java.util.LinkedList;
 public class IHM {
 
 
-    String titreLivre;
-    String genreLivre;
-    String auteurLivre;
-    String nbPagesLivre;
-    String titreFilm;
-    String genreFilm;
-    String realisateurFilm;
-    String scenaristeFilm;
-    String dureeFilm;
-    String commentaireMembre;
-    String noteMembre;
+    private String titreLivre;
+    private String genreLivre;
+    private String auteurLivre;
+    private String nbPagesLivre;
+    private String titreFilm;
+    private String genreFilm;
+    private String realisateurFilm;
+    private String scenaristeFilm;
+    private String dureeFilm;
+    private String commentaireMembre;
+    private String noteMembre;
     /**
      * @uml.property name="metier"
      * @uml.associationEnd multiplicity="(1 1)" inverse="iHM:siteParis.Metier"
@@ -41,9 +41,6 @@ public class IHM {
     private String[] livres = new String[0];
 
     private JFrame fenetreInteraction;
-    private JMenuBar barreMenu;
-    private JMenu menuMembre;
-    private JMenu menuVisiteur;
 
     private JFrame fenetreAffichageReseau;
     private JScrollPaneTexte jScrollPaneAffichageReseau;
@@ -52,7 +49,7 @@ public class IHM {
     private JScrollPaneTexte jScrollPaneAffichageItems;
 
 
-    public IHM() {
+    private IHM() {
 
         JMenuItem jMenuItem;
         fenetreInteraction = new JFrame("IHM social network : ");
@@ -60,11 +57,11 @@ public class IHM {
         fenetreInteraction.setVisible(true);
         Font f = fenetreInteraction.getFont().deriveFont(Font.ITALIC + Font.BOLD);
         fenetreInteraction.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        barreMenu = new JMenuBar();
+        JMenuBar barreMenu = new JMenuBar();
         fenetreAffichageReseau = null;
 
 
-        menuMembre = new JMenu("membre");
+        JMenu menuMembre = new JMenu("membre");
         jMenuItem = new JMenuItem("afficher le réseau social");
         jMenuItem.addActionListener(new AffichageReseau());
         menuMembre.add(jMenuItem);
@@ -88,7 +85,7 @@ public class IHM {
         menuMembre.add(jMenuItem);
 
 
-        menuVisiteur = new JMenu("visiteur");
+        JMenu menuVisiteur = new JMenu("visiteur");
         jMenuItem = new JMenuItem("consulter un item");
         jMenuItem.addActionListener(new ConsultItem());
         menuVisiteur.add(jMenuItem);
@@ -130,7 +127,7 @@ public class IHM {
      * @param metier The metier to set.
      * @uml.property name="metier"
      */
-    public void setMetier(SocialNetwork metier) {
+    private void setMetier(SocialNetwork metier) {
         this.metier = metier;
     }
 
