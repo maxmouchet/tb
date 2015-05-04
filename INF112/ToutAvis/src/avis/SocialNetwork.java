@@ -106,7 +106,7 @@ public class SocialNetwork {
      */
     public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists {
         Member m = new Member(pseudo, password, profil);
-        String hashKey = getHashKey(Member.class, pseudo);
+        String hashKey = getHashKeyForClass(Member.class, pseudo);
 
         if (members.containsKey(hashKey)) {
             throw new MemberAlreadyExists();
@@ -141,7 +141,7 @@ public class SocialNetwork {
         findMatchingMember(pseudo, password);
 
         Film film = new Film(titre, genre, realisateur, scenariste, duree);
-        String hashKey = getHashKey(Film.class, titre);
+        String hashKey = getHashKeyForClass(Film.class, titre);
 
         if (items.containsKey(hashKey)) {
             throw new ItemFilmAlreadyExists();
@@ -174,7 +174,7 @@ public class SocialNetwork {
         findMatchingMember(pseudo, password);
 
         Book book = new Book(titre, genre, auteur, nbPages);
-        String hashKey = getHashKey(Book.class, titre);
+        String hashKey = getHashKeyForClass(Book.class, titre);
 
         if (items.containsKey(hashKey)) {
             throw new ItemBookAlreadyExists();
@@ -200,7 +200,7 @@ public class SocialNetwork {
         LinkedList<String> itemsStrings = new LinkedList<String>();
 
         for (Class klass : new Class[]{Book.class, Film.class}) {
-            String hashKey = getHashKey(klass, nom);
+            String hashKey = getHashKeyForClass(klass, nom);
             if (items.containsKey(hashKey)) {
                 itemsStrings.add(items.get(hashKey).toString());
             }
@@ -312,7 +312,7 @@ public class SocialNetwork {
             throw new BadEntry("Item title does not meet the requirements.");
         }
 
-        Item item = items.get(getHashKey(klass, title));
+        Item item = items.get(getHashKeyForClass(klass, title));
 
         if (item == null) {
             throw new NotItem("Item not found.");
@@ -338,7 +338,7 @@ public class SocialNetwork {
             throw new BadEntry("Pseudo and/or password does not meet the requirements.");
         }
 
-        Member member = members.get(getHashKey(Member.class, pseudo));
+        Member member = members.get(getHashKeyForClass(Member.class, pseudo));
 
         if (member == null) {
             throw new NotMember("Invalid credentials.");
@@ -369,7 +369,13 @@ public class SocialNetwork {
         return count;
     }
 
-    public static String getHashKey(Class<?> klass, String string) {
+    /**
+     * Calcul un hash unique pour une classe et une chaîne donné.
+     * @param klass la classe à utiliser pour le hash.
+     * @param string la chaîne à utiliser pour le hash.
+     * @return un hash unique.
+     */
+    public static String getHashKeyForClass(Class<?> klass, String string) {
         return klass.getName() + string.trim().toLowerCase();
     }
 

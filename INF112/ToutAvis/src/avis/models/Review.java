@@ -114,6 +114,16 @@ public class Review {
         return rating;
     }
 
+    /**
+     * Retourne une chaîne unique pour chaque review.
+     * Peut-être utilisé comme clé dans une table de hachage.
+     *
+     * @return un hash unique.
+     */
+    public String hashKey() {
+        return this.item.getClass().getName() + this.item.getTitle() + this.member.getPseudo();
+    }
+
     @Override
     public String toString() {
         String output = "";

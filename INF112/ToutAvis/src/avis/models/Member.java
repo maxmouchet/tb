@@ -104,7 +104,7 @@ public class Member {
      * @param review la review.
      */
     public void addReview(Review review) {
-        String hashKey = SocialNetwork.getHashKey(review.getItem().getClass(), review.getItem().getTitle());
+        String hashKey = SocialNetwork.getHashKeyForClass(review.getItem().getClass(), review.getItem().getTitle());
         this.reviews.put(hashKey, review);
     }
 
@@ -116,7 +116,7 @@ public class Member {
      * @return la review, si elle existe. null sinon.
      */
     public Review findReview(Class<?> klass, String title) {
-        return this.reviews.get(SocialNetwork.getHashKey(klass, title));
+        return this.reviews.get(SocialNetwork.getHashKeyForClass(klass, title));
     }
 
     /**

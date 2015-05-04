@@ -1,6 +1,5 @@
 package avis.models;
 
-import avis.SocialNetwork;
 import exception.BadEntry;
 
 import java.util.HashMap;
@@ -81,8 +80,7 @@ public abstract class Item {
      * @param review la review.
      */
     public void addReview(Review review) {
-        String hashKey = SocialNetwork.getHashKey(this.getClass(), this.title);
-        this.reviews.put(hashKey, review);
+        this.reviews.put(review.hashKey(), review);
     }
 
     /**
