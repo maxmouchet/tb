@@ -69,6 +69,10 @@ public class TestsConsultItems {
         nbErreurs += consultItemsOKTest("11.2", sn, "Les Réseaux", 0);
         nbTests++;
         nbErreurs += consultItemsOKTest("11.3", sn, title, 2);
+        nbTests++;
+        nbErreurs += consultItemsOKTest("11.4", sn, title.toLowerCase(), 2);
+        nbTests++;
+        nbErreurs += consultItemsOKTest("11.5", sn, "   " + title + "  ", 2);
 
         // Fiche 12
         // Tentatives de consultation d'items avec des entrées incorrectes

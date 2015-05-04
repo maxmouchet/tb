@@ -113,10 +113,14 @@ public class TestsReviewItemFilm {
         // Modification de la review de l'utilisateur 1
         nbTests++;
         nbErreurs += reviewItemFilmOKTest("9.2", sn, pseudo1, password1, title, 5.0f, 5.0f, comment);
+        nbTests++;
+        nbErreurs += reviewItemFilmOKTest("9.3", sn, pseudo1, password1, title.toLowerCase(), 5.0f, 5.0f, comment);
+        nbTests++;
+        nbErreurs += reviewItemFilmOKTest("9.4", sn, pseudo1, password1, "  " + title + "  ", 5.0f, 5.0f, comment);
 
         // Ajout d'une review avec l'utilisateur 2
         nbTests++;
-        nbErreurs += reviewItemFilmOKTest("9.3", sn, pseudo2, password2, title, 3.0f, 4.0f, comment);
+        nbErreurs += reviewItemFilmOKTest("9.5", sn, pseudo2, password2, title, 3.0f, 4.0f, comment);
 
         // Fiche 10
         // Tentatives d'ajout de reviews avec des entrées incorrectes
