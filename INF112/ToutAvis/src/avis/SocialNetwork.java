@@ -3,6 +3,7 @@ package avis;
 import avis.models.*;
 import exception.*;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -52,14 +53,15 @@ public class SocialNetwork {
      * @uml.property name="members"
      * @uml.associationEnd multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.models.Member"
      */
-    private LinkedList<Member> members;
+    // private LinkedList<Member> members;
+    private HashMap<String, Member> members;
 
     /**
      * Initialise un <i>SocialNetwok</i>.
      */
     public SocialNetwork() {
         this.items = new LinkedList<Item>();
-        this.members = new LinkedList<Member>();
+        this.members = new HashMap<String, Member>();
     }
 
     /**
@@ -104,14 +106,13 @@ public class SocialNetwork {
      */
     public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists {
         Member m = new Member(pseudo, password, profil);
+        String genericPseudo = pseudo.trim().toLowerCase();
 
-        for (Member member : members) {
-            if (member.getPseudo().trim().toLowerCase().equals(pseudo.trim().toLowerCase())) {
-                throw new MemberAlreadyExists();
-            }
+        if (members.containsKey(genericPseudo)) {
+            throw new MemberAlreadyExists();
         }
 
-        this.members.add(m);
+        this.members.put(genericPseudo, m);
     }
 
     /**
@@ -341,20 +342,16 @@ public class SocialNetwork {
      *                   </ul>
      */
     private Member findMatchingMember(String pseudo, String password) throws NotMember, BadEntry {
-        Member member = null;
-
         if (!(Member.pseudoIsValid(pseudo) && Member.passwordIsValid(password))) {
             throw new BadEntry("Pseudo and/or password does not meet the requirements.");
         }
 
-        for (Member m : members) {
-            if (m.checkCredentials(pseudo, password)) {
-                member = m;
-                break;
+        Member member = null;
+        if ((member = members.get(pseudo.trim().toLowerCase())) != null) {
+            if (!member.checkCredentials(pseudo, password)) {
+                throw new NotMember("Invalid credentials.");
             }
-        }
-
-        if (member == null) {
+        } else  {
             throw new NotMember("Invalid credentials.");
         }
 
