@@ -119,7 +119,6 @@ public class TestsAddMember {
         nbTests++;
         nbErreurs += addMemberAlreadyExistsTest(sn, new String(" Antoine "), "abcdefghij", "", "2.5", "L'ajout d'un membre avec un pseudo existant (avec leading et trailing blanks) est accepté");
 
-
         nbTests++;
         if (nbFilms != sn.nbFilms()) {
             System.out.println("Erreur: le nombre de films après utilisation de addMember a été modifié");
