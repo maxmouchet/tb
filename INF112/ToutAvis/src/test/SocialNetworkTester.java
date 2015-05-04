@@ -48,11 +48,12 @@ public class SocialNetworkTester {
 
         // Tests des performances
         System.out.println("*** Tests des performances ***");
-        System.out.println("Members | Books | Films | addMember() | addItemBook() | addItemFilm()");
+        System.out.println("Note: une review par item est ajouté.");
+        System.out.println("Members | Books | Films | addMember() | addItemBook() | addItemFilm() | reviewItemBook() | reviewItemFilm() | consultItems()");
 
-        for (int i = 1; i <= 10000; i *= 10) {
+        for (int i = 1; i <= 100000; i *= 10) {
             HashMap<String, Long> performanceResult = TestsPerformances.testPerformances(i, i, i);
-            System.out.format("%8d|%7d|%7d|%10d ms|%12d ms|%11d ms\n", i, i, i, performanceResult.get("addMember"), performanceResult.get("addItemBook"), performanceResult.get("addItemFilm"));
+            System.out.format("%8d|%7d|%7d|%10d ms|%12d ms|%12d ms|%15d ms|%15d ms|%12d ms\n", i, i, i, performanceResult.get("addMember"), performanceResult.get("addItemBook"), performanceResult.get("addItemFilm"), performanceResult.get("reviewItemBook"), performanceResult.get("reviewItemFilm"), performanceResult.get("consultItems"));
 
         }
     }

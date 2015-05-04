@@ -37,6 +37,27 @@ public class TestsPerformances {
         endTime = System.nanoTime();
         results.put("addItemFilm", (endTime - startTime) / (1000 * 1000));
 
+        startTime = System.nanoTime();
+        for (int i = 0; i < films; i++) {
+            sn.reviewItemBook("User0", "Password", "Book" + i, 5.0f, "Amazing !");
+        }
+        endTime = System.nanoTime();
+        results.put("reviewItemBook", (endTime - startTime) / (1000 * 1000));
+
+        startTime = System.nanoTime();
+        for (int i = 0; i < films; i++) {
+            sn.reviewItemFilm("User0", "Password", "Film" + i, 5.0f, "Amazing !");
+        }
+        endTime = System.nanoTime();
+        results.put("reviewItemFilm", (endTime - startTime) / (1000 * 1000));
+
+        startTime = System.nanoTime();
+        for (int i = 0; i < films; i++) {
+            sn.consultItems("Film" + i);
+        }
+        endTime = System.nanoTime();
+        results.put("consultItems", (endTime - startTime) / (1000 * 1000));
+
         return results;
     }
 }
