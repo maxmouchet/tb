@@ -1,7 +1,10 @@
 package test;
 
 import avis.SocialNetwork;
-import exception.*;
+import exception.BadEntry;
+import exception.ItemBookAlreadyExists;
+import exception.NotItem;
+import exception.NotMember;
 
 import java.util.HashMap;
 

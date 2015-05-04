@@ -17,33 +17,26 @@ import java.util.LinkedList;
 public class IHM {
 
 
-    /**
-     * @uml.property name="metier"
-     * @uml.associationEnd multiplicity="(1 1)" inverse="iHM:siteParis.Metier"
-     */
-    private SocialNetwork metier = null;
-
-
-    private int largeurFenetre = 600;
-
-    private String pseudoMembre = "";
-    private String passwordMembre = "";
-    private String profilMembre = "";
-
     String titreLivre;
     String genreLivre;
     String auteurLivre;
     String nbPagesLivre;
-
     String titreFilm;
     String genreFilm;
     String realisateurFilm;
     String scenaristeFilm;
     String dureeFilm;
-
     String commentaireMembre;
     String noteMembre;
-
+    /**
+     * @uml.property name="metier"
+     * @uml.associationEnd multiplicity="(1 1)" inverse="iHM:siteParis.Metier"
+     */
+    private SocialNetwork metier = null;
+    private int largeurFenetre = 600;
+    private String pseudoMembre = "";
+    private String passwordMembre = "";
+    private String profilMembre = "";
     private String[] films = new String[0];
     private String[] livres = new String[0];
 
@@ -110,6 +103,26 @@ public class IHM {
         fenetreInteraction.setVisible(true);
     }
 
+    public static void main(String[] args) {
+
+        try {
+            SocialNetwork sn = new SocialNetwork();
+
+            IHM ihm = new IHM();
+            ihm.setMetier(sn);
+
+            // ajout de 3 membres avec entrées "correctes"
+            sn.addMember("Paul", "paul", "lecteur impulsif");
+            sn.addMember("Antoine", "antoine", "grand amoureux de littérature");
+            sn.addMember("Alice", "alice", "23 ans, sexy");
+
+
+        } catch (Exception e) {
+            System.out.println("Exception inattendue : " + e);
+            e.printStackTrace();
+        }
+
+    }
 
     /**
      * Setter of the property <tt>metier</tt>
@@ -120,7 +133,6 @@ public class IHM {
     public void setMetier(SocialNetwork metier) {
         this.metier = metier;
     }
-
 
     private class AffichageReseau implements ActionListener {
         public void actionPerformed(ActionEvent e) {
@@ -144,7 +156,6 @@ public class IHM {
         }
 
     }
-
 
     private class ConsultItem implements ActionListener {
         JPanelEntree jPanelNameItem;
@@ -200,7 +211,6 @@ public class IHM {
 
     }
 
-
     private class AddMember implements ActionListener {
         JPanelEntree jPanelPseudo;
         JPanelEntree jPanelPassword;
@@ -244,7 +254,6 @@ public class IHM {
             }
         }
     }
-
 
     private class AddItemBook implements ActionListener {
         JPanelEntree jPanelPseudo;
@@ -299,7 +308,6 @@ public class IHM {
             }
         }
     }
-
 
     private class AddItemFilm implements ActionListener {
         JPanelEntree jPanelPseudo;
@@ -358,7 +366,6 @@ public class IHM {
             }
         }
     }
-
 
     private class ReviewItem implements ActionListener {
         JPanelEntree jPanelPseudo;
@@ -423,28 +430,6 @@ public class IHM {
                 }
             }
         }
-    }
-
-
-    public static void main(String[] args) {
-
-        try {
-            SocialNetwork sn = new SocialNetwork();
-
-            IHM ihm = new IHM();
-            ihm.setMetier(sn);
-
-            // ajout de 3 membres avec entrées "correctes"
-            sn.addMember("Paul", "paul", "lecteur impulsif");
-            sn.addMember("Antoine", "antoine", "grand amoureux de littérature");
-            sn.addMember("Alice", "alice", "23 ans, sexy");
-
-
-        } catch (Exception e) {
-            System.out.println("Exception inattendue : " + e);
-            e.printStackTrace();
-        }
-
     }
 
 

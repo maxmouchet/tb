@@ -65,6 +65,17 @@ public class SocialNetwork {
     }
 
     /**
+     * Calcul un hash unique pour une classe et une chaîne donné.
+     *
+     * @param klass  la classe à utiliser pour le hash.
+     * @param string la chaîne à utiliser pour le hash.
+     * @return un hash unique.
+     */
+    public static String getHashKeyForClass(Class<?> klass, String string) {
+        return klass.getName() + string.trim().toLowerCase();
+    }
+
+    /**
      * Obtenir le nombre de membres du <i>SocialNetwork</i>.
      *
      * @return le nombre de membres.
@@ -367,16 +378,6 @@ public class SocialNetwork {
         }
 
         return count;
-    }
-
-    /**
-     * Calcul un hash unique pour une classe et une chaîne donné.
-     * @param klass la classe à utiliser pour le hash.
-     * @param string la chaîne à utiliser pour le hash.
-     * @return un hash unique.
-     */
-    public static String getHashKeyForClass(Class<?> klass, String string) {
-        return klass.getName() + string.trim().toLowerCase();
     }
 
     /**

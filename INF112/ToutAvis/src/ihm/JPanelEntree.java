@@ -29,13 +29,13 @@ public class JPanelEntree extends JPanel {
         setVisible(true);
     }
 
+    public String getEntree() {
+        return entree;
+    }
+
     public void setEntree(String entree) {
         this.entree = entree;
         jTextField.setText(entree);
-    }
-
-    public String getEntree() {
-        return entree;
     }
 
     class ActionEntree implements CaretListener {
