@@ -62,7 +62,7 @@ public class TestsAddItemBook {
         }
     }
 
-    private static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo, String password) throws MemberAlreadyExists, BadEntry, ItemBookAlreadyExists, NotMember {
+    public static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo, String password) throws MemberAlreadyExists, BadEntry, ItemBookAlreadyExists, NotMember {
         System.out.println("\n# Tests d'ajout de livres");
 
         int nbTests = 0;
@@ -130,20 +130,8 @@ public class TestsAddItemBook {
         HashMap<String, Integer> testsResults = new HashMap<String, Integer>();
         testsResults.put("errors", nbErreurs);
         testsResults.put("total", nbTests);
-        return testsResults;
-    }
 
-    public static void main(String[] args) throws BadEntry, MemberAlreadyExists, NotMember, ItemBookAlreadyExists {
-        SocialNetwork sn = new SocialNetwork();
-
-        // Ajout d'un membre pour les tests
-        String pseudo = "ToTo";
-        String password = "Pa$$w0rd";
-        String profil = "tAtA";
-
-        sn.addMember(pseudo, password, profil);
-
-        HashMap<String, Integer> testsResults = runTests(sn, pseudo, password);
         System.out.println("-> TestsAddItemBook: " + testsResults.get("errors") + " erreur(s) / " + testsResults.get("total") + " tests effectués");
+        return testsResults;
     }
 }

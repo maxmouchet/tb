@@ -4,6 +4,8 @@ import avis.SocialNetwork;
 import exception.BadEntry;
 import exception.MemberAlreadyExists;
 
+import java.util.HashMap;
+
 /**
  * @author B. Prou, E. Cousin
  * @version V1.0
@@ -69,13 +71,11 @@ public class TestsAddMember {
         }
     }
 
-    public static void main(String[] args) {
+    public static HashMap<String, Integer> runTests(SocialNetwork sn) {
         System.out.println("\n# Tests d'ajout de membres");
 
         int nbTests = 0;
         int nbErreurs = 0;
-
-        SocialNetwork sn = new SocialNetwork();
 
         // tests de addMember
         int nbFilms = sn.nbFilms();
@@ -131,6 +131,11 @@ public class TestsAddMember {
         }
 
         // bilan du test de addMember
-        System.out.println("-> TestsAddMember: " + nbErreurs + " erreur(s) / " + nbTests + " tests effectués");
+        HashMap<String, Integer> testsResults = new HashMap<String, Integer>();
+        testsResults.put("errors", nbErreurs);
+        testsResults.put("total", nbTests);
+
+        System.out.println("-> TestsAddMember: " + testsResults.get("errors") + " erreur(s) / " + testsResults.get("total") + " tests effectués");
+        return testsResults;
     }
 }

@@ -80,7 +80,7 @@ public class TestsReviewItemFilm {
         }
     }
 
-    private static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo1, String password1, String pseudo2, String password2) throws NotMember, BadEntry, ItemFilmAlreadyExists, NotItem {
+    public static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo1, String password1, String pseudo2, String password2) throws NotMember, BadEntry, ItemFilmAlreadyExists, NotItem {
         System.out.println("\n# Tests d'ajout d'avis sur des films");
 
         int nbTests = 0;
@@ -163,25 +163,8 @@ public class TestsReviewItemFilm {
         HashMap<String, Integer> testsResults = new HashMap<String, Integer>();
         testsResults.put("errors", nbErreurs);
         testsResults.put("total", nbTests);
-        return testsResults;
-    }
 
-    public static void main(String[] args) throws BadEntry, MemberAlreadyExists, ItemFilmAlreadyExists, NotMember, NotItem {
-        SocialNetwork sn = new SocialNetwork();
-
-        // Ajout de membres pour les tests
-        String pseudo1 = "ToTo";
-        String password1 = "Pa$$w0rd";
-        String profil1 = "tAtA";
-
-        String pseudo2 = "JoJo";
-        String password2 = "Pa$$w0rd";
-        String profil2 = "lOlO";
-
-        sn.addMember(pseudo1, password1, profil1);
-        sn.addMember(pseudo2, password2, profil2);
-
-        HashMap<String, Integer> testsResults = runTests(sn, pseudo1, password1, pseudo2, password2);
         System.out.println("-> TestsReviewItemFilm: " + testsResults.get("errors") + " erreur(s) / " + testsResults.get("total") + " tests effectués");
+        return testsResults;
     }
 }
