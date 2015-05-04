@@ -369,7 +369,7 @@ public class SocialNetwork {
         return count;
     }
 
-    private String getHashKey(Class<?> klass, String string) {
+    public static String getHashKey(Class<?> klass, String string) {
         return klass.getName() + string.trim().toLowerCase();
     }
 

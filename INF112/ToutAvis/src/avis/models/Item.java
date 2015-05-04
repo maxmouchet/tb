@@ -1,8 +1,9 @@
 package avis.models;
 
+import avis.SocialNetwork;
 import exception.BadEntry;
 
-import java.util.LinkedList;
+import java.util.HashMap;
 
 /**
  * Représente un item du SocialNetwork.
@@ -30,7 +31,7 @@ public abstract class Item {
      * @uml.property name="reviews"
      * @uml.associationEnd multiplicity="(0 -1)" inverse="item:avis.models.Review"
      */
-    private LinkedList<Review> reviews;
+    private HashMap<String, Review> reviews;
 
     /**
      * Initialise un item. Réservé pour les classes enfants, Item étant abstraite.
@@ -51,7 +52,7 @@ public abstract class Item {
 
         this.title = title;
         this.genre = genre;
-        this.reviews = new LinkedList<Review>();
+        this.reviews = new HashMap<>();
     }
 
     /**
@@ -80,7 +81,8 @@ public abstract class Item {
      * @param review la review.
      */
     public void addReview(Review review) {
-        this.reviews.add(review);
+        String hashKey = SocialNetwork.getHashKey(this.getClass(), this.title);
+        this.reviews.put(hashKey, review);
     }
 
     /**
@@ -101,7 +103,7 @@ public abstract class Item {
         float sum = 0.0f;
         float nbRating = reviews.size();
 
-        for (Review review : this.reviews) {
+        for (Review review : this.reviews.values()) {
             sum += review.getRating();
         }
 

@@ -1,8 +1,9 @@
 package avis.models;
 
+import avis.SocialNetwork;
 import exception.BadEntry;
 
-import java.util.LinkedList;
+import java.util.HashMap;
 
 /**
  * Représente un membre du SocialNetwork.
@@ -15,7 +16,7 @@ public class Member {
      * @uml.property name="reviews"
      * @uml.associationEnd multiplicity="(0 -1)" inverse="member:avis.models.Review"
      */
-    private LinkedList<Review> reviews;
+    private HashMap<String, Review> reviews;
 
     /**
      * Le pseudo du membre.
@@ -55,7 +56,7 @@ public class Member {
         this.password = password;
         this.profile = profile;
 
-        this.reviews = new LinkedList<Review>();
+        this.reviews = new HashMap<>();
     }
 
     /**
@@ -103,7 +104,8 @@ public class Member {
      * @param review la review.
      */
     public void addReview(Review review) {
-        this.reviews.add(review);
+        String hashKey = SocialNetwork.getHashKey(review.getItem().getClass(), review.getItem().getTitle());
+        this.reviews.put(hashKey, review);
     }
 
     /**
@@ -114,16 +116,7 @@ public class Member {
      * @return la review, si elle existe. null sinon.
      */
     public Review findReview(Class<?> klass, String title) {
-        Review review = null;
-
-        for (Review r : reviews) {
-            if (r.getItem().getTitle().trim().toLowerCase().equals(title.trim().toLowerCase()) && klass.isInstance(r.getItem())) {
-                review = r;
-                break;
-            }
-        }
-
-        return review;
+        return this.reviews.get(SocialNetwork.getHashKey(klass, title));
     }
 
     /**
