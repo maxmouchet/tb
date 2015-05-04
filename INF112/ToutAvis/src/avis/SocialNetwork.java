@@ -45,7 +45,7 @@ public class SocialNetwork {
      * @uml.property name="items"
      * @uml.associationEnd multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.models.Item"
      */
-    private LinkedList<Item> items;
+    private HashMap<String, Item> items;
 
     /**
      * La liste des membres associés au SocialNetwork.
@@ -60,7 +60,7 @@ public class SocialNetwork {
      * Initialise un <i>SocialNetwok</i>.
      */
     public SocialNetwork() {
-        this.items = new LinkedList<Item>();
+        this.items = new HashMap<String, Item>();
         this.members = new HashMap<String, Member>();
     }
 
@@ -106,13 +106,13 @@ public class SocialNetwork {
      */
     public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists {
         Member m = new Member(pseudo, password, profil);
-        String genericPseudo = pseudo.trim().toLowerCase();
+        String hashKey = getHashKey(Member.class, pseudo);
 
-        if (members.containsKey(genericPseudo)) {
+        if (members.containsKey(hashKey)) {
             throw new MemberAlreadyExists();
         }
 
-        this.members.put(genericPseudo, m);
+        this.members.put(hashKey, m);
     }
 
     /**
@@ -141,14 +141,13 @@ public class SocialNetwork {
         findMatchingMember(pseudo, password);
 
         Film film = new Film(titre, genre, realisateur, scenariste, duree);
+        String hashKey = getHashKey(Film.class, titre);
 
-        for (Item item : items) {
-            if (item.getTitle().trim().toLowerCase().equals(titre.trim().toLowerCase()) && item instanceof Film) {
-                throw new ItemFilmAlreadyExists();
-            }
+        if (items.containsKey(hashKey)) {
+            throw new ItemFilmAlreadyExists();
         }
 
-        this.items.add(film);
+        this.items.put(hashKey, film);
     }
 
     /**
@@ -175,14 +174,13 @@ public class SocialNetwork {
         findMatchingMember(pseudo, password);
 
         Book book = new Book(titre, genre, auteur, nbPages);
+        String hashKey = getHashKey(Book.class, titre);
 
-        for (Item item : items) {
-            if (item.getTitle().trim().toLowerCase().equals(titre.trim().toLowerCase()) && item instanceof Book) {
-                throw new ItemBookAlreadyExists();
-            }
+        if (items.containsKey(hashKey)) {
+            throw new ItemBookAlreadyExists();
         }
 
-        this.items.add(book);
+        this.items.put(hashKey, book);
     }
 
     /**
@@ -201,9 +199,10 @@ public class SocialNetwork {
 
         LinkedList<String> itemsStrings = new LinkedList<String>();
 
-        for (Item item : items) {
-            if (item.getTitle().trim().toLowerCase().equals(nom.trim().toLowerCase())) {
-                itemsStrings.add(item.toString());
+        for (Class klass : new Class[]{Book.class, Film.class}) {
+            String hashKey = getHashKey(klass, nom);
+            if (items.containsKey(hashKey)) {
+                itemsStrings.add(items.get(hashKey).toString());
             }
         }
 
@@ -309,18 +308,11 @@ public class SocialNetwork {
      * @throws BadEntry si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.
      */
     private Item findMatchingItem(Class<?> klass, String title) throws NotItem, BadEntry {
-        Item item = null;
-
         if (!Item.titleIsValid(title)) {
             throw new BadEntry("Item title does not meet the requirements.");
         }
 
-        for (Item it : items) {
-            if ((it.getTitle().trim().toLowerCase().equals(title.trim().toLowerCase())) && (klass.isInstance(it))) {
-                item = it;
-                break;
-            }
-        }
+        Item item = items.get(getHashKey(klass, title));
 
         if (item == null) {
             throw new NotItem("Item not found.");
@@ -346,12 +338,13 @@ public class SocialNetwork {
             throw new BadEntry("Pseudo and/or password does not meet the requirements.");
         }
 
-        Member member = null;
-        if ((member = members.get(pseudo.trim().toLowerCase())) != null) {
-            if (!member.checkCredentials(pseudo, password)) {
-                throw new NotMember("Invalid credentials.");
-            }
-        } else  {
+        Member member = members.get(getHashKey(Member.class, pseudo));
+
+        if (member == null) {
+            throw new NotMember("Invalid credentials.");
+        }
+
+        if (!member.checkCredentials(pseudo, password)) {
             throw new NotMember("Invalid credentials.");
         }
 
@@ -367,13 +360,17 @@ public class SocialNetwork {
     private int countItems(Class<?> klass) {
         int count = 0;
 
-        for (Item item : items) {
-            if (klass.isInstance(item)) {
+        for (String key : items.keySet()) {
+            if (key.startsWith(klass.getName())) {
                 count++;
             }
         }
 
         return count;
+    }
+
+    private String getHashKey(Class<?> klass, String string) {
+        return klass.getName() + string.trim().toLowerCase();
     }
 
     /**
