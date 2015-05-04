@@ -65,7 +65,7 @@ public class SocialNetwork {
     }
 
     /**
-     * Calcul un hash unique pour une classe et une chaîne donné.
+     * Calcul un hash unique pour une classe et une chaîne donnée.
      *
      * @param klass  la classe à utiliser pour le hash.
      * @param string la chaîne à utiliser pour le hash.
