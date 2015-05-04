@@ -26,7 +26,7 @@ public class SocialNetworkTester {
         sn.addMember(pseudo1, password1, profil1);
         sn.addMember(pseudo2, password2, profil1);
 
-        // Résultats des tests
+        // Résultats des tests unitaires
         LinkedList<HashMap<String, Integer>> testsResults = new LinkedList<HashMap<String, Integer>>();
 
         TestsInitialisation.main(args);
@@ -45,7 +45,12 @@ public class SocialNetworkTester {
             totalErrors += testResult.get("errors");
         }
 
-        System.out.println(totalTests + " tests, " + totalErrors + " erreurs");
+        System.out.println(totalTests + " tests, " + totalErrors + " erreurs.\n");
+
+        // Tests de performance
+        TestsPerformances.testPerformances(100, 100, 100);
+        TestsPerformances.testPerformances(1000, 1000, 1000);
+        TestsPerformances.testPerformances(10000, 10000, 10000);
     }
 
 }
