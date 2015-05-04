@@ -111,18 +111,20 @@ public class TestsAddItemFilm {
         nbTests++;
         nbErreurs += addItemFilmExceptionTest("8.6", BadEntry.class, sn, pseudo, password, title, genre, director, writer, -100, "L'ajout d'un film avec une durée négative est autorisé.");
         nbTests++;
-        nbErreurs += addItemFilmExceptionTest("8.7", BadEntry.class, sn, null, password, title, genre, director, writer, length, "L'ajout d'un film avec un pseudo non instancié est autorisé.");
+        nbErreurs += addItemFilmExceptionTest("8.7", BadEntry.class, sn, pseudo, password, title, genre, director, writer, 0, "L'ajout d'un film avec une durée égale à 0 est autorisé.");
         nbTests++;
-        nbErreurs += addItemFilmExceptionTest("8.8", BadEntry.class, sn, pseudo, null, title, genre, director, writer, length, "L'ajout d'un film avec un password non instancié est autorisé.");
+        nbErreurs += addItemFilmExceptionTest("8.8", BadEntry.class, sn, null, password, title, genre, director, writer, length, "L'ajout d'un film avec un pseudo non instancié est autorisé.");
         nbTests++;
-        nbErreurs += addItemFilmExceptionTest("8.9", BadEntry.class, sn, "   ", password, title, genre, director, writer, length, "L'ajout d'un film avec un pseudo composé uniquement d'espaces est autorisé.");
+        nbErreurs += addItemFilmExceptionTest("8.9", BadEntry.class, sn, pseudo, null, title, genre, director, writer, length, "L'ajout d'un film avec un password non instancié est autorisé.");
         nbTests++;
-        nbErreurs += addItemFilmExceptionTest("8.10", BadEntry.class, sn, pseudo, "  123  ", title, genre, director, writer, length, "L'ajout d'un film avec un password composé de moins de 4 caractères est autorisé.");
+        nbErreurs += addItemFilmExceptionTest("8.10", BadEntry.class, sn, "   ", password, title, genre, director, writer, length, "L'ajout d'un film avec un pseudo composé uniquement d'espaces est autorisé.");
+        nbTests++;
+        nbErreurs += addItemFilmExceptionTest("8.11", BadEntry.class, sn, pseudo, "  123  ", title, genre, director, writer, length, "L'ajout d'un film avec un password composé de moins de 4 caractères est autorisé.");
 
         nbTests++;
-        nbErreurs += addItemFilmExceptionTest("8.11", NotMember.class, sn, "BillGate$$38", "Micro$$oft", title, genre, director, writer, length, "L'ajout d'un film pour un membre inexistant est autorisé.");
+        nbErreurs += addItemFilmExceptionTest("8.12", NotMember.class, sn, "BillGate$$38", "Micro$$oft", title, genre, director, writer, length, "L'ajout d'un film pour un membre inexistant est autorisé.");
         nbTests++;
-        nbErreurs += addItemFilmExceptionTest("8.12", NotMember.class, sn, pseudo, "Ju5nPa5lo2015", title, genre, director, writer, length, "L'ajout d'un film avec un mauvais mot de passe est autorisé.");
+        nbErreurs += addItemFilmExceptionTest("8.13", NotMember.class, sn, pseudo, "Ju5nPa5lo2015", title, genre, director, writer, length, "L'ajout d'un film avec un mauvais mot de passe est autorisé.");
 
         nbTests++;
         if (nbLivres != sn.nbBooks()) {

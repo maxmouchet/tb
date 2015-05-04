@@ -83,7 +83,7 @@ public class Film extends Item {
      * @return true si la durée est valide. false sinon.
      */
     private boolean lengthIsValid(int length) {
-        return length >= 0;
+        return length > 0;
     }
 
     @Override

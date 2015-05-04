@@ -108,18 +108,20 @@ public class TestsAddItemBook {
         nbTests++;
         nbErreurs += addItemBookExceptionTest("4.5", BadEntry.class, sn, pseudo, password, title, genre, author, -100, "L'ajout d'un livre avec un nombre de pages négatif est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookExceptionTest("4.6", BadEntry.class, sn, null, password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo non instancié est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.6", BadEntry.class, sn, pseudo, password, title, genre, author, 0, "L'ajout d'un livre avec un nombre de pages égal à 0 est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookExceptionTest("4.7", BadEntry.class, sn, pseudo, null, title, genre, author, pageCount, "L'ajout d'un livre avec un password non instancié est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.7", BadEntry.class, sn, null, password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo non instancié est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookExceptionTest("4.8", BadEntry.class, sn, "   ", password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo composé uniquement d'espaces est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.8", BadEntry.class, sn, pseudo, null, title, genre, author, pageCount, "L'ajout d'un livre avec un password non instancié est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookExceptionTest("4.9", BadEntry.class, sn, pseudo, "  123  ", title, genre, author, pageCount, "L'ajout d'un livre avec un password composé de moins de 4 caractères est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.9", BadEntry.class, sn, "   ", password, title, genre, author, pageCount, "L'ajout d'un livre avec un pseudo composé uniquement d'espaces est autorisé.");
+        nbTests++;
+        nbErreurs += addItemBookExceptionTest("4.10", BadEntry.class, sn, pseudo, "  123  ", title, genre, author, pageCount, "L'ajout d'un livre avec un password composé de moins de 4 caractères est autorisé.");
 
         nbTests++;
-        nbErreurs += addItemBookExceptionTest("4.10", NotMember.class, sn, "BillGate$$38", "Micro$$oft", title, genre, author, pageCount, "L'ajout d'un livre pour un membre inexistant est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.11", NotMember.class, sn, "BillGate$$38", "Micro$$oft", title, genre, author, pageCount, "L'ajout d'un livre pour un membre inexistant est autorisé.");
         nbTests++;
-        nbErreurs += addItemBookExceptionTest("4.11", NotMember.class, sn, pseudo, "Ju5nPa5lo2015", title, genre, author, pageCount, "L'ajout d'un livre avec un mauvais mot de passe est autorisé.");
+        nbErreurs += addItemBookExceptionTest("4.12", NotMember.class, sn, pseudo, "Ju5nPa5lo2015", title, genre, author, pageCount, "L'ajout d'un livre avec un mauvais mot de passe est autorisé.");
 
         nbTests++;
         if (nbFilms != sn.nbFilms()) {

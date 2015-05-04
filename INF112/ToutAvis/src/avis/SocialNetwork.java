@@ -201,7 +201,7 @@ public class SocialNetwork {
         LinkedList<String> itemsStrings = new LinkedList<String>();
 
         for (Item item : items) {
-            if (item.getTitle().equals(nom)) {
+            if (item.getTitle().trim().toLowerCase().equals(nom.trim().toLowerCase())) {
                 itemsStrings.add(item.toString());
             }
         }
@@ -315,7 +315,7 @@ public class SocialNetwork {
         }
 
         for (Item it : items) {
-            if ((it.getTitle().equals(title)) && (klass.isInstance(it))) {
+            if ((it.getTitle().trim().toLowerCase().equals(title.trim().toLowerCase())) && (klass.isInstance(it))) {
                 item = it;
                 break;
             }

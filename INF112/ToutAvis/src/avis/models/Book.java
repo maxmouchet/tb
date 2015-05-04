@@ -63,7 +63,7 @@ public class Book extends Item {
      * @return true si le nombre de pages est valide. false sinon.
      */
     private boolean pageCountIsValid(int pageCount) {
-        return pageCount >= 0;
+        return pageCount > 0;
     }
 
     @Override

@@ -117,7 +117,7 @@ public class Member {
         Review review = null;
 
         for (Review r : reviews) {
-            if (r.getItem().getTitle().equals(title) && klass.isInstance(r.getItem())) {
+            if (r.getItem().getTitle().trim().toLowerCase().equals(title.trim().toLowerCase()) && klass.isInstance(r.getItem())) {
                 review = r;
                 break;
             }
