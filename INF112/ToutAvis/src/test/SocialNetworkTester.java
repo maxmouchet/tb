@@ -1,14 +1,13 @@
 package test;
 
 import avis.SocialNetwork;
-import exception.*;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public class SocialNetworkTester {
 
-    public static void main(String[] args) throws BadEntry, MemberAlreadyExists, ItemBookAlreadyExists, NotMember, NotItem, ItemFilmAlreadyExists {
+    public static void main(String[] args) throws Exception {
         // SocialNetwork pour les tests
         SocialNetwork sn = new SocialNetwork();
 
@@ -26,7 +25,7 @@ public class SocialNetworkTester {
         sn.addMember(pseudo1, password1, profil1);
         sn.addMember(pseudo2, password2, profil1);
 
-        // Résultats des tests unitaires
+        // Tests unitaires
         LinkedList<HashMap<String, Integer>> testsResults = new LinkedList<HashMap<String, Integer>>();
 
         TestsInitialisation.main(args);
@@ -37,7 +36,7 @@ public class SocialNetworkTester {
         testsResults.add(TestsReviewItemFilm.runTests(sn, pseudo1, password1, pseudo2, password2));
         testsResults.add(TestsConsultItems.runTests(sn, pseudo1, password1));
 
-        System.out.println("\n*** Synthèse des tests ***");
+        System.out.println("\n*** Synthèse des tests unitaires ***");
 
         Integer totalTests = 0, totalErrors = 0;
         for (HashMap<String, Integer> testResult : testsResults) {
@@ -47,10 +46,15 @@ public class SocialNetworkTester {
 
         System.out.println(totalTests + " tests, " + totalErrors + " erreurs.\n");
 
-        // Tests de performance
-        TestsPerformances.testPerformances(100, 100, 100);
-        TestsPerformances.testPerformances(1000, 1000, 1000);
-        TestsPerformances.testPerformances(10000, 10000, 10000);
+        // Tests des performances
+        System.out.println("*** Tests des performances ***");
+        System.out.println("Members | Books | Films | addMember() | addItemBook() | addItemFilm()");
+
+        for (int i = 1; i <= 10000; i *= 10) {
+            HashMap<String, Long> performanceResult = TestsPerformances.testPerformances(i, i, i);
+            System.out.format("%8d|%7d|%7d|%10d ms|%12d ms|%11d ms\n", i, i, i, performanceResult.get("addMember"), performanceResult.get("addItemBook"), performanceResult.get("addItemFilm"));
+
+        }
     }
 
 }
