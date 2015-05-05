@@ -53,7 +53,6 @@ public class SocialNetwork {
      * @uml.property name="members"
      * @uml.associationEnd multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.models.Member"
      */
-    // private LinkedList<Member> members;
     private HashMap<String, Member> members;
 
     /**
