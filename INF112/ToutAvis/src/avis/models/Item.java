@@ -99,10 +99,12 @@ public abstract class Item {
      */
     public float getRating() {
         float sum = 0.0f;
-        float nbRating = reviews.size();
+        float nbRating = 0;
 
         for (Review review : this.reviews.values()) {
-            sum += review.getRating();
+        	float karma = review.getMember().getKarma();
+        	nbRating += karma;
+            sum += karma * review.getRating();
         }
 
         return sum / nbRating;

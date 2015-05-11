@@ -35,7 +35,7 @@
           <children xsi:type="editmodel:MessageLabelEditModel" size="0,10"/>
         </children>
       </sourceConnections>
-      <sourceConnections xsi:type="editmodel:SequenceMessageEditModel" name="addReview" id="avis.models/Member#addReview(Lavis.models.Review;)" source="//@children.1/@children.0" target="//@children.4/@children.0" targetEnd="//@children.1/@children.0/@sourceConnections.1/@children.1" sourceEnd="//@children.1/@children.0/@sourceConnections.1/@children.0" connectionRouterKind="Manual" associatedMethod="addReview(Review)" associatedSequenceNumber="1.2">
+      <sourceConnections xsi:type="editmodel:SequenceMessageEditModel" name="addReview" id="avis.models/Member#addReviewGrade(Lavis.ReviewGrade;)" source="//@children.1/@children.0" target="//@children.4/@children.0" targetEnd="//@children.1/@children.0/@sourceConnections.1/@children.1" sourceEnd="//@children.1/@children.0/@sourceConnections.1/@children.0" connectionRouterKind="Manual" associatedMethod="addReview(Review)" associatedSequenceNumber="1.2">
         <children xsi:type="editmodel:SequenceEndEditModel" location="12,164" anchorKind="FixedAtEdge" attachSource="true" userLabel="//@children.1/@children.0/@sourceConnections.1/@children.0/@children.0" methodLabel="//@children.1/@children.0/@sourceConnections.1/@children.0/@children.1" sequenceNumberLabel="//@children.1/@children.0/@sourceConnections.1/@children.0/@children.2" statementExpression="//@children.1/@children.0/@sourceConnections.1/@children.0/@children.3">
           <children xsi:type="editmodel:MessageLabelEditModel" size="0,10"/>
           <children xsi:type="editmodel:LabelEditModel" name="addReview(Review)" size="71,10"/>

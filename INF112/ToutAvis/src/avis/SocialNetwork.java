@@ -268,6 +268,27 @@ public class SocialNetwork {
     public float reviewItemBook(String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
         return reviewItem(Book.class, pseudo, password, titre, note, commentaire);
     }
+    
+    // Ajoute ou met a jour la note d'une opinion.
+    // Retourne la nouvelle note sur l'opinion.
+    public float gradeReview(String pseudo, String password, Class<?> reviewKlass, String reviewPseudo, String reviewTitle, float grade) throws BadEntry, NotReview, NotMember {
+    	Review review = findMatchingReview(reviewKlass, reviewPseudo, reviewTitle);
+    	Member member = findMatchingMember(pseudo, password);
+    	
+    	// On recherche la précédente note donné par le membre pour une review.
+        // - Si elle existe on la met à jour.
+        // - Sinon on en crée une.
+    	ReviewGrade reviewGrade = member.findReviewGrade(review);
+		if (reviewGrade == null) {
+			reviewGrade = new ReviewGrade(review, member, grade); // Crée une reviewGrade
+            member.addReviewGrade(reviewGrade);
+            review.addReviewGrade(reviewGrade);
+        } else { // - Si elle existe on la met à jour.
+        	reviewGrade.update(grade);
+        }
+    	
+    	return review.getGrade();
+    }
 
     /**
      * Ajoute une review à un item.
@@ -329,6 +350,26 @@ public class SocialNetwork {
         }
 
         return item;
+    }
+    
+    private Review findMatchingReview(Class<?> klass, String pseudo, String title) throws NotReview, NotMember, BadEntry {
+    	if (!(Member.pseudoIsValid(pseudo))) {
+            throw new BadEntry("Pseudo does not meet the requirements.");
+        }
+    	
+    	Member member = members.get(getHashKeyForClass(Member.class, pseudo));
+    	
+    	if (member == null) {
+    		throw new NotMember("Pseudo not found.");
+    	}
+    	
+		Review review = member.findReview(klass, title);
+		
+		if (review == null) {
+			throw new NotReview("Review not found.");
+		}
+		
+		return review;
     }
 
     /**

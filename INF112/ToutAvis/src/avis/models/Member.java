@@ -4,6 +4,7 @@ import avis.SocialNetwork;
 import exception.BadEntry;
 
 import java.util.HashMap;
+import java.util.Collection;
 
 /**
  * Représente un membre du SocialNetwork.
@@ -11,12 +12,17 @@ import java.util.HashMap;
 public class Member {
 
     /**
-     * La liste des reviews écrites par le membre.
-     *
-     * @uml.property name="reviews"
-     * @uml.associationEnd multiplicity="(0 -1)" inverse="member:avis.models.Review"
-     */
+	 * La liste des reviews écrites par le membre.
+	 * @uml.property   name="reviews"
+	 * @uml.associationEnd   multiplicity="(0 -1)" inverse="member:avis.models.Review"
+	 */
     private HashMap<String, Review> reviews;
+    
+	/**
+	 * @uml.property   name="reviewGrade"
+	 * @uml.associationEnd   multiplicity="(0 -1)" inverse="member:avis.models.ReviewGrade"
+	 */
+	private HashMap<String, ReviewGrade> reviewGrades;
 
     /**
      * Le pseudo du membre.
@@ -57,6 +63,7 @@ public class Member {
         this.profile = profile;
 
         this.reviews = new HashMap<>();
+        this.reviewGrades = new HashMap<>();
     }
 
     /**
@@ -107,6 +114,11 @@ public class Member {
         String hashKey = SocialNetwork.getHashKeyForClass(review.getItem().getClass(), review.getItem().getTitle());
         this.reviews.put(hashKey, review);
     }
+    
+    public void addReviewGrade(ReviewGrade reviewGrade) {
+        String hashKey = SocialNetwork.getHashKeyForClass(reviewGrade.getReview().getItem().getClass(), reviewGrade.getReview().getItem().getTitle() + reviewGrade.getReview().getMember().getPseudo());
+        this.reviewGrades.put(hashKey, reviewGrade);
+    }
 
     /**
      * Recherche la review laissé par le membre pour un type et un titre donné.
@@ -116,7 +128,12 @@ public class Member {
      * @return la review, si elle existe. null sinon.
      */
     public Review findReview(Class<?> klass, String title) {
+    	// TODO: Refactor avec Item en parametre.
         return this.reviews.get(SocialNetwork.getHashKeyForClass(klass, title));
+    }
+    
+    public ReviewGrade findReviewGrade(Review review) {
+        return this.reviewGrades.get(SocialNetwork.getHashKeyForClass(review.getItem().getClass(), review.getItem().getTitle() + review.getMember().getPseudo()));
     }
 
     /**
@@ -128,6 +145,17 @@ public class Member {
      */
     public boolean checkCredentials(String pseudo, String password) {
         return (this.pseudo.equals(pseudo) && this.password.equals(password));
+    }
+    
+    public float getKarma() {
+    	float sum = 0.0f;
+        float nbGrades = reviews.size();
+
+        for (Review review : reviews.values()) {
+            sum += review.getGrade();
+        }
+        return 1;
+        //return sum / nbGrades;
     }
 
     @Override
@@ -141,4 +169,5 @@ public class Member {
 
         return output;
     }
+
 }

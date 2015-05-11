@@ -1,6 +1,10 @@
 package avis.models;
 
 import exception.BadEntry;
+import java.util.Collection;
+import java.util.HashMap;
+
+import avis.SocialNetwork;
 
 /**
  * Représente une opinion d'un utilisateur pour un item, dans le SocialNetwork.
@@ -8,34 +12,36 @@ import exception.BadEntry;
 public class Review {
 
     /**
-     * La note pour l'item.
-     *
-     * @uml.property name="rating"
-     */
+	 * La note pour l'item.
+	 * @uml.property   name="rating"
+	 */
     private float rating;
 
     /**
-     * Le commentaire pour l'item.
-     *
-     * @uml.property name="comment"
-     */
+	 * Le commentaire pour l'item.
+	 * @uml.property   name="comment"
+	 */
     private String comment;
 
     /**
-     * Le membre associé à la review.
-     *
-     * @uml.property name="member"
-     * @uml.associationEnd multiplicity="(1 1)" inverse="reviews:avis.models.Member"
-     */
+	 * Le membre associé à la review.
+	 * @uml.property   name="member"
+	 * @uml.associationEnd   multiplicity="(1 1)" inverse="reviews:avis.models.Member"
+	 */
     private Member member;
 
     /**
-     * L'item associé à la review.
-     *
-     * @uml.property name="item"
-     * @uml.associationEnd multiplicity="(1 1)" inverse="reviews:avis.models.Item"
-     */
+	 * L'item associé à la review.
+	 * @uml.property   name="item"
+	 * @uml.associationEnd   multiplicity="(1 1)" inverse="reviews:avis.models.Item"
+	 */
     private Item item;
+    
+	/**
+	 * @uml.property   name="reviewGrade"
+	 * @uml.associationEnd   multiplicity="(0 -1)" inverse="review:avis.models.ReviewGrade"
+	 */
+	private HashMap<String, ReviewGrade> reviewGrades;
 
     /**
      * Initialise une review.
@@ -52,6 +58,7 @@ public class Review {
     public Review(Item item, Member member, String comment, float rating) throws BadEntry {
         this.item = item;
         this.member = member;
+        this.reviewGrades = new HashMap<>();
         update(comment, rating);
     }
 
@@ -74,6 +81,11 @@ public class Review {
 
         this.comment = comment;
         this.rating = rating;
+    }
+    
+    public void addReviewGrade(ReviewGrade reviewGrade) {
+        String hashKey = SocialNetwork.getHashKeyForClass(this.getClass(), reviewGrade.getMember().getPseudo());
+        this.reviewGrades.put(hashKey, reviewGrade);
     }
 
     /**
@@ -104,6 +116,15 @@ public class Review {
     public Item getItem() {
         return item;
     }
+    
+    /**
+     * Obtient le membre associé à la review.
+     *
+     * @return le membre associé à la review.
+     */
+    public Member getMember() {
+        return member;
+    }
 
     /**
      * Obtient la note associé à la review.
@@ -112,6 +133,21 @@ public class Review {
      */
     public float getRating() {
         return rating;
+    }
+    
+    public float getGrade() {    		
+    	float sum = 0.0f;
+        float nbGrades = reviewGrades.size();
+        
+        if (nbGrades == 0) {
+        	return 10; // TODO: Mettre un karma par defaut
+        }
+
+        for (ReviewGrade reviewGrade : reviewGrades.values()) {
+            sum += reviewGrade.getGrade();
+        }
+
+        return sum / nbGrades;
     }
 
     /**
@@ -134,4 +170,5 @@ public class Review {
 
         return output;
     }
+
 }
