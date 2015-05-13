@@ -360,25 +360,25 @@ public class SocialNetwork {
 
         return item;
     }
-    
+
     private Review findMatchingReview(Class<?> klass, String pseudo, String title) throws NotReview, NotMember, BadEntry {
-    	if (!(Member.pseudoIsValid(pseudo))) {
+        if (!(Member.pseudoIsValid(pseudo))) {
             throw new BadEntry("Pseudo does not meet the requirements.");
         }
-    	
-    	Member member = members.get(getHashKeyForClass(Member.class, pseudo));
-    	
-    	if (member == null) {
-    		throw new NotMember("Pseudo not found.");
-    	}
-    	
-		Review review = member.findReview(klass, title);
-		
-		if (review == null) {
-			throw new NotReview("Review not found.");
-		}
-		
-		return review;
+
+        Member member = members.get(getHashKeyForClass(Member.class, pseudo));
+
+        if (member == null) {
+            throw new NotMember("Pseudo not found.");
+        }
+
+        Review review = member.findReview(klass, title);
+
+        if (review == null) {
+            throw new NotReview("Review not found.");
+        }
+
+        return review;
     }
 
     /**
@@ -401,7 +401,7 @@ public class SocialNetwork {
         Member member = members.get(getHashKeyForClass(Member.class, pseudo));
 
         if (member == null) {
-            throw new NotMember("Invalid credentials.");
+            throw new NotMember("User does not exists.");
         }
 
         if (!member.checkCredentials(pseudo, password)) {
