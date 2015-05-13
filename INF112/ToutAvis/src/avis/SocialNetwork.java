@@ -268,27 +268,6 @@ public class SocialNetwork {
     public float reviewItemBook(String pseudo, String password, String titre, float note, String commentaire) throws BadEntry, NotMember, NotItem {
         return reviewItem(Book.class, pseudo, password, titre, note, commentaire);
     }
-    
-    // Ajoute ou met a jour la note d'une opinion.
-    // Retourne la nouvelle note sur l'opinion.
-    public float gradeReview(String pseudo, String password, Class<?> reviewKlass, String reviewPseudo, String reviewTitle, float grade) throws BadEntry, NotReview, NotMember {
-    	Review review = findMatchingReview(reviewKlass, reviewPseudo, reviewTitle);
-    	Member member = findMatchingMember(pseudo, password);
-    	
-    	// On recherche la précédente note donné par le membre pour une review.
-        // - Si elle existe on la met à jour.
-        // - Sinon on en crée une.
-    	ReviewGrade reviewGrade = member.findReviewGrade(review);
-		if (reviewGrade == null) {
-			reviewGrade = new ReviewGrade(review, member, grade); // Crée une reviewGrade
-            member.addReviewGrade(reviewGrade);
-            review.addReviewGrade(reviewGrade);
-        } else { // - Si elle existe on la met à jour.
-        	reviewGrade.update(grade);
-        }
-    	
-    	return review.getGrade();
-    }
 
     /**
      * Ajoute une review à un item.
@@ -327,6 +306,36 @@ public class SocialNetwork {
         }
 
         return item.getRating();
+    }
+
+    // TODO: Javadoc
+    public float gradeReviewItemBook(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry {
+        return gradeReview(pseudo, password, Book.class, reviewPseudo, reviewTitle, grade);
+    }
+
+    // TODO: Javadoc
+    public float gradeReviewItemFilm(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry {
+        return gradeReview(pseudo, password, Film.class, reviewPseudo, reviewTitle, grade);
+    }
+
+    // TODO: Javadoc
+    private float gradeReview(String pseudo, String password, Class<?> reviewKlass, String reviewPseudo, String reviewTitle, float grade) throws BadEntry, NotReview, NotMember {
+        Review review = findMatchingReview(reviewKlass, reviewPseudo, reviewTitle);
+        Member member = findMatchingMember(pseudo, password);
+
+        // On recherche la précédente note donné par le membre pour une review.
+        // - Si elle existe on la met à jour.
+        // - Sinon on en crée une.
+        ReviewGrade reviewGrade = member.findReviewGrade(review);
+        if (reviewGrade == null) {
+            reviewGrade = new ReviewGrade(review, member, grade);
+            member.addReviewGrade(reviewGrade);
+            review.addReviewGrade(reviewGrade);
+        } else {
+            reviewGrade.update(grade);
+        }
+
+        return review.getGrade();
     }
 
     /**
