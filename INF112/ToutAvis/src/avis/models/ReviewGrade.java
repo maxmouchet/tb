@@ -14,13 +14,13 @@ public class ReviewGrade {
 	public float getGrade() {
 		return this.grade;
 	}
-	
+
 	/**
 	 * @uml.property  name="member"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="reviewGrade:avis.models.Member"
 	 */
 	private Member member;
-	
+
 	public Member getMember() {
 		return this.member;
 	}
@@ -30,28 +30,29 @@ public class ReviewGrade {
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="reviewGrade:avis.models.Review"
 	 */
 	private Review review;
-	
+
 	public Review getReview() {
 		return this.review;
 	}
 
 	public ReviewGrade(Review review, Member member, float grade) throws BadEntry {
-		// TODO Auto-generated constructor stub
-		// TODO VERIFICATIONS
 		this.review = review;
 		this.member = member;
 		update(grade);
 	}
-	
-	public void update(float grade) throws BadEntry {
-		// TODO VERIFICATIONS
-        //boolean isValid = ratingIsValid(rating) && commentIsValid(comment);
 
-        //if (!isValid) {
-        //    throw new BadEntry("Comment and/or rating does not meet the requirements.");
-        //}
+	public void update(float grade) throws BadEntry {
+        boolean isValid = gradeIsValid(grade);
+
+        if (!isValid) {
+            throw new BadEntry("Grade does not meet the requirements.");
+        }
 
         this.grade = grade;
     }
-	
+
+	private boolean gradeIsValid(float grade) {
+        return ((grade >= 1) && (grade <= 3));
+    }
+
 }
