@@ -1,10 +1,9 @@
 package avis.models;
 
-import exception.BadEntry;
-import java.util.Collection;
-import java.util.HashMap;
-
 import avis.SocialNetwork;
+import exception.BadEntry;
+
+import java.util.HashMap;
 
 /**
  * Représente une opinion d'un utilisateur pour un item, dans le SocialNetwork.
@@ -138,9 +137,11 @@ public class Review {
     public float getGrade() {    		
     	float sum = 0.0f;
         float nbGrades = reviewGrades.size();
-        
+
+        // Karma neutre associé par défaut à utilisateur.
+        // N'a pas d'effet sur la note attribué par l'utilisateur à un item.
         if (nbGrades == 0) {
-        	return 10; // TODO: Mettre un karma par defaut
+        	return 2;
         }
 
         for (ReviewGrade reviewGrade : reviewGrades.values()) {

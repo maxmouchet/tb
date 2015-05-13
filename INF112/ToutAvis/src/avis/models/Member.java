@@ -4,7 +4,6 @@ import avis.SocialNetwork;
 import exception.BadEntry;
 
 import java.util.HashMap;
-import java.util.Collection;
 
 /**
  * Représente un membre du SocialNetwork.
@@ -154,8 +153,8 @@ public class Member {
         for (Review review : reviews.values()) {
             sum += review.getGrade();
         }
-        return 1;
-        //return sum / nbGrades;
+
+        return sum / nbGrades;
     }
 
     @Override
