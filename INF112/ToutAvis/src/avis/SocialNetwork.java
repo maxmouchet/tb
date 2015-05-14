@@ -64,13 +64,13 @@ public class SocialNetwork {
     }
 
     /**
-     * Calcul un hash unique pour une classe et une chaîne donnée.
+     * Calcul une chaine unique pour une classe et une chaîne donnée.
      *
      * @param klass  la classe à utiliser pour le hash.
      * @param string la chaîne à utiliser pour le hash.
-     * @return un hash unique.
+     * @return une chaîne unique.
      */
-    public static String getHashKeyForClass(Class<?> klass, String string) {
+    public static String getMapKeyForClass(Class<?> klass, String string) {
         return klass.getName() + string.trim().toLowerCase();
     }
 
@@ -116,7 +116,7 @@ public class SocialNetwork {
      */
     public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists {
         Member m = new Member(pseudo, password, profil);
-        String hashKey = getHashKeyForClass(Member.class, pseudo);
+        String hashKey = getMapKeyForClass(Member.class, pseudo);
 
         if (members.containsKey(hashKey)) {
             throw new MemberAlreadyExists();
@@ -151,7 +151,7 @@ public class SocialNetwork {
         findMatchingMember(pseudo, password);
 
         Film film = new Film(titre, genre, realisateur, scenariste, duree);
-        String hashKey = getHashKeyForClass(Film.class, titre);
+        String hashKey = getMapKeyForClass(Film.class, titre);
 
         if (items.containsKey(hashKey)) {
             throw new ItemFilmAlreadyExists();
@@ -184,7 +184,7 @@ public class SocialNetwork {
         findMatchingMember(pseudo, password);
 
         Book book = new Book(titre, genre, auteur, nbPages);
-        String hashKey = getHashKeyForClass(Book.class, titre);
+        String hashKey = getMapKeyForClass(Book.class, titre);
 
         if (items.containsKey(hashKey)) {
             throw new ItemBookAlreadyExists();
@@ -210,7 +210,7 @@ public class SocialNetwork {
         LinkedList<String> itemsStrings = new LinkedList<>();
 
         for (Class klass : new Class[]{Book.class, Film.class}) {
-            String hashKey = getHashKeyForClass(klass, nom);
+            String hashKey = getMapKeyForClass(klass, nom);
             if (items.containsKey(hashKey)) {
                 itemsStrings.add(items.get(hashKey).toString());
             }
@@ -352,7 +352,7 @@ public class SocialNetwork {
             throw new BadEntry("Item title does not meet the requirements.");
         }
 
-        Item item = items.get(getHashKeyForClass(klass, title));
+        Item item = items.get(getMapKeyForClass(klass, title));
 
         if (item == null) {
             throw new NotItem("Item not found.");
@@ -366,7 +366,7 @@ public class SocialNetwork {
             throw new BadEntry("Pseudo does not meet the requirements.");
         }
 
-        Member member = members.get(getHashKeyForClass(Member.class, pseudo));
+        Member member = members.get(getMapKeyForClass(Member.class, pseudo));
 
         if (member == null) {
             throw new NotMember("Pseudo not found.");
@@ -398,7 +398,7 @@ public class SocialNetwork {
             throw new BadEntry("Pseudo and/or password does not meet the requirements.");
         }
 
-        Member member = members.get(getHashKeyForClass(Member.class, pseudo));
+        Member member = members.get(getMapKeyForClass(Member.class, pseudo));
 
         if (member == null) {
             throw new NotMember("User does not exists.");

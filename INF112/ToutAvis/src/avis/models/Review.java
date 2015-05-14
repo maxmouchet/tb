@@ -83,7 +83,7 @@ public class Review {
     }
     
     public void addReviewGrade(ReviewGrade reviewGrade) {
-        String hashKey = SocialNetwork.getHashKeyForClass(this.getClass(), reviewGrade.getMember().getPseudo());
+        String hashKey = SocialNetwork.getMapKeyForClass(this.getClass(), reviewGrade.getMember().getPseudo());
         this.reviewGrades.put(hashKey, reviewGrade);
     }
 
@@ -155,9 +155,9 @@ public class Review {
      * Retourne une chaîne unique pour chaque review.
      * Peut-être utilisé comme clé dans une table de hachage.
      *
-     * @return un hash unique.
+     * @return une chaîne unique.
      */
-    public String hashKey() {
+    public String mapKey() {
         return this.item.getClass().getName() + this.item.getTitle() + this.member.getPseudo();
     }
 

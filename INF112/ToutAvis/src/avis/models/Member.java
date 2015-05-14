@@ -110,12 +110,12 @@ public class Member {
      * @param review la review.
      */
     public void addReview(Review review) {
-        String hashKey = SocialNetwork.getHashKeyForClass(review.getItem().getClass(), review.getItem().getTitle());
+        String hashKey = SocialNetwork.getMapKeyForClass(review.getItem().getClass(), review.getItem().getTitle());
         this.reviews.put(hashKey, review);
     }
     
     public void addReviewGrade(ReviewGrade reviewGrade) {
-        String hashKey = SocialNetwork.getHashKeyForClass(reviewGrade.getReview().getItem().getClass(), reviewGrade.getReview().getItem().getTitle() + reviewGrade.getReview().getMember().getPseudo());
+        String hashKey = SocialNetwork.getMapKeyForClass(reviewGrade.getReview().getItem().getClass(), reviewGrade.getReview().getItem().getTitle() + reviewGrade.getReview().getMember().getPseudo());
         this.reviewGrades.put(hashKey, reviewGrade);
     }
 
@@ -128,11 +128,11 @@ public class Member {
      */
     public Review findReview(Class<?> klass, String title) {
     	// TODO: Refactor avec Item en parametre.
-        return this.reviews.get(SocialNetwork.getHashKeyForClass(klass, title));
+        return this.reviews.get(SocialNetwork.getMapKeyForClass(klass, title));
     }
     
     public ReviewGrade findReviewGrade(Review review) {
-        return this.reviewGrades.get(SocialNetwork.getHashKeyForClass(review.getItem().getClass(), review.getItem().getTitle() + review.getMember().getPseudo()));
+        return this.reviewGrades.get(SocialNetwork.getMapKeyForClass(review.getItem().getClass(), review.getItem().getTitle() + review.getMember().getPseudo()));
     }
 
     /**

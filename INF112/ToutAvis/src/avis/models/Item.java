@@ -80,7 +80,7 @@ public abstract class Item {
      * @param review la review.
      */
     public void addReview(Review review) {
-        this.reviews.put(review.hashKey(), review);
+        this.reviews.put(review.mapKey(), review);
     }
 
     /**
