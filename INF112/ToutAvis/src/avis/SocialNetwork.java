@@ -362,8 +362,8 @@ public class SocialNetwork {
     }
 
     private Review findMatchingReview(Class<?> klass, String pseudo, String title) throws NotReview, NotMember, BadEntry {
-        if (!(Member.pseudoIsValid(pseudo))) {
-            throw new BadEntry("Pseudo does not meet the requirements.");
+        if (!(Member.pseudoIsValid(pseudo) && Item.titleIsValid(title))) {
+            throw new BadEntry("Pseudo and/or title does not meet the requirements.");
         }
 
         Member member = members.get(getMapKeyForClass(Member.class, pseudo));
