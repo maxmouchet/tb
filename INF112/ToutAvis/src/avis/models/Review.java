@@ -1,5 +1,6 @@
 package avis.models;
 
+import avis.SocialNetwork;
 import exception.BadEntry;
 
 /**
@@ -47,6 +48,11 @@ public class Review {
     private int gradesCount = 0;
 
     /**
+     *
+     */
+    public final String mapKey;
+
+    /**
      * Initialise une review.
      *
      * @param item    l'item associé à la review.
@@ -61,6 +67,7 @@ public class Review {
     public Review(Item item, Member member, String comment, float rating) throws BadEntry {
         this.item = item;
         this.member = member;
+        this.mapKey = SocialNetwork.getMapKeyForClass(item.getClass(), item.getTitle());
         update(comment, rating);
     }
 
@@ -103,24 +110,6 @@ public class Review {
      */
     private boolean commentIsValid(String comment) {
         return comment != null;
-    }
-
-    /**
-     * Obtient l'item associé à la review.
-     *
-     * @return l'item associé à la review.
-     */
-    public Item getItem() {
-        return item;
-    }
-
-    /**
-     * Obtient le membre associé à la review.
-     *
-     * @return le membre associé à la review.
-     */
-    public Member getMember() {
-        return member;
     }
 
     /**

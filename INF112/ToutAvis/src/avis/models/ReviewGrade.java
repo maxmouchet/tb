@@ -6,32 +6,19 @@ import exception.BadEntry;
 public class ReviewGrade {
 
     /**
-     * @uml.property name="member"
-     * @uml.associationEnd multiplicity="(1 1)" inverse="reviewGrade:avis.models.Member"
-     */
-    private final Member member;
-    /**
-     * @uml.property name="review"
-     * @uml.associationEnd multiplicity="(1 1)" inverse="reviewGrade:avis.models.Review"
-     */
-    private final Review review;
-    /**
      * @uml.property name="grade"
      */
     private float grade;
 
-    public ReviewGrade(Review review, Member member, float grade) throws BadEntry {
-        this.review = review;
-        this.member = member;
+    public final String mapKey;
+
+    public ReviewGrade(Review review, float grade) throws BadEntry {
+        this.mapKey = review.mapKey;
         update(grade);
     }
 
     public float getGrade() {
         return this.grade;
-    }
-
-    public Review getReview() {
-        return this.review;
     }
 
     public void update(float grade) throws BadEntry {

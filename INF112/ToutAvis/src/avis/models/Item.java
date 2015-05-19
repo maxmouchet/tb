@@ -1,5 +1,6 @@
 package avis.models;
 
+import avis.SocialNetwork;
 import exception.BadEntry;
 
 import java.util.HashMap;
@@ -32,6 +33,8 @@ public abstract class Item {
      */
     private final HashMap<String, Review> reviews;
 
+    public final String mapKey;
+
     /**
      * Initialise un item. Réservé pour les classes enfants, Item étant abstraite.
      *
@@ -52,6 +55,8 @@ public abstract class Item {
         this.title = title;
         this.genre = genre;
         this.reviews = new HashMap<>();
+
+        this.mapKey = SocialNetwork.getMapKeyForClass(this.getClass(), title);
     }
 
     /**

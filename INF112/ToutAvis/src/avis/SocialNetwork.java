@@ -115,14 +115,13 @@ public class SocialNetwork {
      * @throws MemberAlreadyExists membre de même pseudo déjà présent dans le <i>SocialNetwork</i> (même pseudo : indifférent à  la casse  et aux leadings et trailings blanks).
      */
     public void addMember(String pseudo, String password, String profil) throws BadEntry, MemberAlreadyExists {
-        Member m = new Member(pseudo, password, profil);
-        String hashKey = getMapKeyForClass(Member.class, pseudo);
+        Member member = new Member(pseudo, password, profil);
 
-        if (members.containsKey(hashKey)) {
+        if (members.containsKey(member.mapKey)) {
             throw new MemberAlreadyExists();
         }
 
-        this.members.put(hashKey, m);
+        this.members.put(member.mapKey, member);
     }
 
     /**
@@ -151,13 +150,12 @@ public class SocialNetwork {
         findMatchingMember(pseudo, password);
 
         Film film = new Film(titre, genre, realisateur, scenariste, duree);
-        String hashKey = getMapKeyForClass(Film.class, titre);
 
-        if (items.containsKey(hashKey)) {
+        if (items.containsKey(film.mapKey)) {
             throw new ItemFilmAlreadyExists();
         }
 
-        this.items.put(hashKey, film);
+        this.items.put(film.mapKey, film);
     }
 
     /**
@@ -184,13 +182,12 @@ public class SocialNetwork {
         findMatchingMember(pseudo, password);
 
         Book book = new Book(titre, genre, auteur, nbPages);
-        String hashKey = getMapKeyForClass(Book.class, titre);
 
-        if (items.containsKey(hashKey)) {
+        if (items.containsKey(book.mapKey)) {
             throw new ItemBookAlreadyExists();
         }
 
-        this.items.put(hashKey, book);
+        this.items.put(book.mapKey, book);
     }
 
     /**
@@ -328,7 +325,7 @@ public class SocialNetwork {
         // - Sinon on en crée une.
         ReviewGrade reviewGrade = member.findReviewGrade(review);
         if (reviewGrade == null) {
-            reviewGrade = new ReviewGrade(review, member, grade);
+            reviewGrade = new ReviewGrade(review, grade);
             review.updateAverageGrade(grade);
             member.addReviewGrade(reviewGrade);
         } else {

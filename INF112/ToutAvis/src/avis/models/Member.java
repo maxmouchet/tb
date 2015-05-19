@@ -44,6 +44,8 @@ public class Member {
      */
     private float karma;
 
+    public final String mapKey;
+
     /**
      * Initialise un membre.
      *
@@ -69,6 +71,8 @@ public class Member {
 
         this.reviews = new HashMap<>();
         this.reviewGrades = new HashMap<>();
+
+        this.mapKey = SocialNetwork.getMapKeyForClass(this.getClass(), pseudo);
     }
 
     /**
@@ -116,14 +120,12 @@ public class Member {
      * @param review la review.
      */
     public void addReview(Review review) {
-        String hashKey = SocialNetwork.getMapKeyForClass(review.getItem().getClass(), review.getItem().getTitle());
-        this.reviews.put(hashKey, review);
+        this.reviews.put(review.mapKey, review);
         updateKarma(0, review.getAverageGrade());
     }
 
     public void addReviewGrade(ReviewGrade reviewGrade) {
-        String hashKey = SocialNetwork.getMapKeyForClass(reviewGrade.getReview().getItem().getClass(), reviewGrade.getReview().getItem().getTitle() + reviewGrade.getReview().getMember().getPseudo());
-        this.reviewGrades.put(hashKey, reviewGrade);
+        this.reviewGrades.put(reviewGrade.mapKey, reviewGrade);
     }
 
     /**
@@ -138,8 +140,9 @@ public class Member {
         return this.reviews.get(SocialNetwork.getMapKeyForClass(klass, title));
     }
 
+    // TODO: Passer class et title de l'item en parametre a la place de review.
     public ReviewGrade findReviewGrade(Review review) {
-        return this.reviewGrades.get(SocialNetwork.getMapKeyForClass(review.getItem().getClass(), review.getItem().getTitle() + review.getMember().getPseudo()));
+        return this.reviewGrades.get(review.mapKey);
     }
 
     /**
