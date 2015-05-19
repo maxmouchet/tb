@@ -6,9 +6,9 @@ import exception.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-class TestsConsultItems {
+public class TestsConsultItems implements SocialNetworkTest {
 
-    private static int consultItemsOKTest(String idTest, SocialNetwork sn, String title, int expectedSize) {
+    private int consultItemsOKTest(String idTest, SocialNetwork sn, String title, int expectedSize) {
         try {
             LinkedList<String> items = sn.consultItems(title);
 
@@ -26,7 +26,7 @@ class TestsConsultItems {
         }
     }
 
-    private static int consultItemsBadEntryTest(String idTest, SocialNetwork sn, String title, String messErreur) {
+    private int consultItemsBadEntryTest(String idTest, SocialNetwork sn, String title, String messErreur) {
         try {
             sn.consultItems(title);
 
@@ -41,7 +41,7 @@ class TestsConsultItems {
         }
     }
 
-    public static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo, String password) throws BadEntry, ItemFilmAlreadyExists, NotMember, ItemBookAlreadyExists {
+        public HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo1, String password1, String pseudo2, String password2) throws Exception {
         System.out.println("\n# Tests de consultation d'items");
 
         int nbTests = 0;
@@ -50,9 +50,9 @@ class TestsConsultItems {
         // Ajout d'items dans le SocialNetwork
         String title = "Trainspotting";
         System.out.println("* Ajout d'un film pour les tests: " + title);
-        sn.addItemFilm(pseudo, password, title, "Drame", "Danny Boyle", "John Hodge", 94);
+        sn.addItemFilm(pseudo1, password1, title, "Drame", "Danny Boyle", "John Hodge", 94);
         System.out.println("* Ajout d'un livre pour les tests: " + title);
-        sn.addItemBook(pseudo, password, title, "Roman", "Irvine Welsh", 380);
+        sn.addItemBook(pseudo1, password1, title, "Roman", "Irvine Welsh", 380);
 
         int nbLivres = sn.nbBooks();
         int nbFilms = sn.nbFilms();
@@ -97,8 +97,6 @@ class TestsConsultItems {
         HashMap<String, Integer> testsResults = new HashMap<>();
         testsResults.put("errors", nbErreurs);
         testsResults.put("total", nbTests);
-
-        System.out.println("-> TestsConsultItems: " + testsResults.get("errors") + " erreur(s) / " + testsResults.get("total") + " tests effectués");
         return testsResults;
     }
 }

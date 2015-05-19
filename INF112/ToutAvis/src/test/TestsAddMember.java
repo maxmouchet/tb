@@ -12,9 +12,9 @@ import java.util.HashMap;
  * @date mars 2015
  */
 
-class TestsAddMember {
+public class TestsAddMember implements SocialNetworkTest {
 
-    private static int addMemberBadEntryTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
+    private int addMemberBadEntryTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
         // vérifie que l'ajout d'un membre (pseudo, pwd, profil) est refusée (levée de l'exception BadEntry et  pas de modification du sn)
         // si c'est bien le cas, ne fait rien
         // sinon, affiche le message d'erreur passé en paramètre
@@ -36,7 +36,7 @@ class TestsAddMember {
         }
     }
 
-    private static int addMemberOKTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest) {
+    private int addMemberOKTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest) {
         int nbMembres = sn.nbMembers();
         try {
             sn.addMember(pseudo, pwd, profil);
@@ -52,7 +52,7 @@ class TestsAddMember {
         }
     }
 
-    private static int addMemberAlreadyExistsTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
+    private int addMemberAlreadyExistsTest(SocialNetwork sn, String pseudo, String pwd, String profil, String idTest, String messErreur) {
         int nbMembres = sn.nbMembers();
         try {
             sn.addMember(pseudo, pwd, profil);
@@ -71,7 +71,7 @@ class TestsAddMember {
         }
     }
 
-    public static HashMap<String, Integer> runTests(SocialNetwork sn) {
+    public HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo1, String password1, String pseudo2, String password2) throws Exception {
         System.out.println("\n# Tests d'ajout de membres");
 
         int nbTests = 0;
@@ -134,8 +134,6 @@ class TestsAddMember {
         HashMap<String, Integer> testsResults = new HashMap<>();
         testsResults.put("errors", nbErreurs);
         testsResults.put("total", nbTests);
-
-        System.out.println("-> TestsAddMember: " + testsResults.get("errors") + " erreur(s) / " + testsResults.get("total") + " tests effectués");
         return testsResults;
     }
 }

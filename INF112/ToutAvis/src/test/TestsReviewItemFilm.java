@@ -8,9 +8,9 @@ import exception.NotMember;
 
 import java.util.HashMap;
 
-class TestsReviewItemFilm {
+public class TestsReviewItemFilm implements SocialNetworkTest {
 
-    private static int reviewItemFilmOKTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, Float rating, Float expectedRating, String comment) {
+    private int reviewItemFilmOKTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, Float rating, Float expectedRating, String comment) {
         try {
             float newRating = sn.reviewItemFilm(pseudo, password, title, rating, comment);
 
@@ -28,7 +28,7 @@ class TestsReviewItemFilm {
         }
     }
 
-    private static int reviewItemFilmNotItemTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, Float rating, String comment, String messErreur) {
+    private int reviewItemFilmNotItemTest(String idTest, SocialNetwork sn, String pseudo, String password, String title, Float rating, String comment, String messErreur) {
         try {
             sn.reviewItemFilm(pseudo, password, title, rating, comment);
             System.out.println("Test " + idTest + " : " + messErreur);
@@ -42,7 +42,7 @@ class TestsReviewItemFilm {
         }
     }
 
-    private static int reviewItemFilmExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String title, Float rating, Float expectedRating, String comment, String messErreur) throws NotMember, BadEntry, NotItem {
+    private int reviewItemFilmExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String title, Float rating, Float expectedRating, String comment, String messErreur) throws NotMember, BadEntry, NotItem {
         try {
             sn.reviewItemFilm(pseudo, password, title, rating, comment);
 
@@ -69,7 +69,7 @@ class TestsReviewItemFilm {
 
                 // Cas erroné: exception attendue mais la note du film a changé.
                 else {
-                    System.out.println("Test " + idTest + " : l'exception BadEntry a bien été levé, mais la note du film a été modifié");
+                    System.out.println("Test " + idTest + " : l'exception " + e.getClass().getSimpleName() + " a bien été levé, mais la note du film a été modifié");
                     return 1;
                 }
             }
@@ -83,7 +83,7 @@ class TestsReviewItemFilm {
         }
     }
 
-    public static HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo1, String password1, String pseudo2, String password2) throws NotMember, BadEntry, ItemFilmAlreadyExists, NotItem {
+    public HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo1, String password1, String pseudo2, String password2) throws NotMember, BadEntry, ItemFilmAlreadyExists, NotItem {
         System.out.println("\n# Tests d'ajout d'avis sur des films");
 
         int nbTests = 0;
@@ -170,8 +170,6 @@ class TestsReviewItemFilm {
         HashMap<String, Integer> testsResults = new HashMap<>();
         testsResults.put("errors", nbErreurs);
         testsResults.put("total", nbTests);
-
-        System.out.println("-> TestsReviewItemFilm: " + testsResults.get("errors") + " erreur(s) / " + testsResults.get("total") + " tests effectués");
         return testsResults;
     }
 }

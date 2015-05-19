@@ -1,6 +1,8 @@
 package test;
 
 import avis.SocialNetwork;
+import exception.BadEntry;
+import exception.MemberAlreadyExists;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -8,33 +10,33 @@ import java.util.LinkedList;
 public class SocialNetworkTester {
 
     public static void main(String[] args) throws Exception {
-        // SocialNetwork pour les tests
-        SocialNetwork sn = new SocialNetwork();
-
-        // Ajout de membres pour les tests
-        // Membre 1
-        String pseudo1 = "ToTo";
-        String password1 = "Pa$$w0rd";
-        String profil1 = "tAtA";
-
-        // Membre 2
-        String pseudo2 = "JoJo";
-        String password2 = "Pa$$w0rd";
-        String profil2 = "lOlO";
-
-        sn.addMember(pseudo1, password1, profil1);
-        sn.addMember(pseudo2, password2, profil2);
+        // Tests initialisation
+        TestsInitialisation.main(args);
 
         // Tests unitaires
         LinkedList<HashMap<String, Integer>> testsResults = new LinkedList<>();
 
-        TestsInitialisation.main(args);
-        testsResults.add(TestsAddMember.runTests(sn));
-        testsResults.add(TestsAddItemBook.runTests(sn, pseudo1, password1));
-        testsResults.add(TestsReviewItemBook.runTests(sn, pseudo1, password1, pseudo2, password2));
-        testsResults.add(TestsAddItemFilm.runTests(sn, pseudo1, password1));
-        testsResults.add(TestsReviewItemFilm.runTests(sn, pseudo1, password1, pseudo2, password2));
-        testsResults.add(TestsConsultItems.runTests(sn, pseudo1, password1));
+        Class[] tests = {
+                TestsAddMember.class,
+                TestsAddItemBook.class,
+                TestsAddItemFilm.class,
+                TestsReviewItemBook.class,
+                TestsReviewItemFilm.class,
+                TestsGradeReviewItemBook.class,
+                TestsGradeReviewItemFilm.class,
+                TestsConsultItems.class
+        };
+
+        for (Class klass : tests) {
+            SocialNetwork sn = new SocialNetwork();
+            HashMap<String, String> members = fakeMembers(sn, 2);
+
+            SocialNetworkTest test = (SocialNetworkTest) klass.getConstructors()[0].newInstance();
+            HashMap<String, Integer> testResult = test.runTests(sn, "User1", members.get("User1"), "User2", members.get("User2"));
+
+            System.out.println("-> " + klass.getSimpleName() + ": " + testResult.get("errors") + " erreur(s) / " + testResult.get("total") + " tests effectués");
+            testsResults.add(testResult);
+        }
 
         System.out.println("\n*** Synthèse des tests unitaires ***");
 
@@ -56,6 +58,20 @@ public class SocialNetworkTester {
             System.out.format("%8d|%7d|%7d|%10d ms|%12d ms|%12d ms|%15d ms|%15d ms|%12d ms\n", i, i, i, performanceResult.get("addMember"), performanceResult.get("addItemBook"), performanceResult.get("addItemFilm"), performanceResult.get("reviewItemBook"), performanceResult.get("reviewItemFilm"), performanceResult.get("consultItems"));
 
         }
+    }
+
+    private static HashMap<String, String> fakeMembers(SocialNetwork sn, int count) throws MemberAlreadyExists, BadEntry {
+        HashMap<String, String> members = new HashMap<>();
+
+        for (int i = 1; i <= 2; i++) {
+            String pseudo = "User" + i;
+            String password = "Pa$$w0rd";
+            String profil = "1337";
+            members.put(pseudo, password);
+            sn.addMember(pseudo, password, profil);
+        }
+
+        return members;
     }
 
 }
