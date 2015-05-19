@@ -47,7 +47,7 @@ class TestsPerformances {
         results.put("addItemFilm", (endTime - startTime) / (1000 * 1000));
 
         startTime = System.nanoTime();
-        for (int i = 0; i < films; i++) {
+        for (int i = 0; i < books; i++) {
             sn.reviewItemBook("User0", "Password", "Book" + i, 5.0f, "Amazing !");
         }
         endTime = System.nanoTime();
@@ -61,8 +61,22 @@ class TestsPerformances {
         results.put("reviewItemFilm", (endTime - startTime) / (1000 * 1000));
 
         startTime = System.nanoTime();
+        for (int i = 0; i < books; i++) {
+            sn.gradeReviewItemBook("User0", "Password", "User0", "Book" + i, 3.0f);
+        }
+        endTime = System.nanoTime();
+        results.put("gradeReviewItemBook", (endTime - startTime) / (1000 * 1000));
+
+        startTime = System.nanoTime();
         for (int i = 0; i < films; i++) {
-            sn.consultItems("Film" + i);
+            sn.gradeReviewItemFilm("User0", "Password", "User0", "Film" + i, 3.0f);
+        }
+        endTime = System.nanoTime();
+        results.put("gradeReviewItemFilm", (endTime - startTime) / (1000 * 1000));
+
+        startTime = System.nanoTime();
+        for (int i = 0; i < books; i++) {
+            sn.consultItems("Book" + i);
         }
         endTime = System.nanoTime();
         results.put("consultItems", (endTime - startTime) / (1000 * 1000));

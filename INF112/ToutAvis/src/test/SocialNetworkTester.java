@@ -7,7 +7,7 @@ import exception.MemberAlreadyExists;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class SocialNetworkTester {
+class SocialNetworkTester {
 
     public static void main(String[] args) throws Exception {
         // Tests initialisation
@@ -51,19 +51,18 @@ public class SocialNetworkTester {
         // Tests des performances
         System.out.println("*** Tests des performances ***");
         System.out.println("Note: une review par item est ajouté.");
-        System.out.println("Members | Books | Films | addMember() | addItemBook() | addItemFilm() | reviewItemBook() | reviewItemFilm() | consultItems()");
+        System.out.println("Itérations | addMember() | addItemBook() | addItemFilm() | reviewItemBook() | reviewItemFilm() | gradeReviewItemBook() | gradeReviewItemFilm() | consultItems()");
 
-        for (int i = 1; i <= 100000; i *= 10) {
+        for (int i = 1; i <= 10000; i *= 10) {
             HashMap<String, Long> performanceResult = TestsPerformances.testPerformances(i, i, i);
-            System.out.format("%8d|%7d|%7d|%10d ms|%12d ms|%12d ms|%15d ms|%15d ms|%12d ms\n", i, i, i, performanceResult.get("addMember"), performanceResult.get("addItemBook"), performanceResult.get("addItemFilm"), performanceResult.get("reviewItemBook"), performanceResult.get("reviewItemFilm"), performanceResult.get("consultItems"));
-
+            System.out.format("%11d|%10d ms|%12d ms|%12d ms|%15d ms|%15d ms|%20d ms|%20d ms|%12d ms\n", i, performanceResult.get("addMember"), performanceResult.get("addItemBook"), performanceResult.get("addItemFilm"), performanceResult.get("reviewItemBook"), performanceResult.get("reviewItemFilm"), performanceResult.get("gradeReviewItemBook"), performanceResult.get("gradeReviewItemFilm"), performanceResult.get("consultItems"));
         }
     }
 
     private static HashMap<String, String> fakeMembers(SocialNetwork sn, int count) throws MemberAlreadyExists, BadEntry {
         HashMap<String, String> members = new HashMap<>();
 
-        for (int i = 1; i <= 2; i++) {
+        for (int i = 1; i <= count; i++) {
             String pseudo = "User" + i;
             String password = "Pa$$w0rd";
             String profil = "1337";
