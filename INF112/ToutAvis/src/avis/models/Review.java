@@ -133,8 +133,8 @@ public class Review {
     public float getRating() {
         return rating;
     }
-    
-    public float getGrade() {    		
+
+    public float getGrade() {
     	float sum = 0.0f;
         float nbGrades = reviewGrades.size();
 
