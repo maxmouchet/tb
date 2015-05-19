@@ -12,21 +12,21 @@ public class Film extends Item {
      *
      * @uml.property name="director"
      */
-    private String director;
+    private final String director;
 
     /**
      * Le scénariste du film.
      *
      * @uml.property name="writer"
      */
-    private String writer;
+    private final String writer;
 
     /**
      * La durée du film, en minutes.
      *
      * @uml.property name="length"
      */
-    private int length;
+    private final int length;
 
     /**
      * Initialise un film.

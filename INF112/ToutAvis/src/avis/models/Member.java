@@ -16,28 +16,28 @@ public class Member {
      * @uml.property name="reviews"
      * @uml.associationEnd multiplicity="(0 -1)" inverse="member:avis.models.Review"
      */
-    private HashMap<String, Review> reviews;
+    private final HashMap<String, Review> reviews;
 
     /**
      * @uml.property name="reviewGrade"
      * @uml.associationEnd multiplicity="(0 -1)" inverse="member:avis.models.ReviewGrade"
      */
-    private HashMap<String, ReviewGrade> reviewGrades;
+    private final HashMap<String, ReviewGrade> reviewGrades;
 
     /**
      * Le pseudo du membre.
      */
-    private String pseudo;
+    private final String pseudo;
 
     /**
      * Le mot de passe du membre.
      */
-    private String password;
+    private final String password;
 
     /**
      * La description du membre.
      */
-    private String profile;
+    private final String profile;
 
     /**
      * TODO
@@ -118,7 +118,7 @@ public class Member {
     public void addReview(Review review) {
         String hashKey = SocialNetwork.getMapKeyForClass(review.getItem().getClass(), review.getItem().getTitle());
         this.reviews.put(hashKey, review);
-        updateKarma(review.getAverageGrade());
+        updateKarma(0, review.getAverageGrade());
     }
 
     public void addReviewGrade(ReviewGrade reviewGrade) {
@@ -151,10 +151,6 @@ public class Member {
      */
     public boolean checkCredentials(String pseudo, String password) {
         return (this.pseudo.equals(pseudo) && this.password.equals(password));
-    }
-
-    private void updateKarma(float newAverage) {
-        karma = (reviews.size() * karma + newAverage) / reviews.size();
     }
 
     public void updateKarma(float oldAverage, float newAverage) {

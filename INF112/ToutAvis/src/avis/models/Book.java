@@ -12,14 +12,14 @@ public class Book extends Item {
      *
      * @uml.property name="author"
      */
-    private String author;
+    private final String author;
 
     /**
      * Le nombre de pages du livre.
      *
      * @uml.property name="pageCount"
      */
-    private int pageCount;
+    private final int pageCount;
 
     /**
      * Initialise un livre.

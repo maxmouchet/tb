@@ -15,14 +15,14 @@ public abstract class Item {
      *
      * @uml.property name="title"
      */
-    private String title;
+    private final String title;
 
     /**
      * Le genre de l'item.
      *
      * @uml.property name="genre"
      */
-    private String genre;
+    private final String genre;
 
     /**
      * La liste des reviews concernant l'item.
@@ -30,7 +30,7 @@ public abstract class Item {
      * @uml.property name="reviews"
      * @uml.associationEnd multiplicity="(0 -1)" inverse="item:avis.models.Review"
      */
-    private HashMap<String, Review> reviews;
+    private final HashMap<String, Review> reviews;
 
     /**
      * Initialise un item. Réservé pour les classes enfants, Item étant abstraite.
