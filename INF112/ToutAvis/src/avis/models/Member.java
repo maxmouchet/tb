@@ -39,6 +39,11 @@ public class Member {
     private String profile;
 
     /**
+     * TODO
+     */
+    private float karma;
+
+    /**
      * Initialise un membre.
      *
      * @param pseudo   le pseudo du membre.
@@ -112,6 +117,7 @@ public class Member {
     public void addReview(Review review) {
         String hashKey = SocialNetwork.getMapKeyForClass(review.getItem().getClass(), review.getItem().getTitle());
         this.reviews.put(hashKey, review);
+        updateKarma(review.getAverageGrade());
     }
     
     public void addReviewGrade(ReviewGrade reviewGrade) {
@@ -145,16 +151,17 @@ public class Member {
     public boolean checkCredentials(String pseudo, String password) {
         return (this.pseudo.equals(pseudo) && this.password.equals(password));
     }
-    
+
+    public void updateKarma(float newAverage) {
+        karma = (reviews.size() * karma + newAverage) / reviews.size();
+    }
+
+    public void updateKarma(float oldAverage, float newAverage) {
+        karma = (reviews.size() * karma + (newAverage - oldAverage)) / reviews.size();
+    }
+
     public float getKarma() {
-    	float sum = 0.0f;
-        float nbGrades = reviews.size();
-
-        for (Review review : reviews.values()) {
-            sum += review.getGrade();
-        }
-
-        return sum / nbGrades;
+        return karma;
     }
 
     @Override

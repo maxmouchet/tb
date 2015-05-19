@@ -329,13 +329,15 @@ public class SocialNetwork {
         ReviewGrade reviewGrade = member.findReviewGrade(review);
         if (reviewGrade == null) {
             reviewGrade = new ReviewGrade(review, member, grade);
+            review.updateAverageGrade(grade);
             member.addReviewGrade(reviewGrade);
-            review.addReviewGrade(reviewGrade);
         } else {
+            float oldGrade = reviewGrade.getGrade();
             reviewGrade.update(grade);
+            review.updateAverageGrade(oldGrade, grade);
         }
 
-        return review.getGrade();
+        return review.getAverageGrade();
     }
 
     /**

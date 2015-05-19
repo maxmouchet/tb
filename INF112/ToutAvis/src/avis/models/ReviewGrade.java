@@ -42,16 +42,14 @@ public class ReviewGrade {
 	}
 
 	public void update(float grade) throws BadEntry {
-        boolean isValid = gradeIsValid(grade);
-
-        if (!isValid) {
+        if (!gradeIsValid(grade)) {
             throw new BadEntry("Grade does not meet the requirements.");
         }
 
         this.grade = grade;
     }
 
-	private boolean gradeIsValid(float grade) {
+	public boolean gradeIsValid(float grade) {
         return ((grade >= 1) && (grade <= 3));
     }
 

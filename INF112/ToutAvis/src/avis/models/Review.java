@@ -1,9 +1,6 @@
 package avis.models;
 
-import avis.SocialNetwork;
 import exception.BadEntry;
-
-import java.util.HashMap;
 
 /**
  * Représente une opinion d'un utilisateur pour un item, dans le SocialNetwork.
@@ -35,12 +32,19 @@ public class Review {
 	 * @uml.associationEnd   multiplicity="(1 1)" inverse="reviews:avis.models.Item"
 	 */
     private Item item;
-    
-	/**
-	 * @uml.property   name="reviewGrade"
-	 * @uml.associationEnd   multiplicity="(0 -1)" inverse="review:avis.models.ReviewGrade"
-	 */
-	private HashMap<String, ReviewGrade> reviewGrades;
+
+    /**
+     * La note moyenne de la review.
+     *
+     * Une valeur par défaut, sans effet sur le karma de l'utilisateur,
+     * et la note de l'item est définie.
+     */
+    private float averageGrade = 2;
+
+    /**
+     *
+     */
+    private int gradesCount = 0;
 
     /**
      * Initialise une review.
@@ -57,7 +61,6 @@ public class Review {
     public Review(Item item, Member member, String comment, float rating) throws BadEntry {
         this.item = item;
         this.member = member;
-        this.reviewGrades = new HashMap<>();
         update(comment, rating);
     }
 
@@ -82,11 +85,6 @@ public class Review {
         this.rating = rating;
     }
     
-    public void addReviewGrade(ReviewGrade reviewGrade) {
-        String hashKey = SocialNetwork.getMapKeyForClass(this.getClass(), reviewGrade.getMember().getPseudo());
-        this.reviewGrades.put(hashKey, reviewGrade);
-    }
-
     /**
      * Vérifie que la note respecte les conditions d'existence définies dans le cahier des charges.
      *
@@ -131,24 +129,24 @@ public class Review {
      * @return la note associé à la review.
      */
     public float getRating() {
-        return rating;
+        float weightedRating = (member.getKarma()/2) * rating;
+        return weightedRating <= 5.0f ? weightedRating : 5.0f;
     }
 
-    public float getGrade() {
-    	float sum = 0.0f;
-        float nbGrades = reviewGrades.size();
+    public void updateAverageGrade(float newGrade) {
+        float newAverageGrade = (gradesCount * averageGrade + newGrade) / ++gradesCount;
+        member.updateKarma(this.getAverageGrade(), newAverageGrade);
+        this.averageGrade = newAverageGrade;
+    }
 
-        // Karma neutre associé par défaut à utilisateur.
-        // N'a pas d'effet sur la note attribué par l'utilisateur à un item.
-        if (nbGrades == 0) {
-        	return 2;
-        }
+    public void updateAverageGrade(float oldGrade, float newGrade) {
+        float newAverageGrade = (gradesCount * averageGrade + (newGrade - oldGrade)) / gradesCount;
+        member.updateKarma(this.getAverageGrade(), newAverageGrade);
+        this.averageGrade = newAverageGrade;
+    }
 
-        for (ReviewGrade reviewGrade : reviewGrades.values()) {
-            sum += reviewGrade.getGrade();
-        }
-
-        return sum / nbGrades;
+    public float getAverageGrade() {
+        return averageGrade;
     }
 
     /**
