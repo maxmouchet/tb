@@ -310,16 +310,16 @@ public class SocialNetwork {
 
     // TODO: Javadoc
     public float gradeReviewItemBook(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry {
-        return gradeReview(pseudo, password, Book.class, reviewPseudo, reviewTitle, grade);
+        return gradeReview(Book.class, pseudo, password, reviewPseudo, reviewTitle, grade);
     }
 
     // TODO: Javadoc
     public float gradeReviewItemFilm(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry {
-        return gradeReview(pseudo, password, Film.class, reviewPseudo, reviewTitle, grade);
+        return gradeReview(Film.class, pseudo, password, reviewPseudo, reviewTitle, grade);
     }
 
     // TODO: Javadoc
-    private float gradeReview(String pseudo, String password, Class<?> reviewKlass, String reviewPseudo, String reviewTitle, float grade) throws BadEntry, NotReview, NotMember {
+    private float gradeReview(Class<?> reviewKlass, String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws BadEntry, NotReview, NotMember {
         Review review = findMatchingReview(reviewKlass, reviewPseudo, reviewTitle);
         Member member = findMatchingMember(pseudo, password);
 
