@@ -2,6 +2,7 @@ package test;
 
 import avis.SocialNetwork;
 
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 
 class TestsPerformances {
@@ -15,6 +16,14 @@ class TestsPerformances {
 
         long startTime;
         long endTime;
+
+        // Force garbage collection before running tests
+        Object obj = new Object();
+        WeakReference ref = new WeakReference<Object>(obj);
+        obj = null;
+        while(ref.get() != null) {
+            System.gc();
+        }
 
         startTime = System.nanoTime();
         for (int i = 0; i < members; i++) {
