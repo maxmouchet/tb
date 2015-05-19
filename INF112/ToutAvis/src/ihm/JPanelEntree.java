@@ -11,8 +11,8 @@ import java.awt.*;
  */
 public class JPanelEntree extends JPanel {
 
-    String entree;
-    JTextField jTextField;
+    private String entree;
+    private JTextField jTextField;
 
     public JPanelEntree(String texte, String entreeInitiale, int largeur) {
         JLabel jLabel;
@@ -38,7 +38,7 @@ public class JPanelEntree extends JPanel {
         jTextField.setText(entree);
     }
 
-    class ActionEntree implements CaretListener {
+    private class ActionEntree implements CaretListener {
         public void caretUpdate(CaretEvent e) {
             entree = new String(jTextField.getText());
         }

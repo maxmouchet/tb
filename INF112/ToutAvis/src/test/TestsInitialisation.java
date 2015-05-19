@@ -8,7 +8,7 @@ import avis.SocialNetwork;
  * @date mars 2011
  */
 
-public class TestsInitialisation {
+class TestsInitialisation {
 
 
     public static void main(String[] args) {

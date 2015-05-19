@@ -1,7 +1,7 @@
 package test;
 
 import avis.SocialNetwork;
-import exception.*;
+import exception.BadEntry;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -41,7 +41,7 @@ public class TestsConsultItems implements SocialNetworkTest {
         }
     }
 
-        public HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo1, String password1, String pseudo2, String password2) throws Exception {
+    public HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo1, String password1, String pseudo2, String password2) throws Exception {
         System.out.println("\n# Tests de consultation d'items");
 
         int nbTests = 0;

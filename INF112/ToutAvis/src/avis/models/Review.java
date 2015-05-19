@@ -8,34 +8,34 @@ import exception.BadEntry;
 public class Review {
 
     /**
-	 * La note pour l'item.
-	 * @uml.property   name="rating"
-	 */
+     * Le membre associé à la review.
+     *
+     * @uml.property name="member"
+     * @uml.associationEnd multiplicity="(1 1)" inverse="reviews:avis.models.Member"
+     */
+    private final Member member;
+    /**
+     * L'item associé à la review.
+     *
+     * @uml.property name="item"
+     * @uml.associationEnd multiplicity="(1 1)" inverse="reviews:avis.models.Item"
+     */
+    private final Item item;
+    /**
+     * La note pour l'item.
+     *
+     * @uml.property name="rating"
+     */
     private float rating;
-
     /**
-	 * Le commentaire pour l'item.
-	 * @uml.property   name="comment"
-	 */
+     * Le commentaire pour l'item.
+     *
+     * @uml.property name="comment"
+     */
     private String comment;
-
-    /**
-	 * Le membre associé à la review.
-	 * @uml.property   name="member"
-	 * @uml.associationEnd   multiplicity="(1 1)" inverse="reviews:avis.models.Member"
-	 */
-    private Member member;
-
-    /**
-	 * L'item associé à la review.
-	 * @uml.property   name="item"
-	 * @uml.associationEnd   multiplicity="(1 1)" inverse="reviews:avis.models.Item"
-	 */
-    private Item item;
-
     /**
      * La note moyenne de la review.
-     *
+     * <p/>
      * Une valeur par défaut, sans effet sur le karma de l'utilisateur,
      * et la note de l'item est définie.
      */
@@ -84,7 +84,7 @@ public class Review {
         this.comment = comment;
         this.rating = rating;
     }
-    
+
     /**
      * Vérifie que la note respecte les conditions d'existence définies dans le cahier des charges.
      *
@@ -113,7 +113,7 @@ public class Review {
     public Item getItem() {
         return item;
     }
-    
+
     /**
      * Obtient le membre associé à la review.
      *
@@ -129,7 +129,7 @@ public class Review {
      * @return la note associé à la review.
      */
     public float getRating() {
-        float weightedRating = (member.getKarma()/2) * rating;
+        float weightedRating = (member.getKarma() / 2) * rating;
         return weightedRating <= 5.0f ? weightedRating : 5.0f;
     }
 

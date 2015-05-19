@@ -42,7 +42,7 @@ public class TestsReviewItemFilm implements SocialNetworkTest {
         }
     }
 
-    private int reviewItemFilmExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String title, Float rating, Float expectedRating, String comment, String messErreur) throws NotMember, BadEntry, NotItem {
+    private int reviewItemFilmExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String title, Float rating, Float expectedRating, String comment, String messErreur) throws NotMember, NotItem {
         try {
             sn.reviewItemFilm(pseudo, password, title, rating, comment);
 

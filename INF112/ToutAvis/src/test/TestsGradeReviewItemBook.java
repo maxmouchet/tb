@@ -39,7 +39,7 @@ public class TestsGradeReviewItemBook implements SocialNetworkTest {
         }
     }
 
-    private static int gradeReviewItemBookExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String realReviewPseudo, String reviewPseudo, String reviewTitle, Float grade, Float expectedGrade, String messErreur) throws NotMember, BadEntry, NotReview {
+    private static int gradeReviewItemBookExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String realReviewPseudo, String reviewPseudo, String reviewTitle, Float grade, Float expectedGrade, String messErreur) throws NotMember, NotReview {
         try {
             sn.gradeReviewItemBook(pseudo, password, reviewPseudo, reviewTitle, grade);
 
@@ -152,7 +152,7 @@ public class TestsGradeReviewItemBook implements SocialNetworkTest {
         nbErreurs += gradeReviewItemBookExceptionTest("14.10", BadEntry.class, sn, pseudo1, password1, pseudo1, " 123 ", pseudo2, pseudo2, title, 1.0f, expectedGrade, "La notation d'une review avec un password composé de moins de 4 caractères est autorisé.");
 
         nbTests++;
-        nbErreurs += gradeReviewItemBookNotReviewTest("14.11", sn ,pseudo1, password1, pseudo2, "Alice chez les Barbapapas.", 1.0f, "La notation d'une review inexistante est autorisé");
+        nbErreurs += gradeReviewItemBookNotReviewTest("14.11", sn, pseudo1, password1, pseudo2, "Alice chez les Barbapapas.", 1.0f, "La notation d'une review inexistante est autorisé");
 
         nbTests++;
         nbErreurs += gradeReviewItemBookExceptionTest("14.12", NotMember.class, sn, pseudo1, password1, pseudo1, password1, pseudo2, "St7veJ0bs", title, 1.0f, expectedGrade, "La notation d'une review pour un donneur d'avis inexistant est autorisé.");

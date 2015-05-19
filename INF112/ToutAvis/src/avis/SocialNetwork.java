@@ -45,7 +45,7 @@ public class SocialNetwork {
      * @uml.property name="items"
      * @uml.associationEnd multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.models.Item"
      */
-    private HashMap<String, Item> items;
+    private final HashMap<String, Item> items;
 
     /**
      * La liste des membres associés au SocialNetwork.
@@ -53,7 +53,7 @@ public class SocialNetwork {
      * @uml.property name="members"
      * @uml.associationEnd multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.models.Member"
      */
-    private HashMap<String, Member> members;
+    private final HashMap<String, Member> members;
 
     /**
      * Initialise un <i>SocialNetwok</i>.

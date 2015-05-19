@@ -3,45 +3,38 @@ package avis.models;
 import exception.BadEntry;
 
 
-
 public class ReviewGrade {
 
-	/**
-	 * @uml.property  name="grade"
-	 */
-	private float grade;
+    /**
+     * @uml.property name="member"
+     * @uml.associationEnd multiplicity="(1 1)" inverse="reviewGrade:avis.models.Member"
+     */
+    private final Member member;
+    /**
+     * @uml.property name="review"
+     * @uml.associationEnd multiplicity="(1 1)" inverse="reviewGrade:avis.models.Review"
+     */
+    private final Review review;
+    /**
+     * @uml.property name="grade"
+     */
+    private float grade;
 
-	public float getGrade() {
-		return this.grade;
-	}
+    public ReviewGrade(Review review, Member member, float grade) throws BadEntry {
+        this.review = review;
+        this.member = member;
+        update(grade);
+    }
 
-	/**
-	 * @uml.property  name="member"
-	 * @uml.associationEnd  multiplicity="(1 1)" inverse="reviewGrade:avis.models.Member"
-	 */
-	private Member member;
+    public float getGrade() {
+        return this.grade;
+    }
 
-	public Member getMember() {
-		return this.member;
-	}
+    public Review getReview() {
+        return this.review;
+    }
 
-	/**
-	 * @uml.property  name="review"
-	 * @uml.associationEnd  multiplicity="(1 1)" inverse="reviewGrade:avis.models.Review"
-	 */
-	private Review review;
-
-	public Review getReview() {
-		return this.review;
-	}
-
-	public ReviewGrade(Review review, Member member, float grade) throws BadEntry {
-		this.review = review;
-		this.member = member;
-		update(grade);
-	}
-
-	public void update(float grade) throws BadEntry {
+    public void update(float grade) throws BadEntry {
         if (!gradeIsValid(grade)) {
             throw new BadEntry("Grade does not meet the requirements.");
         }
@@ -49,7 +42,7 @@ public class ReviewGrade {
         this.grade = grade;
     }
 
-	public boolean gradeIsValid(float grade) {
+    private boolean gradeIsValid(float grade) {
         return ((grade >= 1) && (grade <= 3));
     }
 

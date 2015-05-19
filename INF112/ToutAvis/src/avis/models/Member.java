@@ -11,17 +11,18 @@ import java.util.HashMap;
 public class Member {
 
     /**
-	 * La liste des reviews écrites par le membre.
-	 * @uml.property   name="reviews"
-	 * @uml.associationEnd   multiplicity="(0 -1)" inverse="member:avis.models.Review"
-	 */
+     * La liste des reviews écrites par le membre.
+     *
+     * @uml.property name="reviews"
+     * @uml.associationEnd multiplicity="(0 -1)" inverse="member:avis.models.Review"
+     */
     private HashMap<String, Review> reviews;
-    
-	/**
-	 * @uml.property   name="reviewGrade"
-	 * @uml.associationEnd   multiplicity="(0 -1)" inverse="member:avis.models.ReviewGrade"
-	 */
-	private HashMap<String, ReviewGrade> reviewGrades;
+
+    /**
+     * @uml.property name="reviewGrade"
+     * @uml.associationEnd multiplicity="(0 -1)" inverse="member:avis.models.ReviewGrade"
+     */
+    private HashMap<String, ReviewGrade> reviewGrades;
 
     /**
      * Le pseudo du membre.
@@ -119,7 +120,7 @@ public class Member {
         this.reviews.put(hashKey, review);
         updateKarma(review.getAverageGrade());
     }
-    
+
     public void addReviewGrade(ReviewGrade reviewGrade) {
         String hashKey = SocialNetwork.getMapKeyForClass(reviewGrade.getReview().getItem().getClass(), reviewGrade.getReview().getItem().getTitle() + reviewGrade.getReview().getMember().getPseudo());
         this.reviewGrades.put(hashKey, reviewGrade);
@@ -133,10 +134,10 @@ public class Member {
      * @return la review, si elle existe. null sinon.
      */
     public Review findReview(Class<?> klass, String title) {
-    	// TODO: Refactor avec Item en parametre.
+        // TODO: Refactor avec Item en parametre.
         return this.reviews.get(SocialNetwork.getMapKeyForClass(klass, title));
     }
-    
+
     public ReviewGrade findReviewGrade(Review review) {
         return this.reviewGrades.get(SocialNetwork.getMapKeyForClass(review.getItem().getClass(), review.getItem().getTitle() + review.getMember().getPseudo()));
     }
@@ -152,7 +153,7 @@ public class Member {
         return (this.pseudo.equals(pseudo) && this.password.equals(password));
     }
 
-    public void updateKarma(float newAverage) {
+    private void updateKarma(float newAverage) {
         karma = (reviews.size() * karma + newAverage) / reviews.size();
     }
 

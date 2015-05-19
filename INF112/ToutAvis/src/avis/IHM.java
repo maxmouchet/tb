@@ -14,7 +14,7 @@ import java.util.LinkedList;
 /**
  * @author prou
  */
-public class IHM {
+class IHM {
 
 
     private String titreLivre;

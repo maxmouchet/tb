@@ -19,9 +19,9 @@ class TestsPerformances {
 
         // Force garbage collection before running tests
         Object obj = new Object();
-        WeakReference ref = new WeakReference<Object>(obj);
+        WeakReference ref = new WeakReference<>(obj);
         obj = null;
-        while(ref.get() != null) {
+        while (ref.get() != null) {
             System.gc();
         }
 
