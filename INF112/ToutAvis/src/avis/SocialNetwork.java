@@ -297,19 +297,23 @@ public class SocialNetwork {
     }
 
     // TODO: Javadoc
-    public float gradeReviewItemBook(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry, NotItem {
+    public float gradeReviewItemBook(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry, NotItem, SelfGrading {
         return gradeReview(Book.class, pseudo, password, reviewPseudo, reviewTitle, grade);
     }
 
     // TODO: Javadoc
-    public float gradeReviewItemFilm(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry, NotItem {
+    public float gradeReviewItemFilm(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry, NotItem, SelfGrading {
         return gradeReview(Film.class, pseudo, password, reviewPseudo, reviewTitle, grade);
     }
 
     // TODO: Javadoc
-    private float gradeReview(Class<?> reviewKlass, String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws BadEntry, NotReview, NotMember, NotItem {
+    private float gradeReview(Class<?> reviewKlass, String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws BadEntry, NotReview, NotMember, NotItem, SelfGrading {
         Review review = findMatchingReview(reviewKlass, reviewTitle, reviewPseudo);
         Member member = findMatchingMember(pseudo, password);
+
+        if (new MemberKey(pseudo).equals(new MemberKey(reviewPseudo))) {
+            throw new SelfGrading("Member is grading his own review.");
+        }
 
         // On recherche la précédente note donné par le membre pour une review.
         // - Si elle existe on la met à jour.
