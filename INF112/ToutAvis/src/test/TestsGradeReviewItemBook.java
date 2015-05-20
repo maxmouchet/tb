@@ -39,7 +39,7 @@ public class TestsGradeReviewItemBook implements SocialNetworkTest {
         }
     }
 
-    private static int gradeReviewItemBookExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String realReviewPseudo, String reviewPseudo, String reviewTitle, Float grade, Float expectedGrade, String messErreur) throws NotMember, NotReview {
+    private static int gradeReviewItemBookExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String realReviewPseudo, String reviewPseudo, String reviewTitle, Float grade, Float expectedGrade, String messErreur) throws NotMember, NotReview, NotItem {
         try {
             sn.gradeReviewItemBook(pseudo, password, reviewPseudo, reviewTitle, grade);
 

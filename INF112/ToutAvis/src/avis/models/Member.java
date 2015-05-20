@@ -1,6 +1,9 @@
 package avis.models;
 
 import avis.SocialNetwork;
+import avis.structures.MemberKey;
+import avis.structures.ReviewGradeKey;
+import avis.structures.ReviewKey;
 import exception.BadEntry;
 
 import java.util.HashMap;
@@ -16,13 +19,13 @@ public class Member {
      * @uml.property name="reviews"
      * @uml.associationEnd multiplicity="(0 -1)" inverse="member:avis.models.Review"
      */
-    private final HashMap<String, Review> reviews;
+    private final HashMap<ReviewKey, Review> reviews;
 
     /**
      * @uml.property name="reviewGrade"
      * @uml.associationEnd multiplicity="(0 -1)" inverse="member:avis.models.ReviewGrade"
      */
-    private final HashMap<String, ReviewGrade> reviewGrades;
+    private final HashMap<ReviewGradeKey, ReviewGrade> reviewGrades;
 
     /**
      * Le pseudo du membre.
@@ -44,7 +47,7 @@ public class Member {
      */
     private float karma;
 
-    public final String mapKey;
+    public final MemberKey mapKey;
 
     /**
      * Initialise un membre.
@@ -72,7 +75,7 @@ public class Member {
         this.reviews = new HashMap<>();
         this.reviewGrades = new HashMap<>();
 
-        this.mapKey = SocialNetwork.getMapKeyForClass(this.getClass(), pseudo);
+        this.mapKey = new MemberKey(pseudo);
     }
 
     /**
@@ -135,14 +138,12 @@ public class Member {
      * @param title le titre de l'item.
      * @return la review, si elle existe. null sinon.
      */
-    public Review findReview(Class<?> klass, String title) {
-        // TODO: Refactor avec Item en parametre.
-        return this.reviews.get(SocialNetwork.getMapKeyForClass(klass, title));
+    public Review findReview(Item item) {
+        return this.reviews.get(new ReviewKey(this.mapKey, item.mapKey));
     }
 
-    // TODO: Passer class et title de l'item en parametre a la place de review.
     public ReviewGrade findReviewGrade(Review review) {
-        return this.reviewGrades.get(review.mapKey);
+        return this.reviewGrades.get(new ReviewGradeKey(this.mapKey, review.mapKey));
     }
 
     /**

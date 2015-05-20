@@ -1,6 +1,6 @@
 package avis.models;
 
-import avis.SocialNetwork;
+import avis.structures.ReviewKey;
 import exception.BadEntry;
 
 /**
@@ -50,7 +50,7 @@ public class Review {
     /**
      *
      */
-    public final String mapKey;
+    public final ReviewKey mapKey;
 
     /**
      * Initialise une review.
@@ -67,7 +67,7 @@ public class Review {
     public Review(Item item, Member member, String comment, float rating) throws BadEntry {
         this.item = item;
         this.member = member;
-        this.mapKey = SocialNetwork.getMapKeyForClass(item.getClass(), item.getTitle());
+        this.mapKey = new ReviewKey(member.mapKey, item.mapKey);
         update(comment, rating);
     }
 
@@ -136,16 +136,6 @@ public class Review {
 
     public float getAverageGrade() {
         return averageGrade;
-    }
-
-    /**
-     * Retourne une chaîne unique pour chaque review.
-     * Peut-être utilisé comme clé dans une table de hachage.
-     *
-     * @return une chaîne unique.
-     */
-    public String mapKey() {
-        return this.item.getClass().getName() + this.item.getTitle() + this.member.getPseudo();
     }
 
     @Override

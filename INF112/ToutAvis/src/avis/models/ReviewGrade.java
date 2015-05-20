@@ -1,5 +1,6 @@
 package avis.models;
 
+import avis.structures.ReviewGradeKey;
 import exception.BadEntry;
 
 
@@ -10,10 +11,10 @@ public class ReviewGrade {
      */
     private float grade;
 
-    public final String mapKey;
+    public final ReviewGradeKey mapKey;
 
-    public ReviewGrade(Review review, float grade) throws BadEntry {
-        this.mapKey = review.mapKey;
+    public ReviewGrade(Review review, Member member, float grade) throws BadEntry {
+        this.mapKey = new ReviewGradeKey(member.mapKey, review.mapKey);
         update(grade);
     }
 

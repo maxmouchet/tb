@@ -1,6 +1,8 @@
 package avis;
 
 import avis.models.*;
+import avis.structures.ItemKey;
+import avis.structures.MemberKey;
 import exception.*;
 
 import java.util.HashMap;
@@ -45,7 +47,7 @@ public class SocialNetwork {
      * @uml.property name="items"
      * @uml.associationEnd multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.models.Item"
      */
-    private final HashMap<String, Item> items;
+    private final HashMap<ItemKey, Item> items;
 
     /**
      * La liste des membres associés au SocialNetwork.
@@ -53,7 +55,7 @@ public class SocialNetwork {
      * @uml.property name="members"
      * @uml.associationEnd multiplicity="(0 -1)" aggregation="composite" inverse="socialNetwork:avis.models.Member"
      */
-    private final HashMap<String, Member> members;
+    private final HashMap<MemberKey, Member> members;
 
     /**
      * Initialise un <i>SocialNetwok</i>.
@@ -61,17 +63,6 @@ public class SocialNetwork {
     public SocialNetwork() {
         this.items = new HashMap<>();
         this.members = new HashMap<>();
-    }
-
-    /**
-     * Calcul une chaine unique pour une classe et une chaîne donnée.
-     *
-     * @param klass  la classe à utiliser pour le hash.
-     * @param string la chaîne à utiliser pour le hash.
-     * @return une chaîne unique.
-     */
-    public static String getMapKeyForClass(Class<?> klass, String string) {
-        return klass.getName() + string.trim().toLowerCase();
     }
 
     /**
@@ -193,21 +184,21 @@ public class SocialNetwork {
     /**
      * Consulter les items du <i>SocialNetwork</i> par nom.
      *
-     * @param nom son nom (eg. titre d'un film, d'un livre, etc.).
+     * @param title son titre (eg. titre d'un film, d'un livre, etc.).
      * @return LinkedList<String> la liste des représentations de tous les items ayant ce nom.
      * Cette représentation contiendra la note de l'item s'il a été noté.
      * (une liste vide si aucun item ne correspond).
      * @throws BadEntry : si le nom n'est pas instancié ou a moins de 1 caractère autre que des espaces.
      */
-    public LinkedList<String> consultItems(String nom) throws BadEntry {
-        if (!Item.titleIsValid(nom)) {
+    public LinkedList<String> consultItems(String title) throws BadEntry {
+        if (!Item.titleIsValid(title)) {
             throw new BadEntry("Title does not meet the requirements.");
         }
 
         LinkedList<String> itemsStrings = new LinkedList<>();
 
         for (Class klass : new Class[]{Book.class, Film.class}) {
-            String hashKey = getMapKeyForClass(klass, nom);
+            ItemKey hashKey = new ItemKey(klass, title);
             if (items.containsKey(hashKey)) {
                 itemsStrings.add(items.get(hashKey).toString());
             }
@@ -293,7 +284,7 @@ public class SocialNetwork {
         // On recherche la précédente review du membre pour cet item.
         // - Si elle existe on la met à jour.
         // - Sinon on en crée une.
-        Review review = member.findReview(klass, titre);
+        Review review = member.findReview(item);
         if (review == null) {
             review = new Review(item, member, commentaire, note);
             member.addReview(review);
@@ -306,18 +297,18 @@ public class SocialNetwork {
     }
 
     // TODO: Javadoc
-    public float gradeReviewItemBook(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry {
+    public float gradeReviewItemBook(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry, NotItem {
         return gradeReview(Book.class, pseudo, password, reviewPseudo, reviewTitle, grade);
     }
 
     // TODO: Javadoc
-    public float gradeReviewItemFilm(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry {
+    public float gradeReviewItemFilm(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry, NotItem {
         return gradeReview(Film.class, pseudo, password, reviewPseudo, reviewTitle, grade);
     }
 
     // TODO: Javadoc
-    private float gradeReview(Class<?> reviewKlass, String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws BadEntry, NotReview, NotMember {
-        Review review = findMatchingReview(reviewKlass, reviewPseudo, reviewTitle);
+    private float gradeReview(Class<?> reviewKlass, String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws BadEntry, NotReview, NotMember, NotItem {
+        Review review = findMatchingReview(reviewKlass, reviewTitle, reviewPseudo);
         Member member = findMatchingMember(pseudo, password);
 
         // On recherche la précédente note donné par le membre pour une review.
@@ -325,7 +316,7 @@ public class SocialNetwork {
         // - Sinon on en crée une.
         ReviewGrade reviewGrade = member.findReviewGrade(review);
         if (reviewGrade == null) {
-            reviewGrade = new ReviewGrade(review, grade);
+            reviewGrade = new ReviewGrade(review, member, grade);
             review.updateAverageGrade(grade);
             member.addReviewGrade(reviewGrade);
         } else {
@@ -351,7 +342,7 @@ public class SocialNetwork {
             throw new BadEntry("Item title does not meet the requirements.");
         }
 
-        Item item = items.get(getMapKeyForClass(klass, title));
+        Item item = items.get(new ItemKey(klass, title));
 
         if (item == null) {
             throw new NotItem("Item not found.");
@@ -360,18 +351,19 @@ public class SocialNetwork {
         return item;
     }
 
-    private Review findMatchingReview(Class<?> klass, String pseudo, String title) throws NotReview, NotMember, BadEntry {
-        if (!(Member.pseudoIsValid(pseudo) && Item.titleIsValid(title))) {
+    private Review findMatchingReview(Class<?> klass, String title, String pseudo) throws NotReview, NotMember, BadEntry, NotItem {
+        if (!(Member.pseudoIsValid(pseudo))) {
             throw new BadEntry("Pseudo and/or title does not meet the requirements.");
         }
 
-        Member member = members.get(getMapKeyForClass(Member.class, pseudo));
+        Member member = members.get(new MemberKey(pseudo));
 
         if (member == null) {
             throw new NotMember("Pseudo not found.");
         }
 
-        Review review = member.findReview(klass, title);
+        Item item = findMatchingItem(klass, title);
+        Review review = member.findReview(item);
 
         if (review == null) {
             throw new NotReview("Review not found.");
@@ -397,7 +389,7 @@ public class SocialNetwork {
             throw new BadEntry("Pseudo and/or password does not meet the requirements.");
         }
 
-        Member member = members.get(getMapKeyForClass(Member.class, pseudo));
+        Member member = members.get(new MemberKey(pseudo));
 
         if (member == null) {
             throw new NotMember("User does not exists.");
@@ -419,8 +411,8 @@ public class SocialNetwork {
     private int countItems(Class<?> klass) {
         int count = 0;
 
-        for (String key : items.keySet()) {
-            if (key.startsWith(klass.getName())) {
+        for (ItemKey key : items.keySet()) {
+            if (key.getKlass().equals(klass.getSimpleName())) {
                 count++;
             }
         }

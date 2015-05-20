@@ -1,6 +1,7 @@
 package avis.models;
 
-import avis.SocialNetwork;
+import avis.structures.ItemKey;
+import avis.structures.ReviewKey;
 import exception.BadEntry;
 
 import java.util.HashMap;
@@ -31,9 +32,9 @@ public abstract class Item {
      * @uml.property name="reviews"
      * @uml.associationEnd multiplicity="(0 -1)" inverse="item:avis.models.Review"
      */
-    private final HashMap<String, Review> reviews;
+    private final HashMap<ReviewKey, Review> reviews;
 
-    public final String mapKey;
+    public final ItemKey mapKey;
 
     /**
      * Initialise un item. Réservé pour les classes enfants, Item étant abstraite.
@@ -56,7 +57,7 @@ public abstract class Item {
         this.genre = genre;
         this.reviews = new HashMap<>();
 
-        this.mapKey = SocialNetwork.getMapKeyForClass(this.getClass(), title);
+        this.mapKey = new ItemKey(getClass(), title);
     }
 
     /**
@@ -85,7 +86,7 @@ public abstract class Item {
      * @param review la review.
      */
     public void addReview(Review review) {
-        this.reviews.put(review.mapKey(), review);
+        this.reviews.put(review.mapKey, review);
     }
 
     /**
