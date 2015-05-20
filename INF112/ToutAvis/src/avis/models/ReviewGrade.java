@@ -10,6 +10,10 @@ import exception.BadEntry;
 public class ReviewGrade {
 
     /**
+     * Une clé caractérisant de manière unique la note.
+     */
+    public final ReviewGradeKey mapKey;
+    /**
      * La note donnée à l'avis.
      *
      * @uml.property name="grade"
@@ -17,16 +21,11 @@ public class ReviewGrade {
     private float grade;
 
     /**
-     * Une clé caractérisant de manière unique la note.
-     */
-    public final ReviewGradeKey mapKey;
-
-    /**
      * Initialise une note sur un avis.
      *
      * @param review la review.
      * @param member le membre noteur.
-     * @param grade la note donnée à l'avis.
+     * @param grade  la note donnée à l'avis.
      * @throws BadEntry si la note n'est pas comprise entre 1.0 et 3.0.
      */
     public ReviewGrade(Review review, Member member, float grade) throws BadEntry {

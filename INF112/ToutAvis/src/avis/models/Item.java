@@ -13,19 +13,21 @@ import java.util.HashMap;
 public abstract class Item {
 
     /**
+     * Une clé caractérisant de manière unique l'item.
+     */
+    public final ItemKey mapKey;
+    /**
      * Le titre de l'item.
      *
      * @uml.property name="title"
      */
     private final String title;
-
     /**
      * Le genre de l'item.
      *
      * @uml.property name="genre"
      */
     private final String genre;
-
     /**
      * La liste des reviews concernant l'item.
      *
@@ -33,11 +35,6 @@ public abstract class Item {
      * @uml.associationEnd multiplicity="(0 -1)" inverse="item:avis.models.Review"
      */
     private final HashMap<ReviewKey, Review> reviews;
-
-    /**
-     * Une clé caractérisant de manière unique l'item.
-     */
-    public final ItemKey mapKey;
 
     /**
      * Initialise un item. Réservé pour les classes enfants, Item étant abstraite.

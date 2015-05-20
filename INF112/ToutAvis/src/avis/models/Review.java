@@ -9,6 +9,10 @@ import exception.BadEntry;
 public class Review {
 
     /**
+     * Une clé caractérisant de manière unique la review.
+     */
+    public final ReviewKey mapKey;
+    /**
      * Le membre associé à la review.
      *
      * @uml.property name="member"
@@ -41,16 +45,10 @@ public class Review {
      * et la note de l'item est définie.
      */
     private float averageGrade = 2;
-
     /**
      * Le nombre de notes associés à la review.
      */
     private int gradesCount = 0;
-
-    /**
-     * Une clé caractérisant de manière unique la review.
-     */
-    public final ReviewKey mapKey;
 
     /**
      * Initialise une review.

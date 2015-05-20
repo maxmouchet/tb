@@ -4,13 +4,13 @@ public class ItemKey {
     private final String klass;
     private final String title;
 
-    public String getKlass() {
-        return this.klass;
-    }
-
     public ItemKey(Class<?> klass, String title) {
         this.klass = klass.getSimpleName();
         this.title = title.trim().toLowerCase();
+    }
+
+    public String getKlass() {
+        return this.klass;
     }
 
     @Override

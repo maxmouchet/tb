@@ -13,45 +13,39 @@ import java.util.HashMap;
 public class Member {
 
     /**
+     * Une clé caractérisant de manière unique le membre.
+     */
+    public final MemberKey mapKey;
+    /**
      * La liste des reviews écrites par le membre.
      *
      * @uml.property name="reviews"
      * @uml.associationEnd multiplicity="(0 -1)" inverse="member:avis.models.Review"
      */
     private final HashMap<ReviewKey, Review> reviews;
-
     /**
      * @uml.property name="reviewGrade"
      * @uml.associationEnd multiplicity="(0 -1)" inverse="member:avis.models.ReviewGrade"
      */
     private final HashMap<ReviewGradeKey, ReviewGrade> reviewGrades;
-
     /**
      * Le pseudo du membre.
      */
     private final String pseudo;
-
     /**
      * Le mot de passe du membre.
      */
     private final String password;
-
     /**
      * La description du membre.
      */
     private final String profile;
-
     /**
      * Le karma du membre.
      * Compris entre 1.0 et 3.0 il pondère négativement
      * ou positivement les avis émis par le membre.
      */
     private float karma;
-
-    /**
-     * Une clé caractérisant de manière unique le membre.
-     */
-    public final MemberKey mapKey;
 
     /**
      * Initialise un membre.
@@ -147,6 +141,7 @@ public class Member {
 
     /**
      * Recherche la note laissé par le membre pour une review donnée.
+     *
      * @param review la review.
      * @return la note, si elle existe. null sinon.
      */
