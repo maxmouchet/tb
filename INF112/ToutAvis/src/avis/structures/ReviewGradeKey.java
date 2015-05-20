@@ -1,8 +1,8 @@
 package avis.structures;
 
 public class ReviewGradeKey {
-    private MemberKey memberKey;
-    private ReviewKey reviewKey;
+    private final MemberKey memberKey;
+    private final ReviewKey reviewKey;
 
     public ReviewGradeKey(MemberKey memberKey, ReviewKey reviewKey) {
         this.memberKey = memberKey;

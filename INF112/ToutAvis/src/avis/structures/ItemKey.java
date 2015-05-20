@@ -1,8 +1,8 @@
 package avis.structures;
 
 public class ItemKey {
-    private String klass;
-    private String title;
+    private final String klass;
+    private final String title;
 
     public String getKlass() {
         return this.klass;

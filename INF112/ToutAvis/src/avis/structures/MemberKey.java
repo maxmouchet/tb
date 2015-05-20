@@ -1,7 +1,7 @@
 package avis.structures;
 
 public class MemberKey {
-    private String pseudo;
+    private final String pseudo;
 
     public MemberKey(String pseudo) {
         this.pseudo = pseudo.trim().toLowerCase();
