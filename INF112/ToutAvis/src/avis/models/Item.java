@@ -34,6 +34,9 @@ public abstract class Item {
      */
     private final HashMap<ReviewKey, Review> reviews;
 
+    /**
+     * Une clé caractérisant de manière unique l'item.
+     */
     public final ItemKey mapKey;
 
     /**

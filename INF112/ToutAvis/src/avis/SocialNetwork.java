@@ -296,17 +296,78 @@ public class SocialNetwork {
         return item.getRating();
     }
 
-    // TODO: Javadoc
+    /**
+     * Note un avis sur un livre.
+     *
+     * @param pseudo le pseudo du membre noteur.
+     * @param password le password du membre noteur.
+     * @param reviewPseudo le pseudo de l'auteur de l'avis.
+     * @param reviewTitle le titre de l'item.
+     * @param grade la note attribué à l'avis.
+     * @return la nouvelle note moyenne associé à l'avis.
+     * @throws BadEntry  <ul>
+     *                   <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks.</li>
+     *                   <li>si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si la note n'est pas comprise entre 1.0 et 3.0.</li>
+     *                   <li>si le commentaire n'est pas instancié.</li>
+     *                   </ul>
+     * @throws NotReview si l'avis n'existe pas.
+     * @throws NotMember si un des membres n'existe pas.
+     * @throws NotItem si l'item n'existe pas.
+     * @throws SelfGrading si l'auteur de l'opinion essaye de noter son propre avis.
+     */
     public float gradeReviewItemBook(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry, NotItem, SelfGrading {
         return gradeReview(Book.class, pseudo, password, reviewPseudo, reviewTitle, grade);
     }
 
-    // TODO: Javadoc
+    /**
+     * Note un avis sur un film.
+     *
+     * @param pseudo le pseudo du membre noteur.
+     * @param password le password du membre noteur.
+     * @param reviewPseudo le pseudo de l'auteur de l'avis.
+     * @param reviewTitle le titre de l'item.
+     * @param grade la note attribué à l'avis.
+     * @return la nouvelle note moyenne associé à l'avis.
+     * @throws BadEntry  <ul>
+     *                   <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks.</li>
+     *                   <li>si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si la note n'est pas comprise entre 1.0 et 3.0.</li>
+     *                   <li>si le commentaire n'est pas instancié.</li>
+     *                   </ul>
+     * @throws NotReview si l'avis n'existe pas.
+     * @throws NotMember si un des membres n'existe pas.
+     * @throws NotItem si l'item n'existe pas.
+     * @throws SelfGrading si l'auteur de l'opinion essaye de noter son propre avis.
+     */
     public float gradeReviewItemFilm(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry, NotItem, SelfGrading {
         return gradeReview(Film.class, pseudo, password, reviewPseudo, reviewTitle, grade);
     }
 
-    // TODO: Javadoc
+    /**
+     * Note un avis sur un item.
+     *
+     * @param reviewKlass le type de l'item ({@code Book} ou {@code Film}).
+     * @param pseudo le pseudo du membre noteur.
+     * @param password le password du membre noteur.
+     * @param reviewPseudo le pseudo de l'auteur de l'avis.
+     * @param reviewTitle le titre de l'item.
+     * @param grade la note attribué à l'avis.
+     * @return la nouvelle note moyenne associé à l'avis.
+     * @throws BadEntry  <ul>
+     *                   <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks.</li>
+     *                   <li>si le titre n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si la note n'est pas comprise entre 1.0 et 3.0.</li>
+     *                   <li>si le commentaire n'est pas instancié.</li>
+     *                   </ul>
+     * @throws NotReview si l'avis n'existe pas.
+     * @throws NotMember si un des membres n'existe pas.
+     * @throws NotItem si l'item n'existe pas.
+     * @throws SelfGrading si l'auteur de l'opinion essaye de noter son propre avis.
+     */
     private float gradeReview(Class<?> reviewKlass, String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws BadEntry, NotReview, NotMember, NotItem, SelfGrading {
         Review review = findMatchingReview(reviewKlass, reviewTitle, reviewPseudo);
         Member member = findMatchingMember(pseudo, password);
@@ -355,6 +416,22 @@ public class SocialNetwork {
         return item;
     }
 
+    /**
+     * Cherche une review dans le SocialNetwork.
+     *
+     * @param klass le type de l'item ({@code Book} ou {@code Film}).
+     * @param title le titre de l'item.
+     * @param pseudo l'auteur de la review.
+     * @return la review, si elle a été trouvé.
+     * @throws NotReview si la review n'existe pas.
+     * @throws NotMember si l'auteur n'existe pas.
+     * @throws BadEntry  <ul>
+     *                   <li>si le pseudo n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   <li>si le password n'est pas instancié ou a moins de 4 caractères autres que des leadings or trailing blanks.</li>
+     *                   <li>si le titre de l'item n'est pas instancié ou a moins de 1 caractère autre que des espaces.</li>
+     *                   </ul>
+     * @throws NotItem si l'item n'existe pas.
+     */
     private Review findMatchingReview(Class<?> klass, String title, String pseudo) throws NotReview, NotMember, BadEntry, NotItem {
         if (!(Member.pseudoIsValid(pseudo))) {
             throw new BadEntry("Pseudo and/or title does not meet the requirements.");
@@ -363,7 +440,7 @@ public class SocialNetwork {
         Member member = members.get(new MemberKey(pseudo));
 
         if (member == null) {
-            throw new NotMember("Pseudo not found.");
+            throw new NotMember("Member not found.");
         }
 
         Item item = findMatchingItem(klass, title);
@@ -396,7 +473,7 @@ public class SocialNetwork {
         Member member = members.get(new MemberKey(pseudo));
 
         if (member == null) {
-            throw new NotMember("User does not exists.");
+            throw new NotMember("Member not found.");
         }
 
         if (!member.checkCredentials(pseudo, password)) {

@@ -43,12 +43,12 @@ public class Review {
     private float averageGrade = 2;
 
     /**
-     *
+     * Le nombre de notes associés à la review.
      */
     private int gradesCount = 0;
 
     /**
-     *
+     * Une clé caractérisant de manière unique la review.
      */
     public final ReviewKey mapKey;
 
@@ -122,18 +122,34 @@ public class Review {
         return weightedRating <= 5.0f ? weightedRating : 5.0f;
     }
 
+    /**
+     * Met à jour la note moyenne de la review suite à l'ajout d'une nouvelle note.
+     *
+     * @param newGrade la nouvelle note.
+     */
     public void updateAverageGrade(float newGrade) {
         float newAverageGrade = (gradesCount * averageGrade + newGrade) / ++gradesCount;
         member.updateKarma(this.getAverageGrade(), newAverageGrade);
         this.averageGrade = newAverageGrade;
     }
 
+    /**
+     * Met à jour la note moyenne de la review suite à la modification d'une nouvelle note.
+     *
+     * @param oldGrade l'ancienne note.
+     * @param newGrade la nouvelle note.
+     */
     public void updateAverageGrade(float oldGrade, float newGrade) {
         float newAverageGrade = (gradesCount * averageGrade + (newGrade - oldGrade)) / gradesCount;
         member.updateKarma(this.getAverageGrade(), newAverageGrade);
         this.averageGrade = newAverageGrade;
     }
 
+    /**
+     * Obtient la note moyenne associée à l'avis.
+     *
+     * @return la note moyenne associée à l'avis.
+     */
     public float getAverageGrade() {
         return averageGrade;
     }

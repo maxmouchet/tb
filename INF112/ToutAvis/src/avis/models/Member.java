@@ -1,6 +1,5 @@
 package avis.models;
 
-import avis.SocialNetwork;
 import avis.structures.MemberKey;
 import avis.structures.ReviewGradeKey;
 import avis.structures.ReviewKey;
@@ -43,10 +42,15 @@ public class Member {
     private final String profile;
 
     /**
-     * TODO
+     * Le karma du membre.
+     * Compris entre 1.0 et 3.0 il pondère négativement
+     * ou positivement les avis émis par le membre.
      */
     private float karma;
 
+    /**
+     * Une clé caractérisant de manière unique le membre.
+     */
     public final MemberKey mapKey;
 
     /**
@@ -132,16 +136,20 @@ public class Member {
     }
 
     /**
-     * Recherche la review laissé par le membre pour un type et un titre donné.
+     * Recherche la review laissé par le membre pour un item donné.
      *
-     * @param klass le type de l'item ({@code Book} ou {@code Film}).
-     * @param title le titre de l'item.
+     * @param item l'item.
      * @return la review, si elle existe. null sinon.
      */
     public Review findReview(Item item) {
         return this.reviews.get(new ReviewKey(this.mapKey, item.mapKey));
     }
 
+    /**
+     * Recherche la note laissé par le membre pour une review donnée.
+     * @param review la review.
+     * @return la note, si elle existe. null sinon.
+     */
     public ReviewGrade findReviewGrade(Review review) {
         return this.reviewGrades.get(new ReviewGradeKey(this.mapKey, review.mapKey));
     }
@@ -157,10 +165,21 @@ public class Member {
         return (this.pseudo.equals(pseudo) && this.password.equals(password));
     }
 
+    /**
+     * Met à jour le karma du membre suite à la notation d'un avis.
+     *
+     * @param oldAverage l'ancienne note moyenne associée à l'avis.
+     * @param newAverage la nouvelle note moyenne associée à l'avis.
+     */
     public void updateKarma(float oldAverage, float newAverage) {
         karma = (reviews.size() * karma + (newAverage - oldAverage)) / reviews.size();
     }
 
+    /**
+     * Obtient le karma du membre.
+     *
+     * @return le karma du membre.
+     */
     public float getKarma() {
         return karma;
     }
