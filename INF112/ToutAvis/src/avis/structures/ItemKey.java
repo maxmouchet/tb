@@ -1,16 +1,16 @@
 package avis.structures;
 
 public class ItemKey {
-    private final String klass;
+    private final Class<?> klass;
     private final String title;
 
     public ItemKey(Class<?> klass, String title) {
-        this.klass = klass.getSimpleName();
+        this.klass = klass;
         this.title = title.trim().toLowerCase();
     }
 
-    public String getKlass() {
-        return this.klass;
+    public boolean classEquals(Class<?> klass) {
+        return this.klass.equals(klass);
     }
 
     @Override

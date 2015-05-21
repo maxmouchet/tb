@@ -519,7 +519,7 @@ public class SocialNetwork {
         int count = 0;
 
         for (ItemKey key : items.keySet()) {
-            if (key.getKlass().equals(klass.getSimpleName())) {
+            if (key.classEquals(klass)) {
                 count++;
             }
         }
