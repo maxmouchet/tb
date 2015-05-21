@@ -25,6 +25,20 @@ public class TestsGradeReviewItemFilm implements SocialNetworkTest {
         }
     }
 
+    private int gradeReviewItemFilmNotItemTest(String idTest, SocialNetwork sn, String pseudo, String password, String reviewPseudo, String reviewTitle, Float grade, String messErreur) {
+        try {
+            sn.gradeReviewItemBook(pseudo, password, reviewPseudo, reviewTitle, grade);
+            System.out.println("Test " + idTest + " : " + messErreur);
+            return 1;
+        } catch (NotItem notItem) {
+            return 0;
+        } catch (Exception e) {
+            System.out.println("Test " + idTest + " : exception non prévue. " + e);
+            e.printStackTrace();
+            return 1;
+        }
+    }
+
     private static int gradeReviewItemFilmNotReviewTest(String idTest, SocialNetwork sn, String pseudo, String password, String reviewPseudo, String reviewTitle, Float grade, String messErreur) {
         try {
             sn.gradeReviewItemFilm(pseudo, password, reviewPseudo, reviewTitle, grade);
@@ -113,58 +127,65 @@ public class TestsGradeReviewItemFilm implements SocialNetworkTest {
         // Valeurs par defaut pour les tests
         float expectedGrade = 2.0f;
 
-        // Fiche 13
+        // Fiche 15
         // Tentatives de notation de reviews avec des entrées correctes
 
         // Notation d'une review de l'utilisateur 3 avec l'utilisateur 1
         nbTests++;
-        nbErreurs += gradeReviewItemFilmOKTest("13.1", sn, pseudo1, password1, pseudo3, title, 1.0f, 1.0f);
+        nbErreurs += gradeReviewItemFilmOKTest("15.1", sn, pseudo1, password1, pseudo3, title, 1.0f, 1.0f);
 
         // Modification de la note de la review de l'utilisateur 3 avec l'utilisateur 1
         nbTests++;
-        nbErreurs += gradeReviewItemFilmOKTest("13.2", sn, pseudo1, password1, pseudo3, title, 2.0f, 2.0f);
+        nbErreurs += gradeReviewItemFilmOKTest("15.2", sn, pseudo1, password1, pseudo3, title, 2.0f, 2.0f);
         nbTests++;
-        nbErreurs += gradeReviewItemFilmOKTest("13.3", sn, pseudo1, password1, pseudo3, title.toLowerCase(), 2.0f, 2.0f);
+        nbErreurs += gradeReviewItemFilmOKTest("15.3", sn, pseudo1, password1, pseudo3, title.toLowerCase(), 2.0f, 2.0f);
         nbTests++;
-        nbErreurs += gradeReviewItemFilmOKTest("13.4", sn, pseudo1, password1, pseudo3, "  " + title + "  ", 2.0f, 2.0f);
+        nbErreurs += gradeReviewItemFilmOKTest("15.4", sn, pseudo1, password1, pseudo3, "  " + title + "  ", 2.0f, 2.0f);
 
         // Notation d'une review de l'utilisateur 3 avec l'utilisateur 2
         nbTests++;
-        nbErreurs += gradeReviewItemFilmOKTest("13.5", sn, pseudo2, password2, pseudo3, "  " + title + "  ", 2.0f, 2.0f);
+        nbErreurs += gradeReviewItemFilmOKTest("15.5", sn, pseudo2, password2, pseudo3, "  " + title + "  ", 2.0f, 2.0f);
 
         // Fiche 14
         // Tentatives de notation de reviews avec des entrées incorrectes
 
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.1", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, pseudo3, title, -1.0f, expectedGrade, "La notation d'une review avec une note négative est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.1", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, pseudo3, title, -1.0f, expectedGrade, "La notation d'une review avec une note négative est autorisé.");
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.2", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, pseudo3, title, 4.0f, expectedGrade, "La notation d'une review avec une note supérieure au maximum est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.2", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, pseudo3, title, 4.0f, expectedGrade, "La notation d'une review avec une note supérieure au maximum est autorisé.");
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.3", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, pseudo3, null, 1.0f, expectedGrade, "La notation d'une review avec un titre non instancié est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.3", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, pseudo3, null, 1.0f, expectedGrade, "La notation d'une review avec un titre non instancié est autorisé.");
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.4", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, pseudo3, "   ", 1.0f, expectedGrade, "La notation d'une review avec un titre compose uniquement d'espaces est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.4", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, pseudo3, "   ", 1.0f, expectedGrade, "La notation d'une review avec un titre compose uniquement d'espaces est autorisé.");
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.5", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, null, title, 1.0f, expectedGrade, "La notation d'une review avec un pseudo non instancié pour le donneur d'avis est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.5", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, null, title, 1.0f, expectedGrade, "La notation d'une review avec un pseudo non instancié pour le donneur d'avis est autorisé.");
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.6", BadEntry.class, sn, pseudo1, password1, null, password1, pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un pseudo non instancié pour le noteur est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.6", BadEntry.class, sn, pseudo1, password1, null, password1, pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un pseudo non instancié pour le noteur est autorisé.");
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.7", BadEntry.class, sn, pseudo1, password1, pseudo1, null, pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un password non instancié pour le noteur est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.7", BadEntry.class, sn, pseudo1, password1, pseudo1, null, pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un password non instancié pour le noteur est autorisé.");
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.8", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, "   ", title, 1.0f, expectedGrade, "La notation d'une review avec un pseudo composé uniquement d'espaces pour le donneur d'avis est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.8", BadEntry.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, "   ", title, 1.0f, expectedGrade, "La notation d'une review avec un pseudo composé uniquement d'espaces pour le donneur d'avis est autorisé.");
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.9", BadEntry.class, sn, pseudo1, password1, "   ", password1, pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un pseudo composé uniquement d'espaces pour le noteur est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.9", BadEntry.class, sn, pseudo1, password1, "   ", password1, pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un pseudo composé uniquement d'espaces pour le noteur est autorisé.");
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.10", BadEntry.class, sn, pseudo1, password1, pseudo1, " 123 ", pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un password composé de moins de 4 caractères est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.10", BadEntry.class, sn, pseudo1, password1, pseudo1, " 123 ", pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un password composé de moins de 4 caractères est autorisé.");
 
         nbTests++;
-        nbErreurs += gradeReviewItemFilmNotReviewTest("14.11", sn, pseudo1, password1, pseudo3, "Alice chez les Barbapapas.", 1.0f, "La notation d'une review inexistante est autorisé");
+        nbErreurs += gradeReviewItemFilmNotReviewTest("16.11", sn, pseudo1, password1, pseudo2, title, 1.0f, "La notation d'une review inexistante est autorisé");
 
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.12", NotMember.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, "St7veJ0bs", title, 1.0f, expectedGrade, "La notation d'une review pour un donneur d'avis inexistant est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.12", NotMember.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, "St7veJ0bs", title, 1.0f, expectedGrade, "La notation d'une review pour un donneur d'avis inexistant est autorisé.");
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.13", NotMember.class, sn, pseudo1, password1, "BillGate$$38", "Micro$$oft", pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review pour un noteur inexistant est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.13", NotMember.class, sn, pseudo1, password1, "BillGate$$38", "Micro$$oft", pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review pour un noteur inexistant est autorisé.");
         nbTests++;
-        nbErreurs += gradeReviewItemFilmExceptionTest("14.14", NotMember.class, sn, pseudo1, password1, pseudo1, "Ju5nPa5lo2015", pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un mauvais mot de passe est autorisé.");
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.14", NotMember.class, sn, pseudo1, password1, pseudo1, "Ju5nPa5lo2015", pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un mauvais mot de passe est autorisé.");
+
+        nbTests++;
+        nbErreurs += gradeReviewItemFilmNotItemTest("16.15", sn, pseudo1, password1, pseudo2, "Alice chez les Barbapapas.", 1.0f, "La notation d'un item inexistant est autorisée.");
+
+        nbTests++;
+        nbErreurs += gradeReviewItemFilmExceptionTest("16.16", SelfGrading.class, sn, pseudo1, password1, pseudo3, password3, pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation de sa propre review est autorisée.");
+
 
         nbTests++;
         if (nbFilms != sn.nbFilms()) {

@@ -25,6 +25,20 @@ public class TestsGradeReviewItemBook implements SocialNetworkTest {
         }
     }
 
+    private int gradeReviewItemBookNotItemTest(String idTest, SocialNetwork sn, String pseudo, String password, String reviewPseudo, String reviewTitle, Float grade, String messErreur) {
+        try {
+            sn.gradeReviewItemBook(pseudo, password, reviewPseudo, reviewTitle, grade);
+            System.out.println("Test " + idTest + " : " + messErreur);
+            return 1;
+        } catch (NotItem notItem) {
+            return 0;
+        } catch (Exception e) {
+            System.out.println("Test " + idTest + " : exception non prévue. " + e);
+            e.printStackTrace();
+            return 1;
+        }
+    }
+
     private static int gradeReviewItemBookNotReviewTest(String idTest, SocialNetwork sn, String pseudo, String password, String reviewPseudo, String reviewTitle, Float grade, String messErreur) {
         try {
             sn.gradeReviewItemBook(pseudo, password, reviewPseudo, reviewTitle, grade);
@@ -156,7 +170,7 @@ public class TestsGradeReviewItemBook implements SocialNetworkTest {
         nbErreurs += gradeReviewItemBookExceptionTest("14.10", BadEntry.class, sn, pseudo1, password1, pseudo1, " 123 ", pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un password composé de moins de 4 caractères est autorisé.");
 
         nbTests++;
-        nbErreurs += gradeReviewItemBookNotReviewTest("14.11", sn, pseudo1, password1, pseudo3, "Alice chez les Barbapapas.", 1.0f, "La notation d'une review inexistante est autorisé");
+        nbErreurs += gradeReviewItemBookNotReviewTest("14.11", sn, pseudo1, password1, pseudo2, title, 1.0f, "La notation d'une review inexistante est autorisé");
 
         nbTests++;
         nbErreurs += gradeReviewItemBookExceptionTest("14.12", NotMember.class, sn, pseudo1, password1, pseudo1, password1, pseudo3, "St7veJ0bs", title, 1.0f, expectedGrade, "La notation d'une review pour un donneur d'avis inexistant est autorisé.");
@@ -164,6 +178,12 @@ public class TestsGradeReviewItemBook implements SocialNetworkTest {
         nbErreurs += gradeReviewItemBookExceptionTest("14.13", NotMember.class, sn, pseudo1, password1, "BillGate$$38", "Micro$$oft", pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review pour un noteur inexistant est autorisé.");
         nbTests++;
         nbErreurs += gradeReviewItemBookExceptionTest("14.14", NotMember.class, sn, pseudo1, password1, pseudo1, "Ju5nPa5lo2015", pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation d'une review avec un mauvais mot de passe est autorisé.");
+
+        nbTests++;
+        nbErreurs += gradeReviewItemBookNotItemTest("14.15", sn, pseudo1, password1, pseudo2, "Alice chez les Barbapapas.", 1.0f, "La notation d'un item inexistant est autorisée.");
+
+        nbTests++;
+        nbErreurs += gradeReviewItemBookExceptionTest("14.16", SelfGrading.class, sn, pseudo1, password1, pseudo3, password3, pseudo3, pseudo3, title, 1.0f, expectedGrade, "La notation de sa propre review est autorisée.");
 
         nbTests++;
         if (nbFilms != sn.nbFilms()) {
