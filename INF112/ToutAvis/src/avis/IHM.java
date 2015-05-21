@@ -103,7 +103,7 @@ class IHM {
     public static void main(String[] args) {
 
         try {
-            SocialNetwork sn = new SocialNetwork();
+            SocialNetwork sn = SocialNetwork.getInstance();
 
             IHM ihm = new IHM();
             ihm.setMetier(sn);
