@@ -41,7 +41,12 @@ import java.util.LinkedList;
 
 public class SocialNetwork {
 
-    /**
+	/**
+     * L'instance unique de SocialNetwork
+     */
+    private static SocialNetwork instance = null;
+    
+	/**
      * La liste des items associés au SocialNetwork.
      *
      * @uml.property name="items"
@@ -92,6 +97,27 @@ public class SocialNetwork {
         return countItems(Book.class);
     }
 
+    
+    /**
+     * Méthode permettant de renvoyer une instance de la classe SocialNetwork
+     * @return Retourne l'instance du singleton SocialNetwork.
+     */
+    public final static SocialNetwork getInstance() {
+        if (SocialNetwork.instance == null) {
+           synchronized(SocialNetwork.class) { /* Empêche la création d'une instance par plusieurs threads */
+             if (SocialNetwork.instance == null) {
+            	 SocialNetwork.instance = new SocialNetwork();
+             }
+           }
+        }
+        return SocialNetwork.instance;
+    }
+    
+    
+    
+    
+    
+    
     /**
      * Ajouter un nouveau membre au <i>SocialNetwork</i>.
      *
