@@ -24,7 +24,8 @@ class SocialNetworkTester {
                 TestsReviewItemFilm.class,
                 TestsGradeReviewItemBook.class,
                 TestsGradeReviewItemFilm.class,
-                TestsConsultItems.class
+                TestsConsultItems.class,
+                TestsKarma.class
         };
 
         for (Class klass : tests) {
