@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class TestsGradeReviewItemBook implements SocialNetworkTest {
 
-    private static int gradeReviewItemBookOKTest(String idTest, SocialNetwork sn, String pseudo, String password, String reviewPseudo, String reviewTitle, Float grade, Float expectedGrade) {
+    private int gradeReviewItemBookOKTest(String idTest, SocialNetwork sn, String pseudo, String password, String reviewPseudo, String reviewTitle, Float grade, Float expectedGrade) {
         try {
             float newGrade = sn.gradeReviewItemBook(pseudo, password, reviewPseudo, reviewTitle, grade);
 
@@ -39,7 +39,7 @@ public class TestsGradeReviewItemBook implements SocialNetworkTest {
         }
     }
 
-    private static int gradeReviewItemBookNotReviewTest(String idTest, SocialNetwork sn, String pseudo, String password, String reviewPseudo, String reviewTitle, Float grade, String messErreur) {
+    private int gradeReviewItemBookNotReviewTest(String idTest, SocialNetwork sn, String pseudo, String password, String reviewPseudo, String reviewTitle, Float grade, String messErreur) {
         try {
             sn.gradeReviewItemBook(pseudo, password, reviewPseudo, reviewTitle, grade);
             System.out.println("Test " + idTest + " : " + messErreur);
@@ -53,7 +53,7 @@ public class TestsGradeReviewItemBook implements SocialNetworkTest {
         }
     }
 
-    private static int gradeReviewItemBookExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String realReviewPseudo, String reviewPseudo, String reviewTitle, Float grade, Float expectedGrade, String messErreur) throws NotMember, NotReview, NotItem, SelfGrading {
+    private int gradeReviewItemBookExceptionTest(String idTest, Class<?> expectedException, SocialNetwork sn, String realPseudo, String realPassword, String pseudo, String password, String realReviewPseudo, String reviewPseudo, String reviewTitle, Float grade, Float expectedGrade, String messErreur) throws NotMember, NotReview, NotItem, SelfGrading {
         try {
             sn.gradeReviewItemBook(pseudo, password, reviewPseudo, reviewTitle, grade);
 
