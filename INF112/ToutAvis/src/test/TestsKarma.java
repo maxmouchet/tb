@@ -8,7 +8,7 @@ public class TestsKarma implements SocialNetworkTest {
 
     @Override
     public HashMap<String, Integer> runTests(SocialNetwork sn, String pseudo1, String password1, String pseudo2, String password2) throws Exception {
-        System.out.println("\n# Test du karma");
+        System.out.println("\n# Tests du karma");
 
         int nbTests = 0;
         int nbErreurs = 0;
