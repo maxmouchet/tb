@@ -1,0 +1,61 @@
+ToutAvis: The Social Network
+============================
+```                                
+                 █▀▀▀█          
+                █▀   █          
+               █▀    █          
+              █▀     █          
+             █▀      █          
+▄▄▄▄▄▄▄▄   ▄█▀       ▀▀▀▀▀▀█▄   
+      ██▄▄█▀                █   
+▄▄▄▄▄▄██                    █   
+████████       (c) 1985     █   
+████████       Yann F.      █   
+████████       Maxime M.    █   
+████████                    █   
+████████▄▄▄▄▄               █
+████████     ▀█▄▄▄▄▄▄▄▄▄▄▄▄▀
+
+```
+Contenu de la disquette
+-----------------------
+* Code source de ToutAvis Professional for Business Users.
+* Instructions de compilation.
+
+
+Fonctionnalités avancés de notation
+-----------------------------------
+Dans sa dérnière version, ToutAvis prend une dimension spirituelle en attribuant un karma (कर्मन्कर्मन्) aux utilisateurs. Ce dernier est constitué de la moyenne des notes attribuées aux avis de l'utilisateur. Afin de ne pas punir les nouveaux utilisateurs, un karma neutre de 2.0 est défini par defaut.
+Les notes sont définies dans [1.0;3.0].
+
+```
+public float gradeReviewItemBook(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry, NotItem, SelfGrading
+
+public float gradeReviewItemFilm(String pseudo, String password, String reviewPseudo, String reviewTitle, float grade) throws NotReview, NotMember, BadEntry, NotItem, SelfGrading 
+
+```
+
+Compilation
+-----------
+
+La production du bytecode se fait simplement, depuis le dossier racine:
+```
+mkdir -p out
+javac -d out src/**/**.java
+```
+
+Tests
+-----
+
+Les tests peuvent etre executés depuis le dossier racine:
+```
+java -cp out test.SocialNetworkTester
+```
+
+IHM
+---
+
+ToutAvis Professional for Business Users est fourni avec une interface graphique, éxecutable depuis le dossier racine:
+```
+java -cp out avis.IHM
+```
