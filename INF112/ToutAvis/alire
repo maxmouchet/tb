@@ -1,6 +1,6 @@
 ToutAvis: The Social Network
 ============================
-```                                
+                                
                  █▀▀▀█          
                 █▀   █          
                █▀    █          
@@ -16,7 +16,7 @@ ToutAvis: The Social Network
 ████████▄▄▄▄▄               █
 ████████     ▀█▄▄▄▄▄▄▄▄▄▄▄▄▀
 
-```
+
 Contenu de la disquette
 -----------------------
 * Code source de ToutAvis Professional for Business Users.
@@ -39,6 +39,7 @@ Compilation
 -----------
 
 La production du bytecode se fait simplement, depuis le dossier racine:
+
 ```
 mkdir -p out
 javac -d out src/**/**.java
@@ -48,6 +49,7 @@ Tests
 -----
 
 Les tests peuvent etre executés depuis le dossier racine:
+
 ```
 java -cp out test.SocialNetworkTester
 ```
@@ -56,6 +58,7 @@ IHM
 ---
 
 ToutAvis Professional for Business Users est fourni avec une interface graphique, éxecutable depuis le dossier racine:
+
 ```
 java -cp out avis.IHM
 ```
