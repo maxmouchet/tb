@@ -127,12 +127,12 @@ public class Review {
      */
     public void updateAverageGrade(float newGrade) {
         float newAverageGrade = (gradesCount * averageGrade + newGrade) / ++gradesCount;
-        member.updateKarma(this.getAverageGrade(), newAverageGrade);
+        member.updateKarma(newAverageGrade);
         this.averageGrade = newAverageGrade;
     }
 
     /**
-     * Met à jour la note moyenne de la review suite à la modification d'une nouvelle note.
+     * Met à jour la note moyenne de la review suite à la modification d'une note.
      *
      * @param oldGrade l'ancienne note.
      * @param newGrade la nouvelle note.

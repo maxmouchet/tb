@@ -122,7 +122,7 @@ public class Member {
      */
     public void addReview(Review review) {
         this.reviews.put(review.mapKey, review);
-        updateKarma(0, review.getAverageGrade());
+        updateKarma(review.getAverageGrade());
     }
 
     public void addReviewGrade(ReviewGrade reviewGrade) {
@@ -161,7 +161,16 @@ public class Member {
     }
 
     /**
-     * Met à jour le karma du membre suite à la notation d'un avis.
+     * Met à jour le karma du membre suite à l'ajout d'une notation sur un avis.
+     *
+     * @param newAverage la nouvelle note moyenne associée à l'avis.
+     */
+    public void updateKarma(float newAverage) {
+        karma = ((reviews.size() - 1) * karma + newAverage) / reviews.size();
+    }
+
+    /**
+     * Met à jour le karma du membre suite à la mise à jour de la notation d'un avis.
      *
      * @param oldAverage l'ancienne note moyenne associée à l'avis.
      * @param newAverage la nouvelle note moyenne associée à l'avis.
