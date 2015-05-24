@@ -1,6 +1,6 @@
 # TB::FIP
 
-[![License](http://img.shields.io/badge/license-GPLv3-blue.svg)](#)
+[![License](http://img.shields.io/badge/license-GPL-blue.svg)](#)
 
 ## FIP 1A
 
