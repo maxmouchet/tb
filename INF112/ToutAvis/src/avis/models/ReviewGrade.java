@@ -56,6 +56,11 @@ public class ReviewGrade {
         this.grade = grade;
     }
 
+    /**
+     * Vérifie que la note respecte les conditions d'existence définies.
+     * @param grade la note.
+     * @return true si la note est valide. false sinon.
+     */
     private boolean gradeIsValid(float grade) {
         return ((grade >= 1) && (grade <= 3));
     }

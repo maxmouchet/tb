@@ -125,6 +125,11 @@ public class Member {
         updateKarma(review.getAverageGrade());
     }
 
+    /**
+     * Ajoute une notation de review au membre.
+     *
+     * @param reviewGrade la notation de review.
+     */
     public void addReviewGrade(ReviewGrade reviewGrade) {
         this.reviewGrades.put(reviewGrade.mapKey, reviewGrade);
     }
