@@ -24,7 +24,7 @@ public class TestsKarma implements SocialNetworkTest {
 
         float newRating;
 
-        // Vérification du karma par défaut (neutre, sans effet sur la note)
+        // 17.1 Vérification du karma par défaut (neutre, sans effet sur la note)
         nbTests++;
         newRating = sn.reviewItemBook(pseudo1, password1, title, 5.0f, "Amazing !");
         if (newRating != 5.0) {
@@ -32,7 +32,7 @@ public class TestsKarma implements SocialNetworkTest {
             nbErreurs++;
         }
 
-        // Vérification de la saturation de la note (note max. * karma max.)
+        // 17.2 Vérification de la saturation de la note (note max. * karma max.)
         nbTests++;
         sn.gradeReviewItemBook(pseudo2, password2, pseudo1, title, 3.0f);
         newRating = sn.reviewItemBook(pseudo1, password1, title, 5.0f, "Amazing !");
@@ -41,7 +41,7 @@ public class TestsKarma implements SocialNetworkTest {
             nbErreurs++;
         }
 
-        // Vérification de la réduction de la note (karma négatif)
+        // 17.3 Vérification de la réduction de la note (karma négatif)
         nbTests++;
         sn.gradeReviewItemBook(pseudo2, password2, pseudo1, title, 1.0f);
         newRating = sn.reviewItemBook(pseudo1, password1, title, 5.0f, "Amazing !");
@@ -50,7 +50,7 @@ public class TestsKarma implements SocialNetworkTest {
             nbErreurs++;
         }
 
-        // Vérification de l'augmentation de la note (karma positif)
+        // 17.4 Vérification de l'augmentation de la note (karma positif)
         nbTests++;
         sn.gradeReviewItemBook(pseudo2, password2, pseudo1, title, 3.0f);
         newRating = sn.reviewItemBook(pseudo1, password1, title, 1.0f, "Amazing !");
