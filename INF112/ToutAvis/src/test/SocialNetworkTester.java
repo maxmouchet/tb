@@ -54,7 +54,7 @@ class SocialNetworkTester {
         System.out.println("Note: une review par item est ajouté.");
         System.out.println("Itérations | addMember() | addItemBook() | addItemFilm() | reviewItemBook() | reviewItemFilm() | gradeReviewItemBook() | gradeReviewItemFilm() | consultItems()");
 
-        for (int i = 2; i <= 200000; i *= 10) {
+        for (int i = 2; i <= 20000; i *= 10) {
             HashMap<String, Long> performanceResult = TestsPerformances.testPerformances(i, i, i);
             System.out.format("%11d|%10d ms|%12d ms|%12d ms|%15d ms|%15d ms|%20d ms|%20d ms|%12d ms\n", i, performanceResult.get("addMember"), performanceResult.get("addItemBook"), performanceResult.get("addItemFilm"), performanceResult.get("reviewItemBook"), performanceResult.get("reviewItemFilm"), performanceResult.get("gradeReviewItemBook"), performanceResult.get("gradeReviewItemFilm"), performanceResult.get("consultItems"));
         }
