@@ -28,7 +28,7 @@ public class TestsKarma implements SocialNetworkTest {
         nbTests++;
         newRating = sn.reviewItemBook(pseudo1, password1, title, 5.0f, "Amazing !");
         if (newRating != 5.0) {
-            System.out.println("Le karma par défaut n'est pas neutre sur la note d'un item.");
+            System.out.println("17.1 Le karma par défaut n'est pas neutre sur la note d'un item.");
             nbErreurs++;
         }
 
@@ -37,7 +37,7 @@ public class TestsKarma implements SocialNetworkTest {
         sn.gradeReviewItemBook(pseudo2, password2, pseudo1, title, 3.0f);
         newRating = sn.reviewItemBook(pseudo1, password1, title, 5.0f, "Amazing !");
         if (newRating != 5.0) {
-            System.out.println("Le karma maximum modifie la note maximum.");
+            System.out.println("17.2 Le karma maximum modifie la note maximum.");
             nbErreurs++;
         }
 
@@ -46,7 +46,7 @@ public class TestsKarma implements SocialNetworkTest {
         sn.gradeReviewItemBook(pseudo2, password2, pseudo1, title, 1.0f);
         newRating = sn.reviewItemBook(pseudo1, password1, title, 5.0f, "Amazing !");
         if (newRating >= 5.0) {
-            System.out.println("Un karma négatif ne diminue pas la note.");
+            System.out.println("17.3 Un karma négatif ne diminue pas la note.");
             nbErreurs++;
         }
 
@@ -55,7 +55,7 @@ public class TestsKarma implements SocialNetworkTest {
         sn.gradeReviewItemBook(pseudo2, password2, pseudo1, title, 3.0f);
         newRating = sn.reviewItemBook(pseudo1, password1, title, 1.0f, "Amazing !");
         if (newRating <= 1.0) {
-            System.out.println("Un karma positif n'augmente pas la note.");
+            System.out.println("17.4 Un karma positif n'augmente pas la note.");
             nbErreurs++;
         }
 
