@@ -45,6 +45,16 @@ mkdir -p out
 javac -d out $(find . -name "*.java")
 ```
 
+Documentation
+-------------
+
+La documentation est produite avec la commande javadoc, depuis le dossier racine:
+
+```
+javadoc -private -charset utf8 -d doc -sourcepath src/ -subpackages avis
+open doc/index.html
+```
+
 Tests
 -----
 
