@@ -22,8 +22,7 @@ def discrete_lowpass(n, fe, fc, window):
     ax4.plot(w, np.unwrap(np.angle(h)))
 
     plt.show()
-     
-
+    
     
 # Filtre passe-bas d'ordre 7 (Hamming)
 discrete_lowpass(8, 16000, 2000, 'hamming')
@@ -33,5 +32,3 @@ discrete_lowpass(20, 16000, 2000, 'hamming')
 
 # Filtre passe-bas d'ordre 19 (Boxcar)
 discrete_lowpass(20, 16000, 2000, 'boxcar')
-
-
