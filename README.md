@@ -8,7 +8,7 @@ Stuff written during my studies at Télécom Bretagne.
 
 [INF 111 - Java](https://github.com/maxmouchet/tb/tree/master/INF111)  
 [INF 112 - Projet](https://github.com/maxmouchet/tb/tree/master/INF1112)  
-[MTS 112 - Signaux et systèmes déterministes](https://github.com/maxmouchet/tb/tree/master/MTS1112)  
+[MTS 112 - Signaux et systèmes déterministes](https://github.com/maxmouchet/tb/tree/master/MTS112)  
 [SIT 131 - Éléments d'algèbre linéaire](https://github.com/maxmouchet/tb/tree/master/SIT131)  
 [SIT 151 - Langage C](https://github.com/maxmouchet/tb/tree/master/SIT151/C)  
 [SIT 151 - Linux](https://github.com/maxmouchet/tb/tree/master/SIT151/Linux)  
