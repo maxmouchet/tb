@@ -14,12 +14,12 @@ def discrete_lowpass(n, fe, fc, window):
     w, h = signal.freqz(b, whole=True)
 
     # Plot
-    f, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, sharex='col', sharey='row')
+    f, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2)
 
     ax1.stem(b)
     ax2.plot(w, abs(h))
-    ax3.plot(w, 20 * np.log10(abs(h)))
-    ax4.plot(w, np.unwrap(np.angle(h)))
+    ax3.semilogy(w, np.fft.fftshift(20 * np.log10(abs(h))))
+    ax4.plot(w, np.fft.fftshift(np.unwrap(np.angle(h))))
 
     plt.show()
     
