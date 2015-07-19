@@ -45,7 +45,7 @@ fic9.txt  | 239289 | 1.54                | 1.58                          | 0.14 
 pg135.txt | 568531 | 5.83                | 6.07                          | 0.40              | 0.34
 
 ##### Tendances
-![running time](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_running_time2.png)  
+![running time](https://s3-eu-west-1.amazonaws.com/public.maxmouchet.com/Screenshots_GitHub/sit151_tp2_running_time2.png)  
 **Temps d'exécution en fonction du nombre de mots.**  
 
 **TODO:** Memory usage
@@ -57,7 +57,7 @@ Les lexiques par table de hachage et arbre binaire sont considérablement plus r
 On montre ici l'impact de la fonction de hachage sur la performance du programme. La première fonction proposée (ASCII code first char) présente une mauvaise distribution des valeurs, qui impacte directement le temps de recherche. En effet elle renvoie le code ASCII du premier caractère du mot, mais ceux-ci ne sont pas distribués de manière égale dans la langue française [[1](1)].  
 Au contraire de la fonction MurmurHash3 [[2](2)] qui distribue mieux les valeurs au travers de calculs bit à bit plus complexes.
 
-![MurmurHash3 vs ASCII](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/sit151_tp2_murmur_vs_ascii1.png)  
+![MurmurHash3 vs ASCII](https://s3-eu-west-1.amazonaws.com/public.maxmouchet.com/Screenshots_GitHub/sit151_tp2_murmur_vs_ascii1.png)  
 **Temps d'exécution en fonction du nombre de mots et de la fonction de hachage.**  
 
 Il est possible de choisir la fonction de hachage à utiliser avec la constante `USE_MURMUR3`:
@@ -80,10 +80,10 @@ Il est possible d'implémenter le lexique par liste chaînée de deux manières:
 
 Intuitivement l'insertion au début peut paraitre plus efficace, car il n'est pas nécessaire de rechercher la fin de la liste, cependant ce n'est pas adapté à la création d'un lexique. En effet la probabilité de rencontrer de nouveaux mots en double diminue avec la progression dans le texte. Or si l'on insère les nouveaux mots au début, les mots rencontrés au début du texte vont se retrouver à la fin de la liste et l'espace de recherche va augmenter significativement.
 
-![words distribution](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/words_distribution_append.png)  
+![words distribution](https://s3-eu-west-1.amazonaws.com/public.maxmouchet.com/Screenshots_GitHub/words_distribution_append.png)  
 **Distribution des mots en double par rapport à leur position lors de la première rencontre.**
 
-![append vs prepend](https://dl.dropboxusercontent.com/u/1765758/Screenshots%20GitHub/append_vs_prepend.png)  
+![append vs prepend](https://s3-eu-west-1.amazonaws.com/public.maxmouchet.com/Screenshots_GitHub/append_vs_prepend.png)  
 **Temps d'exécution en fonction du nombre de mots et du type de liste chaînée.**
 
 ### Références
