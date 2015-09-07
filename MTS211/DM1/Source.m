@@ -1,3 +1,6 @@
+close all;
+clear all;
+
 % Axe des temps
 duree = 10 ;
 nEchantillon = 600 ;
@@ -24,8 +27,6 @@ phi_2 = rand (1 , nRealisation ) *2* pi ;             % Phase uniformément
 
 % ( Q5 ) Calcul de X (t , w ) : simulation de chaque trajectoire
 % pour chaque instant
-close all
-figure;
 for w = 1: nRealisation
     for t = 1: nEchantillon
         x1 (w , t ) = a ( w ) * cos (2* pi * temps ( t ) + phi_1 ( ...
@@ -36,6 +37,7 @@ for w = 1: nRealisation
     end
 end
 
+figure
 subplot(2,1,1)
 plot(temps, x1(1:10,:),'b');
 xlabel('temps (t)');
@@ -52,16 +54,31 @@ title('Réalisation du processus X_2(t)');
 moy_stat1 = zeros (1, nEchantillon ) ;
 moy_stat2 = zeros (1, nEchantillon ) ;
 for i = 1: nEchantillon
-moy_stat1 ( i ) = mean ( x1 (:, i ) ) ;
-moy_stat2 ( i ) = mean ( x2 (:, i ) ) ;
+    moy_stat1 ( i ) = mean ( x1 (:, i ) ) ;
+    moy_stat2 ( i ) = mean ( x2 (:, i ) ) ;
 end
+
+moy_stat1
+
+figure
+subplot(2,1,1)
+plot(moy_stat1(1,:),'b');
+xlabel('temps (t)');
+ylabel('m_x(t)');
+title('Moyenne d''ensemble du processus X_1 pour chaque instant t');
+
+subplot(2,1,2)
+plot(moy_stat2(1,:),'b');
+xlabel('temps (t)');
+ylabel('m_x(t)');
+title('Moyenne d''ensemble du processus X_2 pour chaque instant t');
 
 % ( Q15 ) ( Q16 ) ( Q17 ) ( Q18 ) Moyenne temporelle pour chaque réalisation
 moy_temp1 = zeros (1, nRealisation ) ;
 moy_temp2 = zeros (1, nRealisation ) ;
 for i = 1: nRealisation
-moy_temp1 ( i ) = mean ( x1 (i,:) ) ;
-moy_temp2 ( i ) = mean ( x2 (i,:) ) ;
+    moy_temp1 ( i ) = mean ( x1 (i,:) ) ;
+    moy_temp2 ( i ) = mean ( x2 (i,:) ) ;
 end
 
 % Affichage des moyennes de premier ordre
