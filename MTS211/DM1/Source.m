@@ -58,21 +58,6 @@ for i = 1: nEchantillon
     moy_stat2 ( i ) = mean ( x2 (:, i ) ) ;
 end
 
-moy_stat1
-
-figure
-subplot(2,1,1)
-plot(moy_stat1(1,:),'b');
-xlabel('temps (t)');
-ylabel('m_x(t)');
-title('Moyenne d''ensemble du processus X_1 pour chaque instant t');
-
-subplot(2,1,2)
-plot(moy_stat2(1,:),'b');
-xlabel('temps (t)');
-ylabel('m_x(t)');
-title('Moyenne d''ensemble du processus X_2 pour chaque instant t');
-
 % ( Q15 ) ( Q16 ) ( Q17 ) ( Q18 ) Moyenne temporelle pour chaque réalisation
 moy_temp1 = zeros (1, nRealisation ) ;
 moy_temp2 = zeros (1, nRealisation ) ;
