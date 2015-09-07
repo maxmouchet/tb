@@ -42,14 +42,46 @@ subplot(2,1,1)
 plot(temps, x1(1:10,:),'b');
 xlabel('temps (t)');
 ylabel('X_1(t)');
-title('Réalisation du processus X_1(t)');
+title('Realisations du processus X_1(t)');
 
 subplot(2,1,2);
 plot(temps, x2(1:10, :), 'r');
 xlabel('temps (t)');
 ylabel('X_2(t)');
-title('Réalisation du processus X_2(t)');
+title('Realisations du processus X_2(t)');
 
+% ( Q10 ) ( Q11 ) ( Q12 ) ( Q13 ) Moyenne d ' ensemble ( espérance ) estimée pour chaque instant
+moy_stat1 = zeros (1, nEchantillon ) ;
+moy_stat2 = zeros (1, nEchantillon ) ;
+for i = 1: nEchantillon
+    moy_stat1 ( i ) = mean ( x1 (:, i ) ) ;
+    moy_stat2 ( i ) = mean ( x2 (:, i ) ) ;
+end
+
+% ( Q15 ) ( Q16 ) ( Q17 ) ( Q18 ) Moyenne temporelle pour chaque réalisation
+moy_temp1 = zeros (1, nRealisation ) ;
+moy_temp2 = zeros (1, nRealisation ) ;
+for i = 1: nRealisation
+    moy_temp1 ( i ) = mean ( x1 (i,:) ) ;
+    moy_temp2 ( i ) = mean ( x2 (i,:) ) ;
+end
+
+% Affichage des moyennes de premier ordre
+figure (21) ;
+subplot (1,2 ,1) ;
+plot ( temps, moy_stat1 , 'b ') ;
+hold on ;
+plot ( temps, moy_stat2 , 'r ') ;
+title ( ' Moyennes  statistiques ') ;
+xlabel ( ' temps  ( t ) ') ; ylabel ( ' m_X ( t ) ') ;
+legend ( ' X_1 ( t ) ', ' X_2 ( t ) ') ;
+grid on ;
+
+nRea = 500 ; % Nombre de réalisations à afficher
+subplot (1,2 ,2) ;
+plot ( moy_temp1 (1: nRea ), 1: nRea , 'b + ') ; hold on ;
+plot ( moy_temp2 (1: nRea ), 1: nRea , 'r . ') ;
+title ( ' Moyennes  temporelles ') ;
 % ( Q10 ) ( Q11 ) ( Q12 ) ( Q13 ) Moyenne d ' ensemble ( espérance ) estimée pour chaque instant
 moy_stat1 = zeros (1, nEchantillon ) ;
 moy_stat2 = zeros (1, nEchantillon ) ;
@@ -105,6 +137,30 @@ end
 % xcorr  produit  des  autocorrélations  sur 2* nEchantillon +1, le  décalage  nul
 % étant  en  position  ,nEchantillon '.
 auto1 = zeros(nRealisation , 2* nEchantillon +1);
+
+xlabel ( ' $$ \ overline  { X (\ omega ) } $$ ', 'interpreter' , 'latex') ;
+ylabel ( ' numéro  réalisation ') ;
+legend ( ' X_1 ( t ) ', ' X_2 ( t ) ' , ' Location ' , ' NorthWest ') ;
+grid on
+
+% (Q30) Fonction d'autocorrélation statistique estimée pour chaque paire
+% d'instants (e,e+p)
+% L'écart 'p' entre  les  instants  varie  entre 0 et nPas -1
+nPas = 100 ;
+gamma1 = zeros (nEchantillon -nPas , nPas) ;
+gamma2 = zeros (nEchantillon -nPas , nPas) ;
+for e = 1: nEchantillon -nPas
+ for p = 0:nPas -1
+     gamma1(e,p+1) = mean( x1(:,e) .* x1(:,e+p) ) ;
+     gamma2(e,p+1) = mean( x2(:,e) .* x2(:,e+p) ) ;
+ end
+end
+
+%(Q35) Autocorrélation temporelle  estimée  sur  chaque  réalisation à l'aide de la
+% fonction  xcorr  de  Matlab (signal  déterministe)
+% xcorr  produit  des  autocorrélations  sur 2* nEchantillon +1, le  décalage  nul
+% étant  en  position  ,nEchantillon '.
+auto1 = zeros(nRealisation , 2* nEchantillon +1);
 auto2 = zeros(nRealisation , 2* nEchantillon +1) ;
 for traj = 1: nRealisation
     auto1(traj ,:) = xcorr (x1(traj ,:) , nEchantillon) ;
@@ -119,11 +175,25 @@ set (gcf , 'Position' , [10 10 1400  500]) ;
 subplot (1,2,1) ;
 imagesc(gamma1) ;
 xlabel('\tau') ;
-ylabel('t (numéro échantillon)') ;
+ylabel('t (numero echantillon)') ;
 title('$$\Gamma_{X_1}(t,t+\tau)$$','interpreter','latex') ;
 colormap(jet) ;
 subplot (1,2,2) ;
+imagesc(gamma2) ;
+xlabel('\tau') ;
+ylabel('t (numero echantillon)') ;
+title('$$\Gamma_{X_2}(t,t+\tau)$$','interpreter','latex') ;
+colormap(jet) ;
+
+% (Q35)
+figure  (31) ;
+subplot (1,2,1) ;
 imagesc(auto1 (1:50, nEchantillon:nEchantillon+nPas)) ;
 title ('$$\overline {X_1(\omega ,t)X_1(\omega ,t+\tau)}$$ pour 50 r\''ealisations ','interpreter','latex') ;
 xlabel('\tau') ;
-ylabel('numéro réalisation ') 
+ylabel('numero realisation ') 
+subplot (1,2,2) ;
+imagesc(auto2 (1:50, nEchantillon:nEchantillon+nPas)) ;
+title ('$$\overline {X_2(\omega ,t)X_2(\omega ,t+\tau)}$$ pour 50 r\''ealisations ','interpreter','latex') ;
+xlabel('\tau') ;
+ylabel('numero realisation ') 
