@@ -2,7 +2,6 @@ clear all
 close all
 
 %% Constantes
-
 % s_signal
 load('symbole.mat')
 
