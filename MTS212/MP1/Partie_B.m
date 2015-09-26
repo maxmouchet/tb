@@ -26,27 +26,7 @@ S = [sig1; sig2; sig3];
 S_filtre = conv2(h, S);
 
 % Détermination des maximums (= corrélation max.)
-[Y, X] = max(S_filtre,[],2)
-
-figure(1)
-
-% subplot(3,1,1)
-% plot(sig1_filtre)
-% line([X1 X1], get(gca, 'YLim'), 'Color', 'r')
-% set(gca, 'XTick', [0 X1 length(sig1_filtre)])
-% set(gca, 'XTickLabel', [0 t1 length(sig1_filtre)/fe])
-% 
-% subplot(3,1,2)
-% plot(sig2_filtre)
-% line([X2 X2], get(gca, 'YLim'), 'Color', 'r')
-% set(gca, 'XTick', [0 X2 length(sig2_filtre)])
-% set(gca, 'XTickLabel', [0 t2 length(sig2_filtre)/fe])
-% 
-% subplot(3,1,3)
-% plot(sig3_filtre)
-% line([X3 X3], get(gca, 'YLim'), 'Color', 'r')
-% set(gca, 'XTick', [0 X3 length(sig3_filtre)])
-% set(gca, 'XTickLabel', [0 t3 length(sig3_filtre)/fe])
+[Y, X] = max(S_filtre, [], 2)
 
 %% Détermination des intervalles de temps
 T = X / fe        % Récupération du temps par rapport à la fréq. éch.
@@ -70,6 +50,23 @@ syst = @(x)[(x(1) - P(1,1))^2 + (x(2) - P(1,2))^2 - (x(3) + D(1,:))^2;
 x0 = [0, 0, 0];
 x = fsolve(syst, x0)
 
+%% Affichage
+% Affichage de signaux filtrés
+figure(1)
+
+for i = 1:size(S,1)
+    subplot(size(S,1), 1, i)
+    plot(S_filtre(i,:))
+    
+    % Maximum déterminé
+    line([X(i) X(i)], get(gca, 'YLim'), 'Color', 'r')
+    
+    % Axes en temporel
+    set(gca, 'XTick',      [0 X(i) length(S_filtre(i,:))])
+    set(gca, 'XTickLabel', [0 T(i) length(S_filtre(i,:))/fe])
+end
+
+% Affichage de la localisation
 % On rajoute r1 maintenant qu'on le connait (pour tracer)
 D = D + x(:,3);
 
