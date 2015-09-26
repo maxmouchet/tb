@@ -13,7 +13,7 @@ load('signal3.mat')
 c = 3e8;    % m/s
 fe = 500e3; % Hz
 
-% Position des antennes
+% Position des antennes (km)
 P = [0 0; 40 0; 0 40]
 
 %% Filtrage
@@ -30,7 +30,7 @@ S_filtre = conv2(h, S);
 %% Détermination des intervalles de temps
 T = X / fe        % Récupération du temps par rapport à la fréq. éch.
 I = T - min(T)    % Retards relatifs à l'antenne la plus proche
-D = I * c / 1000  % Distances minimales par rapport au retard
+D = I * c / 1000  % Distances minimales par rapport au retard (km)
 
 %% Résolution du système
 
