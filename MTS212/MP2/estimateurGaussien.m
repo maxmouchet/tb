@@ -1,15 +1,13 @@
 % appel [ MuEst, SigmaEst] = estimateurGaussien( data )
-% détermine les estimées des paramètres\mu et \sigma d'une loi
+% d?termine les estim?es des param?tres\mu et \sigma d'une loi
 % gaussienne
-% les termes "à compléter" sont à remplacer par la bonne formule matlab.
+% les termes "? compl?ter" sont ? remplacer par la bonne formule matlab.
 function [ MuEst, SigmaEst] = estimateurGaussien( data )
 
-    N = size(data,1);
-
-    % Estimation de l'espÃ©rance
-    MuEst = à compléter; 
+    % Estimation de l'esp??rance
+    MuEst = mean(data);
     
     % Estimation de la variance
-    SigmaEst = à compléter ;
+    SigmaEst = var(data);
    
 end
