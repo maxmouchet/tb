@@ -1,0 +1,8 @@
+* source SIT231_TP4
+V_V2         N00574 0  
++SIN 0 1 5k 0 0 0
+R_R1         N02002 0  1k  
+D_D1         N01989 N02002 D1N4148 
+E_SUM1         N01989 0 VALUE {V(N00552)+V(N00574)}
+V_V1         N00552 0  
++SIN 0 2 100k 0 0 0

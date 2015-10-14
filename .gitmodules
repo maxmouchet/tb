@@ -4,9 +4,9 @@
 [submodule "INF111/tb-inf111"]
 	path = INF111/tb-inf111
 	url = git@github.com:yafeunteun/tb-inf111.git
-[submodule "SIT213"]
-	path = SIT213
-	url = git@github.com:maxmouchet/SIT213.git
 [submodule "INF210"]
 	path = INF210
 	url = git@github.com:maxmouchet/INF210.git
+[submodule "SIT213"]
+	path = SIT213
+	url = git@github.com:YannMaliszewski/SIT213.git

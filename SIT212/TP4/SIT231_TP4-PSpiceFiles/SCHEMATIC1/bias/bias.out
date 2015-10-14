@@ -1,0 +1,116 @@
+
+**** 10/12/15 11:27:09 ******* PSpice Lite (August 2007) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ Z:\MES DOCUMENTS\tb\SIT212\TP4\sit231_tp4-pspicefiles\schematic1\bias.sim ] 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "bias.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of C:\OrCAD\OrCAD_16.0_Demo\tools\PSpice\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 0.6ms 0 
+.PROBE V(*) I(*) W(*) D(*) NOISE(*) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source SIT231_TP4
+V_V2         N00574 0  
++SIN 0 1 5k 0 0 0
+R_R1         N02002 0  1k  
+D_D1         N01989 N02002 D1N4148 
+E_SUM1         N01989 0 VALUE {V(N00552)+V(N00574)}
+V_V1         N00552 0  
++SIN 0 2 100k 0 0 0
+
+**** RESUMING bias.cir ****
+.END
+
+**** 10/12/15 11:27:09 ******* PSpice Lite (August 2007) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ Z:\MES DOCUMENTS\tb\SIT212\TP4\sit231_tp4-pspicefiles\schematic1\bias.sim ] 
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D1N4148         
+          IS    2.682000E-09 
+           N    1.836        
+         ISR    1.565000E-09 
+         IKF     .04417      
+          BV  100            
+         IBV  100.000000E-06 
+          RS     .5664       
+          TT   11.540000E-09 
+         CJO    4.000000E-12 
+          VJ     .5          
+           M     .3333       
+
+
+**** 10/12/15 11:27:09 ******* PSpice Lite (August 2007) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ Z:\MES DOCUMENTS\tb\SIT212\TP4\sit231_tp4-pspicefiles\schematic1\bias.sim ] 
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(N00552)    0.0000 (N00574)    0.0000 (N01989)    0.0000 (N02002) 88.03E-24 
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V2         0.000E+00
+    V_V1         0.000E+00
+
+    TOTAL POWER DISSIPATION   0.00E+00  WATTS
+
+
+
+          JOB CONCLUDED
+
+**** 10/12/15 11:27:09 ******* PSpice Lite (August 2007) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ Z:\MES DOCUMENTS\tb\SIT212\TP4\sit231_tp4-pspicefiles\schematic1\bias.sim ] 
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  Total job time (using Solver 1)   =        3.47
+

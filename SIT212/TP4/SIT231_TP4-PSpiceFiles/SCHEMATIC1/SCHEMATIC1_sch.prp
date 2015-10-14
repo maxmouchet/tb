@@ -1,0 +1,18 @@
+("FILE_TYPE"	"PMAP File"
+    ("devices"
+        ("R")
+    )
+    ("instances"
+        ("R1"
+            ("device_name"	"R")
+            ("pspice_path"	"R_R1")
+            ("level"	"0")
+            ("model_params"
+                ("VALUE"
+                    ("value"	"1k")
+                    ("pspice_param"	"VALUE")
+                )
+            )
+        )
+    )
+)
