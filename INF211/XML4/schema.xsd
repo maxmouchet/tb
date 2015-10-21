@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="recette">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="titre" type="xs:string"/>
+                <xs:element name="informations" type="informationsType"/>
+                <xs:element name="ingredients" type="ingredientsType"/>
+                <xs:element name="preparation" type="preparationType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- Informations -->
+    <xs:complexType name="informationsType">
+        <xs:all>
+            <xs:element name="duree" type="dureeType"/>
+            <xs:element name="difficulte" type="difficulteType"/>
+            <xs:element name="cout" type="coutType"/>
+            <xs:element name="categorie" type="xs:string"/>
+        </xs:all>
+    </xs:complexType>
+    
+    <xs:complexType name="dureeType">
+        <xs:attribute type="xs:integer" name="preparation"/>
+        <xs:attribute type="xs:integer" name="cuisson"/>
+        <xs:attribute type="xs:integer" name="repos"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="difficulteType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="3"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="coutType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="3"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Ingredients -->
+    <xs:complexType name="ingredientsType">
+        <xs:sequence>
+            <xs:element name="ingredient" type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="nombre_de_personnes" type="xs:integer"/>
+    </xs:complexType>
+    
+    <!-- Preparation -->
+    <xs:complexType name="preparationType" mixed="true">
+        <xs:all>
+            <xs:element name="astuces" type="xs:string" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+    
+</xs:schema>
