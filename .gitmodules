@@ -9,4 +9,4 @@
 	url = git@github.com:maxmouchet/INF210.git
 [submodule "SIT213"]
 	path = SIT213
-	url = git@github.com:YannMaliszewski/SIT213.git
+	url = git@github.com:maxmouchet/SIT213.git
