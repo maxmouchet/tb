@@ -62,6 +62,11 @@
                  minWidth: 700,
                  autoPan: false
              });
+
+             // Failover
+             /* marker.on('mouseover', function (e) { */
+             /* this.openPopup(); */
+             /* }); */
          });
 
          $.getJSON('features.json', function(json) {
@@ -74,6 +79,14 @@
              latLng = e.layer.getLatLng();
              map.panTo({lat: latLng.lat+0.05, lng: latLng.lng});
          });
+
+         // Failover
+         /* map.featureLayer.on('mouseover', function(e) { */
+         /* map.setZoom(12); */
+         /* console.log(e.layer.getLatLng()); */
+         /* latLng = e.layer.getLatLng(); */
+         /* map.panTo({lat: latLng.lat+0.05, lng: latLng.lng}); */
+         /* }); */
 
          map.on('click', function(e) {
              map.setView([48.85341-10, 5], 3);
