@@ -36,7 +36,9 @@
              var slideshowContent = '';
 
              if (images == null) {
-                 images = ['Bogota.jpg'];
+                 images = [feature.properties.title];
+                 console.log(feature.properties.title);
+                 feature.properties.title = "";
              }
 
              for(var i = 0; i < images.length; i++) {
@@ -57,12 +59,12 @@
              // http://leafletjs.com/reference.html#popup
              marker.bindPopup(popupContent,{
                  closeButton: false,
-                 minWidth: 640,
+                 minWidth: 700,
                  autoPan: false
              });
          });
 
-         $.getJSON('features.json' function(json) {
+         $.getJSON('features.json', function(json) {
              map.featureLayer.setGeoJSON(json);
          });
 
@@ -74,10 +76,10 @@
          });
 
          map.on('click', function(e) {
-             map.setView([48.85341, -2], 3);
+             map.setView([48.85341-10, 5], 3);
          });
 
-         map.setView([48.85341, -2], 3);
+         map.setView([48.85341-10, 5], 3);
         </script>
     </body>
 </html>
