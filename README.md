@@ -2,7 +2,7 @@
 
 [![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/maxmouchet/ics.js/blob/master/LICENSE)
 
-Stuff written during my studies at Télécom Bretagne. All code explicitly written by the contributors of this repository is under the MIT license. Otherwise it belongs to its respective creator.
+Courses notes and code written during my studies at Télécom Bretagne. All code explicitly written by the contributors of this repository is under the MIT license. Otherwise it belongs to its respective creator.
 
 Année  | Module                                                               | Description
 -------|----------------------------------------------------------------------|------------
@@ -17,6 +17,9 @@ FIP 1A | [MATLAB](https://github.com/maxmouchet/tb/tree/master/MATLAB)        | 
 FIP 2A | [INF 210](https://github.com/maxmouchet/INF210)                      | Projet Java 2A
 FIP 2A | [INF 211](https://github.com/maxmouchet/tb/tree/master/INF211)       | Base de données et architectures
 FIP 2A | [MTS 211](https://github.com/maxmouchet/tb/tree/master/MTS211)       | Processus stochastiques
+FIP 2A | [MTS 212](https://github.com/maxmouchet/tb/tree/master/MTS212)       | Traitement et estimation du signal
 FIP 2A | [SIT 211](https://github.com/maxmouchet/tb/tree/master/SIT211)       | Modélisation et validation des logiciels
 FIP 2A | [SIT 212](https://github.com/maxmouchet/tb/tree/master/SIT212)       | Simulation de signaux et briques de transmission
 FIP 2A | [SIT 213](https://github.com/maxmouchet/SIT213)                      | Simulation d'un système de transmission
+IG 3A  | [F4B101](https://github.com/maxmouchet/tb/tree/master/F4B101)        | Machine Learning         
+
