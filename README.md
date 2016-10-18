@@ -13,7 +13,6 @@ FIP 1A | [SIT 131](https://github.com/maxmouchet/tb/tree/master/SIT131)       | 
 FIP 1A | [SIT 151](https://github.com/maxmouchet/tb/tree/master/SIT151/C)     | Langage C
 FIP 1A | [SIT 151](https://github.com/maxmouchet/tb/tree/master/SIT151/Linux) | Linux
 FIP 1A | [SIT 152](https://github.com/maxmouchet/tb/tree/master/SIT152)       | Algorithmique et complexité
-FIP 1A | [MATLAB](https://github.com/maxmouchet/tb/tree/master/MATLAB)        | Introduction à Matlab
 FIP 2A | [INF 210](https://github.com/maxmouchet/INF210)                      | Projet Java 2A
 FIP 2A | [INF 211](https://github.com/maxmouchet/tb/tree/master/INF211)       | Base de données et architectures
 FIP 2A | [MTS 211](https://github.com/maxmouchet/tb/tree/master/MTS211)       | Processus stochastiques
