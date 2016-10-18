@@ -1,2 +1,3 @@
 *.o
 *.odt#
+.ipynb_checkpoints/
