@@ -6,20 +6,20 @@ Courses notes and code written during my studies at Télécom Bretagne. All code
 
 Année  | Module                                                               | Description
 -------|----------------------------------------------------------------------|------------
-FIP 1A | [INF 111](https://github.com/maxmouchet/tb/tree/master/INF111)       | Java
-FIP 1A | [INF 112](https://github.com/maxmouchet/tb/tree/master/INF1112)      | Projet Java 1A
-FIP 1A | [MTS 112](https://github.com/maxmouchet/tb/tree/master/MTS112)       | Signaux et systèmes déterministes
-FIP 1A | [SIT 131](https://github.com/maxmouchet/tb/tree/master/SIT131)       | Éléments d'algèbre linéaire
-FIP 1A | [SIT 151](https://github.com/maxmouchet/tb/tree/master/SIT151/C)     | Langage C
-FIP 1A | [SIT 151](https://github.com/maxmouchet/tb/tree/master/SIT151/Linux) | Linux
-FIP 1A | [SIT 152](https://github.com/maxmouchet/tb/tree/master/SIT152)       | Algorithmique et complexité
-FIP 2A | [INF 210](https://github.com/maxmouchet/INF210)                      | Projet Java 2A
-FIP 2A | [INF 211](https://github.com/maxmouchet/tb/tree/master/INF211)       | Base de données et architectures
-FIP 2A | [MTS 211](https://github.com/maxmouchet/tb/tree/master/MTS211)       | Processus stochastiques
-FIP 2A | [MTS 212](https://github.com/maxmouchet/tb/tree/master/MTS212)       | Traitement et estimation du signal
-FIP 2A | [SIT 211](https://github.com/maxmouchet/tb/tree/master/SIT211)       | Modélisation et validation des logiciels
-FIP 2A | [SIT 212](https://github.com/maxmouchet/tb/tree/master/SIT212)       | Simulation de signaux et briques de transmission
-FIP 2A | [SIT 213](https://github.com/maxmouchet/SIT213)                      | Simulation d'un système de transmission
+FIP 1A | [INF111](https://github.com/maxmouchet/tb/tree/master/INF111)       | Java
+FIP 1A | [INF112](https://github.com/maxmouchet/tb/tree/master/INF1112)      | Projet Java 1A
+FIP 1A | [MTS112](https://github.com/maxmouchet/tb/tree/master/MTS112)       | Signaux et systèmes déterministes
+FIP 1A | [SIT131](https://github.com/maxmouchet/tb/tree/master/SIT131)       | Éléments d'algèbre linéaire
+FIP 1A | [SIT151](https://github.com/maxmouchet/tb/tree/master/SIT151/C)     | Langage C
+FIP 1A | [SIT151](https://github.com/maxmouchet/tb/tree/master/SIT151/Linux) | Linux
+FIP 1A | [SIT152](https://github.com/maxmouchet/tb/tree/master/SIT152)       | Algorithmique et complexité
+FIP 2A | [INF210](https://github.com/maxmouchet/INF210)                      | Projet Java 2A
+FIP 2A | [INF211](https://github.com/maxmouchet/tb/tree/master/INF211)       | Base de données et architectures
+FIP 2A | [MTS211](https://github.com/maxmouchet/tb/tree/master/MTS211)       | Processus stochastiques
+FIP 2A | [MTS212](https://github.com/maxmouchet/tb/tree/master/MTS212)       | Traitement et estimation du signal
+FIP 2A | [SIT211](https://github.com/maxmouchet/tb/tree/master/SIT211)       | Modélisation et validation des logiciels
+FIP 2A | [SIT212](https://github.com/maxmouchet/tb/tree/master/SIT212)       | Simulation de signaux et briques de transmission
+FIP 2A | [SIT213](https://github.com/maxmouchet/SIT213)                      | Simulation d'un système de transmission
 IG 3A  | [F4B101](https://github.com/maxmouchet/tb/tree/master/F4B101)        | Machine learning
 IG 3A  | [F4B202](https://github.com/maxmouchet/tb/tree/master/F4B102)        | Computer vision
 IG 3A  | F4B305                                                               | Advanced computer vision
