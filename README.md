@@ -21,7 +21,7 @@ FIP 2A | [SIT 211](https://github.com/maxmouchet/tb/tree/master/SIT211)       | 
 FIP 2A | [SIT 212](https://github.com/maxmouchet/tb/tree/master/SIT212)       | Simulation de signaux et briques de transmission
 FIP 2A | [SIT 213](https://github.com/maxmouchet/SIT213)                      | Simulation d'un système de transmission
 IG 3A  | [F4B101](https://github.com/maxmouchet/tb/tree/master/F4B101)        | Machine learning
-IG 3A  | [F4B202](https://github.com/maxmouchet/tb/tree/master/F4B102)        | Computer vision
+IG 3A  | [F4B202](https://github.com/maxmouchet/tb/tree/master/F4B202)        | Computer vision
 IG 3A  | F4B305                                                               | Advanced computer vision
 IG 3A  | F4B413                                                               | Data mining and knowledge discovery
 IG 3A  | F4B516                                                               | Neural networks
