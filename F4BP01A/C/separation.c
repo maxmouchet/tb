@@ -89,7 +89,7 @@ void separation(double * input_1, double * input_2, double * output_1, double * 
 
     // Sources separation
     for (int i = 0; i < v_s1->L; i++) {
-        output_1[i] = (m_est_inv->elems[0][0]*v_s1->elems[i] + m_est_inv->elems[1][0]*v_s2->elems[i]) / det;
+        output_1[i] = (m_est_inv->elems[0][0]*v_s1->elems[i] + m_est_inv->elems[0][1]*v_s2->elems[i]) / det;
         output_2[i] = (m_est_inv->elems[1][0]*v_s1->elems[i] + m_est_inv->elems[1][1]*v_s2->elems[i]) / det;
     }
 }
