@@ -1,4 +1,6 @@
 
+### Rapport technique
+
 - [ ] Auteur(s)
 - [ ] UV / Module / Cours
 - [ ] Année
@@ -9,3 +11,5 @@
 - [ ] Liste des figures
 - [ ] Liste des tables
 - [ ] Axes et unités légendés sur les graphiques
+
+### Rapport entreprise
