@@ -8,3 +8,4 @@
 - [ ] Sommaire des sections et des annexes
 - [ ] Liste des figures
 - [ ] Liste des tables
+- [ ] Axes et unités légendés sur les graphiques
