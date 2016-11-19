@@ -23,6 +23,9 @@ TP3 | Tests NP et GLRT
 TP4 | Analyse de séries temporelles et modèles ARMA
 TP5 | Formation de voies (beamforming)
 TP6 | Ondelettes
+TP7 | Filtrage de Kalman
+TP8 | Filtrage particulaire
+TP9 | Classification non supervisée
 
 ## Ressources
 
