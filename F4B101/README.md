@@ -25,7 +25,7 @@ TP5 | Formation de voies (beamforming)
 TP6 | Ondelettes
 TP7 | Filtrage de Kalman
 TP8 | Filtrage particulaire
-TP9 | Classification non supervisée
+TP9-10 | Classification non supervisée
 
 ## Ressources
 
