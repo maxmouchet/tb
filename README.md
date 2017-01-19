@@ -24,7 +24,7 @@ IG 3A  | [F4B P01A](https://github.com/maxmouchet/tb/tree/master/F4BP01A)     | 
 IG 3A  | [F4B 101](https://github.com/maxmouchet/tb/tree/master/F4B101)       | Machine learning
 IG 3A  | F4B 202                                                              | Computer vision
 IG 3A  | [F4B 305](https://github.com/maxmouchet/tb/tree/master/F4B305)       | Advanced computer vision
-IG 3A  | F4B 413                                                              | Data mining and knowledge discovery
+IG 3A  | [F4B 413](https://github.com/maxmouchet/tb/tree/master/F4B413)       | Data mining and knowledge discovery
 IG 3A  | F4B 516                                                              | Neural networks
 
 

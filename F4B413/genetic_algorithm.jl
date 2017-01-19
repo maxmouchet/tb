@@ -93,15 +93,15 @@ function genalg(components, iterations, population_size, crossover_rate, mutatio
                     cur += c.bits
                 end
             end
-            
-            # Re-inject best
-            population[best_index] = best_individual;
-            
-            # Keep best fitness
-            # fit_history(:,i) = ratings;
-      
-            solution = decode(best_individual, components);
         end
+        
+        # Re-inject best
+        population[best_index] = best_individual;
+
+        # Keep best fitness
+        # fit_history(:,i) = ratings;
+
+        solution = decode(best_individual, components);
     end
 
     return solution
