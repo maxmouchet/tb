@@ -2,7 +2,8 @@
 
 [![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/maxmouchet/ics.js/blob/master/LICENSE)
 
-Courses notes and code written during my studies at Télécom Bretagne. All code explicitly written by the contributors of this repository is under the MIT license. Otherwise it belongs to its respective creator.
+Courses notes and code written during my studies at Télécom Bretagne. All code explicitly written by the contributors of this repository is under the MIT license. Otherwise it belongs to its respective creator.  
+When code was given by the professor, only the part written by myself is included in this repository. You'll likely find the other bits on Telecom's Moodle platform.
 
 Année  | Module                                                               | Description
 -------|----------------------------------------------------------------------|------------
