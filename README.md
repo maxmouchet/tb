@@ -2,8 +2,8 @@
 
 [![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/maxmouchet/ics.js/blob/master/LICENSE)
 
-Courses notes and code written during my studies at Télécom Bretagne. All code explicitly written by the contributors of this repository is under the MIT license. Otherwise it belongs to its respective creator.  
-When code was given by the professor, only the part written by myself is included in this repository. You'll likely find the other bits on Telecom's Moodle platform.
+Courses notes and code written during my studies at Télécom Bretagne. All code explicitly written by the contributors of this repository is under the MIT license. Otherwise it belongs to its respective creator (ask me if in doubt).  
+When code was given by the professor, only (some) parts written by myself are included in this repository. You'll likely find the other bits on Telecom's Moodle platform.
 
 Année  | Module                                                               | Description
 -------|----------------------------------------------------------------------|------------
@@ -24,8 +24,8 @@ FIP 2A | [SIT 213](https://github.com/maxmouchet/SIT213)                      | 
 IG 3A  | [F4B P01A](https://github.com/maxmouchet/tb/tree/master/F4BP01A)     | Software project
 IG 3A  | [F4B 101](https://github.com/maxmouchet/tb/tree/master/F4B101)       | Machine learning
 IG 3A  | F4B 202                                                              | Computer vision
-IG 3A  | [F4B 305](https://github.com/maxmouchet/tb/tree/master/F4B305)       | Advanced computer vision
+IG 3A  | F4B 305                                                              | Advanced computer vision
 IG 3A  | [F4B 413](https://github.com/maxmouchet/tb/tree/master/F4B413)       | Data mining and knowledge discovery
-IG 3A  | F4B 516                                                              | Neural networks
+IG 3A  | [F4B 516](https://github.com/maxmouchet/tb/tree/master/F4B516)       | Neural networks, chaotic models, computer vision
 
 
