@@ -12,6 +12,11 @@ using namespace std;
 // Implementation of Abdel-Dayem et al. 2005
 // Carotid Artery Ultrasound Image Segmentation Using Fuzzy Region Growing
 
+// Compilation
+// -----------
+// mkdir build && cd build/
+// cmake .. && make
+
 Mat image;
 Mat image_bin;
 
